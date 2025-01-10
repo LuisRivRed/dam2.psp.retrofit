@@ -7,7 +7,7 @@ enum class Curso {
 }
 
 enum class Asignatura {
-    EIE, PSP, AAD, PMDM, DDI
+    PSP, SGE, AAD, DDI, PMDM
 }
 
 @Serializable
