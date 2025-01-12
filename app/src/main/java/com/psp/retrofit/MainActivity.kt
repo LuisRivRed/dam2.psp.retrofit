@@ -14,6 +14,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.lifecycleScope
 import com.psp.data.ApiClient
+import com.psp.domain.model.Alumno
+import com.psp.domain.model.Asignatura
+import com.psp.domain.model.Curso
 import com.psp.retrofit.ui.theme.RetrofitTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -29,8 +32,7 @@ class MainActivity : ComponentActivity() {
             RetrofitTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
+                        name = "Android", modifier = Modifier.padding(innerPadding)
                     )
                 }
             }
@@ -41,21 +43,46 @@ class MainActivity : ComponentActivity() {
 
 fun main() {
 
+    val apiService = ApiClient.apiService
+    println("Respuestas de la api: Alumnos\n")
+
     runBlocking {
-        try {
-            val alumnos = ApiClient.apiService.getAlumnos()
-            Log.d("@dev", "Alumnos: {$alumnos}")
-        } catch (e: IOException) {
-            Log.d("@dev", "Error de conexión: {$e}")
-        }
+        val alumnos = apiService.getAlumnos()
+        println("Todos los alumnos: \n $alumnos")
+
+        val nombre = "Alicia" //Cambia este parametro por: Pedro, Pepe, Alicia
+        val alumnoNombre = apiService.getAlumnoNombre(nombre)
+        println("\nAlumno por nombre: $alumnoNombre")
+
+        val curso = "DAM2" //Cambia este parámetro por: DAM1, DAM2, DAW1, DAW2
+        val alumnoCurso = apiService.getAlumnoCurso(curso)
+        println("\nAlumno por curso: $alumnoCurso")
+
+        val newAlumno = Alumno(
+            id = 4,
+            nombre = "Marcos",
+            fechaNacimiento = "14/06/2003",
+            curso = Curso.DAW2,
+            email = "marcos12@gmail.com",
+            asignaturas = listOf(Asignatura.PSP, Asignatura.EIE, Asignatura.PMDM))
+        apiService.addAlumno(newAlumno)
+
+        val updatedAlumnosAfterAdd  = apiService.getAlumnos()
+        println("\nLista de alumnos mas el nuevo alumno: $updatedAlumnosAfterAdd")
+
+        val idAlumno = 1 //Cambia este parámetro para borrar el alumno que desees
+        apiService.deleteAlumno(idAlumno)
+
+
+        val updatedAlumnosAfterDelete  = apiService.getAlumnos()
+        println("\nLista de alumnos menos el alumno borrado: $updatedAlumnosAfterDelete")
     }
 }
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
-        text = "Hello $name!",
-        modifier = modifier
+        text = "Hello $name!", modifier = modifier
     )
 }
 
