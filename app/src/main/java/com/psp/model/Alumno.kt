@@ -6,9 +6,7 @@ enum class Curso {
     DAM1, DAM2, DAW1, DAW2
 }
 
-enum class Asignatura {
-    EIE, PSP, AAD, PMDM, DDI
-}
+enum class Asignatura { EIE, PSP, AAD, PMDM, DDI, SGE }
 
 @Serializable
 data class Alumno(
