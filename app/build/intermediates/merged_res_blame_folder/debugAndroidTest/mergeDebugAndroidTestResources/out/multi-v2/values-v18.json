@@ -1,0 +1,28 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.psp.retrofit.test.app-mergeDebugAndroidTestResources-35:/values-v18/values-v18.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\ianga\\.gradle\\caches\\8.9\\transforms\\7396aa462215a5a562c74bf5e8ebe1c8\\transformed\\core-1.6.1\\res\\values-v18\\values.xml",
+                    "from": {
+                        "startLines": "4,12",
+                        "startColumns": "0,0",
+                        "startOffsets": "146,562",
+                        "endLines": "11,19",
+                        "endColumns": "8,8",
+                        "endOffsets": "561,975"
+                    },
+                    "to": {
+                        "startLines": "2,10",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,475",
+                        "endLines": "9,17",
+                        "endColumns": "8,8",
+                        "endOffsets": "470,888"
+                    }
+                }
+            ]
+        }
+    ]
+}
