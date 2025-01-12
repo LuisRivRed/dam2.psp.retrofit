@@ -13,9 +13,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.psp.data.ApiClient
-import com.psp.model.Alumno
-import com.psp.model.Asignatura
-import com.psp.model.Curso
 import com.psp.retrofit.ui.theme.RetrofitTheme
 import kotlinx.coroutines.runBlocking
 
@@ -32,17 +29,22 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-        main()
+        fetchAlumnos()
     }
-}
 
-fun main() {
+    private fun fetchAlumnos() {
 
-    val apiService = ApiClient.retrofit
-
-    runBlocking {
-        val alumnos = apiService.getAlumnos()
-        Log.d("dev", alumnos.toString())
+        Thread {
+            try {
+                val apiService = ApiClient.retrofit
+                runBlocking {
+                    val alumnos = apiService.getAlumnos()
+                    Log.d("dev", alumnos.toString())
+                }
+            } catch (e: Exception) {
+                Log.e("dev", "Error al obtener alumnos", e)
+            }
+        }.start()
     }
 }
 
