@@ -1,4 +1,4 @@
-package com.psp.model
+package com.psp.domain.model
 
 import kotlinx.serialization.Serializable
 
