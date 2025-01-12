@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace = "com.psp.retrofit"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.psp.retrofit"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -58,4 +58,5 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation (libs.retrofit)
     implementation (libs.xuse)
+    implementation (libs.converter.gson)
 }

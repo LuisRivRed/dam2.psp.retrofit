@@ -1,5 +1,6 @@
-package com.psp.model
+package com.psp.domain.model
 
+import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
 
 enum class Curso {
@@ -10,7 +11,7 @@ enum class Asignatura {
     EIE, PSP, AAD, PMDM, DDI
 }
 
-@Serializable
+@SerializedName
 data class Alumno(
     var id: Int,
     val nombre: String,
