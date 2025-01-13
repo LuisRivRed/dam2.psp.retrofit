@@ -1,6 +1,5 @@
 package com.psp.data
 
-import edu.iesam.pspretrofit.data.remote.AlumnoService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

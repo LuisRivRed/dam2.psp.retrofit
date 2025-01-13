@@ -25,6 +25,11 @@ import kotlinx.coroutines.withContext
 
 class MainActivity : ComponentActivity() {
 
+    /**
+     * ATENCIÓN: La información de los alumnos se muestra en el LogCat
+     * con el tag @dev
+     */
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

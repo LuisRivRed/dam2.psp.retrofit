@@ -1,6 +1,5 @@
-package edu.iesam.pspretrofit.data.remote
+package com.psp.data
 
-import com.psp.data.AlumnoApiModel
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
