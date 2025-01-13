@@ -42,7 +42,7 @@ class MainActivity : ComponentActivity() {
                     Log.d("@dev", alumnos.toString())
                 }
             } catch (e: Exception) {
-                Log.e("@dev", "Error al obtener alumnos", e)
+                Log.e("@dev", "Error al obtener alumnos")
             }
         }.start()
     }
