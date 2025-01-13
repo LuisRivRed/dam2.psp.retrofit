@@ -56,6 +56,11 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:<use:2.9.0'
+    implementation (libs.retrofit)
+    implementation (libs.com.squareup.retrofit2.xuse)
+
+    //test
+    implementation(libs.org.mockito.mockito.core3)
+    implementation(libs.mockito.kotlin)
+    implementation(libs.kotlinx.coroutines.test)
 }
