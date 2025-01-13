@@ -39,10 +39,10 @@ class MainActivity : ComponentActivity() {
                 val apiService = ApiClient.retrofit
                 runBlocking {
                     val alumnos = apiService.getAlumnos()
-                    Log.d("dev", alumnos.toString())
+                    Log.d("@dev", alumnos.toString())
                 }
             } catch (e: Exception) {
-                Log.e("dev", "Error al obtener alumnos", e)
+                Log.e("@dev", "Error al obtener alumnos", e)
             }
         }.start()
     }
