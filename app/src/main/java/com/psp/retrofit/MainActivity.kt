@@ -1,7 +1,6 @@
 package com.psp.retrofit
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -12,17 +11,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.lifecycleScope
 import com.psp.data.ApiClient
 import com.psp.domain.model.Alumno
 import com.psp.domain.model.Asignatura
 import com.psp.domain.model.Curso
 import com.psp.retrofit.ui.theme.RetrofitTheme
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import java.io.IOException
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,23 +37,23 @@ class MainActivity : ComponentActivity() {
 
 fun main() {
 
-    val apiService = ApiClient.apiService
+    val apiService = ApiClient.alumnoApiService
     println("Respuestas de la api: Alumnos\n")
 
     runBlocking {
         val alumnos = apiService.getAlumnos()
-        println("Todos los alumnos: \n $alumnos")
+        println("Todos los alumnos: \n ${alumnos.body()}")
 
         val nombre = "Alicia" //Cambia este parametro por: Pedro, Pepe, Alicia
         val alumnoNombre = apiService.getAlumnoNombre(nombre)
-        println("\nAlumno por nombre: $alumnoNombre")
+        println("\nAlumno por nombre: ${alumnoNombre.body()}")
 
         val curso = "DAM2" //Cambia este parámetro por: DAM1, DAM2, DAW1, DAW2
         val alumnoCurso = apiService.getAlumnoCurso(curso)
-        println("\nAlumno por curso: $alumnoCurso")
+        println("\nAlumno por curso: ${alumnoCurso.body()}")
 
         val newAlumno = Alumno(
-            id = 4,
+            id = 6,
             nombre = "Marcos",
             fechaNacimiento = "14/06/2003",
             curso = Curso.DAW2,
@@ -68,14 +62,14 @@ fun main() {
         apiService.addAlumno(newAlumno)
 
         val updatedAlumnosAfterAdd  = apiService.getAlumnos()
-        println("\nLista de alumnos mas el nuevo alumno: $updatedAlumnosAfterAdd")
+        println("\nLista de alumnos mas el nuevo alumno: ${updatedAlumnosAfterAdd.body()}")
 
         val idAlumno = 1 //Cambia este parámetro para borrar el alumno que desees
         apiService.deleteAlumno(idAlumno)
 
 
         val updatedAlumnosAfterDelete  = apiService.getAlumnos()
-        println("\nLista de alumnos menos el alumno borrado: $updatedAlumnosAfterDelete")
+        println("\nLista de alumnos menos el alumno borrado: ${updatedAlumnosAfterDelete.body()}")
     }
 }
 

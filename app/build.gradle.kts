@@ -67,4 +67,9 @@ dependencies {
     implementation (libs.kotlinx.coroutines)
     //serializable
     implementation(libs.kotlinx.serialization)
+
+    //test:mockito
+    implementation(libs.mockito)
+    implementation(libs.mockito.kotlin)
+    implementation(libs.mockito.jetbrains)
 }
