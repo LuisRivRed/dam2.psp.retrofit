@@ -1,14 +1,16 @@
 package com.psp.model
 
+import kotlinx.serialization.Serializable
 
 enum class Curso {
     DAM1, DAM2, DAW1, DAW2
 }
 
 enum class Asignatura {
-    SGE, PSP, AAD, PMDM, DDI
+     AAD, DDI, PMDM, PSP, SGE
 }
 
+@Serializable
 data class Alumno(
     var id: Int,
     val nombre: String,

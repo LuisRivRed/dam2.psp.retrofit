@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.psp.retrofit"
-    compileSdk = 35
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.psp.retrofit"
@@ -57,6 +57,10 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.retrofit)
-    implementation(libs.retrofitConverterGson)
-
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.converter.gson)
+    implementation(platform(libs.okhttp.bom))
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
 }
