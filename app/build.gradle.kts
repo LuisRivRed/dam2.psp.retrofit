@@ -56,8 +56,11 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    implementation(libs.kotlinx.serialization.json)
+
     implementation (libs.retrofit)
-    implementation (libs.com.squareup.retrofit2.xuse)
+    implementation (libs.converter.gson)
 
     //test
     implementation(libs.org.mockito.mockito.core3)
