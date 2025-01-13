@@ -2,6 +2,7 @@ package com.psp.model
 
 import kotlinx.serialization.Serializable
 
+
 enum class Curso {
     DAM1, DAM2, DAW1, DAW2
 }
