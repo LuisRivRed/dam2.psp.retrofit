@@ -30,6 +30,7 @@ class MainActivity : ComponentActivity() {
             }
         }
         fetchAlumnos()
+        deleteAlumno(2)
     }
 
     private fun fetchAlumnos() {
@@ -43,6 +44,20 @@ class MainActivity : ComponentActivity() {
                 }
             } catch (e: Exception) {
                 Log.e("@dev", "Error al obtener alumnos")
+            }
+        }.start()
+    }
+
+    private fun deleteAlumno(id: Int) {
+        Thread {
+            try {
+                val apiService = ApiClient.retrofit
+                runBlocking {
+                    apiService.deleteAlumno(id)
+                    Log.d("@dev", "Alumno eliminado")
+                }
+            } catch (e: Exception) {
+                Log.e("@dev", "Error al eliminar alumno")
             }
         }.start()
     }
