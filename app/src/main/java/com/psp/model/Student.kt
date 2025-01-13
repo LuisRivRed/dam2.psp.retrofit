@@ -11,7 +11,7 @@ enum class Asignatura {
 }
 
 @Serializable
-data class Alumno(
+data class Student(
     var id: Int,
     val nombre: String,
     val fechaNacimiento: String,
