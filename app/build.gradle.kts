@@ -61,6 +61,11 @@ dependencies {
     implementation(libs.androidx.runtime.livedata)
     implementation(libs.androidx.runtime)
 
+
+    implementation(libs.mockito.core)// "org.mockito:mockito-core:3.11.2"
+    implementation(libs.mockito.kotlin)// "org.mockito.kotlin:mockito-kotlin:3.2.0"
+    implementation(libs.kotlinx.coroutines.test)// "org.jetbrains.kotlin:kotlinx.coroutines-test:1.5.2"
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
