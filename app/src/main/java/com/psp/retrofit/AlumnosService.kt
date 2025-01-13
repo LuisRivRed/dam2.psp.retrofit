@@ -6,7 +6,7 @@ import com.psp.domain.model.Alumno
 
 object AlumnosService {
 
-    private val alumnosApi: AlumnosApi = ApiClient.retrofit.create(AlumnosApi::class.java)
+    val alumnosApi: AlumnosApi = ApiClient.retrofit.create(AlumnosApi::class.java)
 
     suspend fun getAlumnos(): List<Alumno> {
         return alumnosApi.getAlumnos()
