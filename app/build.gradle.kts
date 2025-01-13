@@ -60,10 +60,16 @@ dependencies {
     implementation(libs.retrofit)
     // Kotlinx
     implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.test)
     implementation(libs.kotlinx.serialization.json)
 
     implementation(libs.converter.gson)
     implementation(platform(libs.okhttp.bom))
     implementation(libs.okhttp)
     implementation(libs.logging.interceptor)
+
+    //Mockito
+    implementation(libs.mockito.core)
+    implementation(libs.mockito.kotlin)
+
 }
