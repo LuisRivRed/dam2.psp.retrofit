@@ -1,47 +1,49 @@
 package com.psp.retrofit
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.psp.retrofit.ui.theme.RetrofitTheme
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import com.psp.data.ApiClient
+import com.psp.data.AlumnoApiModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
+
+    private val alumnoService = ApiClient.retrofit // Obtenemos directamente el servicio de ApiClient
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            RetrofitTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+        setContentView(R.layout.activity_main)
+
+        // Cargar datos de alumnos y mostrarlos en el log
+        loadAlumnos()
+    }
+
+    private fun loadAlumnos() {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = alumnoService.getAlumnos()
+                if (response.isSuccessful) {
+                    val alumnos = response.body()
+                    if (alumnos != null) {
+                        logAlumnos(alumnos)
+                    } else {
+                        Log.w("MainActivity", "No se encontraron alumnos.")
+                    }
+                } else {
+                    Log.e("MainActivity", "Error al cargar alumnos: ${response.code()}")
                 }
+            } catch (e: Exception) {
+                Log.e("MainActivity", "Error al realizar la solicitud: ${e.message}")
             }
         }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    RetrofitTheme {
-        Greeting("Android")
+    private fun logAlumnos(alumnos: List<AlumnoApiModel>) {
+        alumnos.forEach { alumno ->
+            Log.d("Alumno", "ID: ${alumno.id}, Nombre: ${alumno.nombre}, Curso: ${alumno.curso}")
+        }
     }
 }
