@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace = "com.psp.retrofit"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.psp.retrofit"
-        minSdk = 24
-        targetSdk = 34
+        minSdk = 26
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -42,7 +42,6 @@ android {
 dependencies {
 
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
@@ -61,11 +60,9 @@ dependencies {
     implementation(libs.androidx.runtime.livedata)
     implementation(libs.androidx.runtime)
 
-
-    implementation(libs.mockito.core)// "org.mockito:mockito-core:3.11.2"
-    implementation(libs.mockito.kotlin)// "org.mockito.kotlin:mockito-kotlin:3.2.0"
-    implementation(libs.kotlinx.coroutines.test)// "org.jetbrains.kotlin:kotlinx.coroutines-test:1.5.2"
-
+    implementation(libs.org.jetbrains.kotlinx.kotlinx.coroutines.test)// "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.2"
+    implementation(libs.mockito.core.v531)// "org.mockito:mockito-core:5.3.1"
+    implementation(libs.mockito.kotlin.v510)// "org.mockito.kotlin:mockito-kotlin:5.1.0"
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
