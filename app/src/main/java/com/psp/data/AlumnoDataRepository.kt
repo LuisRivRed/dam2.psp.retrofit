@@ -24,7 +24,7 @@ class AlumnoDataRepository(private val apiService: ApiService) : AlumnoRepositor
         }
     }
 
-    override suspend fun gtAlmnoByNombre(nombre: String): Response<Alumno> {
+    override suspend fun getAlumnoByNombre(nombre: String): Response<Alumno> {
         val response = apiService.getAlumnoByNombre(nombre)
         return if (response.isSuccessful) {
             response
