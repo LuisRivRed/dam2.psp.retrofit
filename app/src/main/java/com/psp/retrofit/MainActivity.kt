@@ -26,7 +26,9 @@ class MainActivity : ComponentActivity() {
     private val apiService: ApiService by lazy {
         ApiClient.provideRetrofit().create(ApiService::class.java)
     }
-    private lateinit var alumnoDataRepository: AlumnoDataRepository
+    private val alumnoDataRepository: AlumnoDataRepository by lazy {
+        AlumnoDataRepository(apiService)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
