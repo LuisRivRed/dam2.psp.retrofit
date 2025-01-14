@@ -9,10 +9,15 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.psp.data.AlunmnoDataRepository
 import com.psp.data.remote.ApiClient
+import com.psp.data.remote.ApiService
 import kotlinx.coroutines.runBlocking
 
 class MainActivity : ComponentActivity() {
+
+    private lateinit var repository: AlunmnoDataRepository
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -22,8 +27,8 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun main() {
-        val apiClient = ApiClient()
-        val apiService = apiClient.apiService
+        val apiService = ApiClient().provideApi().create(ApiService::class.java)
+        AlunmnoDataRepository(apiService)
 
         runBlocking {
             val response1 = apiService.getAlumnos()
