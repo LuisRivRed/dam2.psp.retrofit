@@ -13,8 +13,8 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.psp.data.AlumnoDataRepository
-import com.psp.data.remote.ApiClient
-import com.psp.data.remote.ApiService
+import com.psp.data.ApiClient
+import com.psp.data.ApiService
 import com.psp.retrofit.ui.theme.RetrofitTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
