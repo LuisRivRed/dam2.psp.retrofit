@@ -1,3 +1,5 @@
+package com.psp.retrofit
+
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -13,6 +15,7 @@ import com.psp.model.Asignatura
 import com.psp.model.Curso
 import com.psp.retrofit.ui.theme.RetrofitTheme
 import kotlinx.coroutines.runBlocking
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,11 +38,11 @@ fun retrofitEjemplo() {
         Log.d("@prueba", "${apiAlumno.getAlumnoByNombre("Kai")}")
 
         val alumnoDeEjemplo = Alumno(
-            5,
+            6,
             "Juan   ",
             "2001-10-08",
             Curso.DAW1,
-            "juangararr@email.com",
+            "juangararr@gmail.com",
             listOf(Asignatura.PSP, Asignatura.DDI, Asignatura.AAD)
         )
         Log.d("@prueba", "${apiAlumno.addAlumno(alumnoDeEjemplo)}")
