@@ -14,9 +14,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.psp.data.ApiClient
 import com.psp.retrofit.ui.theme.RetrofitTheme
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -30,7 +35,7 @@ class MainActivity : ComponentActivity() {
             }
         }
         fetchAlumnos()
-        deleteAlumno(2)
+        encontrarAlumnoId()
     }
 
     private fun fetchAlumnos() {
@@ -48,32 +53,34 @@ class MainActivity : ComponentActivity() {
         }.start()
     }
 
-    private fun deleteAlumno(id: Int) {
-        Thread {
+    private fun encontrarAlumnoId() {
+        CoroutineScope(Dispatchers.IO).launch {
             try {
                 val apiService = ApiClient.retrofit
-                runBlocking {
-                    apiService.deleteAlumno(id)
-                    Log.d("@dev", "Alumno eliminado")
+                val alumno = apiService.getAlumno(3)
+                withContext(Dispatchers.Main) {
+                    Log.d("@dev", alumno.toString())
                 }
             } catch (e: Exception) {
-                Log.e("@dev", "Error al eliminar alumno")
+                withContext(Dispatchers.Main) {
+                    Log.e("@dev", "Error al obtener alumno", e)
+                }
             }
-        }.start()
+        }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!", modifier = modifier
-    )
-}
+    @Composable
+    fun Greeting(name: String, modifier: Modifier = Modifier) {
+        Text(
+            text = "Hello $name!", modifier = modifier
+        )
+    }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    RetrofitTheme {
-        Greeting("Android")
+    @Preview(showBackground = true)
+    @Composable
+    fun GreetingPreview() {
+        RetrofitTheme {
+            Greeting("Android")
+        }
     }
 }
