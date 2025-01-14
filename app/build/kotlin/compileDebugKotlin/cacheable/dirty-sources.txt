@@ -1,5 +1,0 @@
-C:\Users\alvar\StudioProjects\dam2.psp.retrofit\app\src\main\java\com\psp\retrofit\ui\theme\Theme.kt
-C:\Users\alvar\StudioProjects\dam2.psp.retrofit\app\src\main\java\com\psp\model\Alumno.kt
-C:\Users\alvar\StudioProjects\dam2.psp.retrofit\app\src\main\java\com\psp\retrofit\MainActivity.kt
-C:\Users\alvar\StudioProjects\dam2.psp.retrofit\app\src\main\java\com\psp\retrofit\ui\theme\Color.kt
-C:\Users\alvar\StudioProjects\dam2.psp.retrofit\app\src\main\java\com\psp\retrofit\ui\theme\Type.kt
