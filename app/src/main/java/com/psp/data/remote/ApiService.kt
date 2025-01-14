@@ -10,10 +10,7 @@ interface ApiService {
     @GET("/alumnos")
     suspend fun getAlumnos(): Response<List<Alumno>>
 
-    @GET("/alumnos/curso/{curso}")
-    suspend fun getAlumnosByCurso(@Path("curso") curso: String): Response<List<Alumno>>
-
-    @GET("/alumnos/alumno/{nombre}")
-    suspend fun getAlumnosByName(@Path("nombre") nombre: String): Response<List<Alumno>>
+    @GET("/alumnos/nombre/{name}")
+    suspend fun getAlumnosByName(@Path("name") nombre: String): Response<List<Alumno>>
 
 }

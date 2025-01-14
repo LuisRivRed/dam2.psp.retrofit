@@ -53,8 +53,14 @@ dependencies {
     implementation (libs.converter.gson)
     implementation (libs.kotlinx.coroutines.android)
     implementation (libs.jetbrains.kotlinx.serialization.json)
+    implementation(libs.kotlinx.coroutines.test)
+    implementation(libs.mockito.core)
+    implementation(libs.mockito.kotlin)
 
     testImplementation(libs.junit)
+
+
+
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))

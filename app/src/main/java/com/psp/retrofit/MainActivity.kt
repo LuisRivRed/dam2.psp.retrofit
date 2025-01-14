@@ -29,11 +29,8 @@ class MainActivity : ComponentActivity() {
             val response1 = apiService.getAlumnos()
             Log.d("@Dev", "${response1.body()}")
 
-            val response2 = apiService.getAlumnosByCurso("DAW1")
+            val response2 = apiService.getAlumnosByName("Juanito Juan")
             Log.d("@Dev", "${response2.body()}")
-
-            val response3 = apiService.getAlumnosByName("Juanito Juan")
-            Log.d("@Dev", "${response3.body()}")
         }
     }
 }
