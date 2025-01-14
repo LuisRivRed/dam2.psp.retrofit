@@ -45,7 +45,11 @@ class AlumnosServiceTest {
                      asignaturas = emptyList()
                  )
              )
-            whenever(alumnosService.getAlumnos()).thenReturn((alumnos))
+            // whenever(alumnosService.getAlumnos()).thenReturn((alumnos))
+
+            val result = alumnosService.getAlumnos()
+
+            assert(result == alumnos)
         }
     }
 
