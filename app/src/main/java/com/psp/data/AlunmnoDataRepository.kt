@@ -14,8 +14,8 @@ class AlunmnoDataRepository(
         return Response.success(response.body())
     }
 
-    override suspend fun getAlumnosByName(name: String): Response<List<Alumno>> {
-        val response = apiService.getAlumnosByName(name)
+    override suspend fun getAlumnosByName(nombre: String): Response<List<Alumno>> {
+        val response = apiService.getAlumnosByName(nombre)
         return Response.success(response.body())
     }
 

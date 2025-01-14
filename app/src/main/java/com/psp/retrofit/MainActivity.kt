@@ -16,8 +16,6 @@ import kotlinx.coroutines.runBlocking
 
 class MainActivity : ComponentActivity() {
 
-    private lateinit var repository: AlunmnoDataRepository
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -34,7 +32,7 @@ class MainActivity : ComponentActivity() {
             val response1 = apiService.getAlumnos()
             Log.d("@Dev", "${response1.body()}")
 
-            val response2 = apiService.getAlumnosByName("Juanito Juan")
+            val response2 = apiService.getAlumnosByName("Marcos")
             Log.d("@Dev", "${response2.body()}")
         }
     }
