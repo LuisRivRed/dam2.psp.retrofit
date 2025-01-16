@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import com.psp.data.AlumnoDataRepository
 import com.psp.model.Alumno
 import com.psp.model.Asignatura
 import com.psp.model.CreateAlumnoUseCase
@@ -34,7 +35,7 @@ fun retrofitGetAlumnos() {
     runBlocking {
         try {
             Log.d("@retrofit", "Lista de Alumnos:")
-            val alumnos = GetAlumnosUseCase().invoke()
+            val alumnos = GetAlumnosUseCase(AlumnoDataRepository).invoke()
             for (alumno in alumnos) {
                 Log.d("@retrofit", "$alumno")
             }
@@ -49,7 +50,7 @@ fun retrofitGetAlumnosByCurso() {
     runBlocking {
         try {
             Log.d("@retrofit", "Lista de Alumnos filtrados por curso:")
-            val alumnosByCurso = GetAlumnosByCursoUseCase().invoke("DAM1")
+            val alumnosByCurso = GetAlumnosByCursoUseCase(AlumnoDataRepository).invoke("DAM1")
             for (alumno in alumnosByCurso) {
                 Log.d("@retrofit", "$alumno")
             }
@@ -64,7 +65,7 @@ fun retrofitGetAlumnoByNombre() {
     runBlocking {
         try {
             Log.d("@retrofit", "Datos de un Alumno recogido por su nombre:")
-            val alumnoByName = GetAlumnoByNombreUseCase().invoke("Kai")
+            val alumnoByName = GetAlumnoByNombreUseCase(AlumnoDataRepository).invoke("Kai")
             Log.d("@retrofit", "$alumnoByName")
         } catch (e: IOException) {
             Log.d("@retrofit", "Error de conexión: {$e}")
@@ -80,9 +81,9 @@ fun retrofitSaveAlumno() {
                 5, "Ian", "2004/05/10", Curso.DAM2, "ian@example.com",
                 listOf(Asignatura.PSP, Asignatura.SGE, Asignatura.AAD)
             )
-            CreateAlumnoUseCase().invoke(alumno)
+            CreateAlumnoUseCase(AlumnoDataRepository).invoke(alumno)
             Log.d("@retrofit", "Lista de alumnos despues de agregarle uno nuevo:")
-            val alumnosNuevo = GetAlumnosUseCase().invoke()
+            val alumnosNuevo = GetAlumnosUseCase(AlumnoDataRepository).invoke()
             for (a in alumnosNuevo) {
                 Log.d("@retrofit", "$a")
             }
@@ -97,8 +98,8 @@ fun retrofitDeleteAlumnos() {
     runBlocking {
         try {
             Log.d("@retrofit", "Lista de alumnos despues de borrarle el que agregamos antes:")
-            DeleteAlumnoUseCase().invoke(5)
-            val alumnosDelete = GetAlumnosUseCase().invoke()
+            DeleteAlumnoUseCase(AlumnoDataRepository).invoke(5)
+            val alumnosDelete = GetAlumnosUseCase(AlumnoDataRepository).invoke()
             for (a in alumnosDelete) {
                 Log.d("@retrofit", "$a")
             }

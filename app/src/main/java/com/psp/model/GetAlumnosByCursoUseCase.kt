@@ -1,9 +1,6 @@
 package com.psp.model
 
-import com.psp.data.AlumnoDataRepository
-
-class GetAlumnosByCursoUseCase {
-    private val repository= AlumnoDataRepository
+class GetAlumnosByCursoUseCase (private val repository: AlumnoRepository) {
     suspend fun invoke(curso:String):List<Alumno>{
         return repository.getAlumnoByCurso(curso)
     }

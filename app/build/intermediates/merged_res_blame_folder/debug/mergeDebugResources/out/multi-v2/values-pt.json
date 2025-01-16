@@ -4,7 +4,7 @@
             "outputFile": "com.psp.retrofit.app-mergeDebugResources-45:/values-pt/values-pt.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Administrador\\.gradle\\caches\\8.9\\transforms\\2928cd75b14ee3baca8d3c2aa4a745a8\\transformed\\ui-release\\res\\values-pt\\values-pt.xml",
+                    "source": "C:\\Users\\Administrador\\.gradle\\caches\\8.9\\transforms\\4cbc2f3dee15886160dcc7f854c25f51\\transformed\\ui-release\\res\\values-pt\\values-pt.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Administrador\\.gradle\\caches\\8.9\\transforms\\9ffd6a2abffa1f9db83072d5bb854227\\transformed\\material3-release\\res\\values-pt\\values-pt.xml",
+                    "source": "C:\\Users\\Administrador\\.gradle\\caches\\8.9\\transforms\\84ca682ac7a06c430d652a391ad9526c\\transformed\\material3-release\\res\\values-pt\\values-pt.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -38,7 +38,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Administrador\\.gradle\\caches\\8.9\\transforms\\f5ad4be61a853517488812579a383708\\transformed\\foundation-release\\res\\values-pt\\values-pt.xml",
+                    "source": "C:\\Users\\Administrador\\.gradle\\caches\\8.9\\transforms\\329ca9b90eb07297f45689d52999da5c\\transformed\\foundation-release\\res\\values-pt\\values-pt.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -55,7 +55,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Administrador\\.gradle\\caches\\8.9\\transforms\\4acb0cc32d5c1bab00c2a7fb188e8f5d\\transformed\\core-1.15.0\\res\\values-pt\\values-pt.xml",
+                    "source": "C:\\Users\\Administrador\\.gradle\\caches\\8.9\\transforms\\7ba17b632a92e474b8589d8742a7cf6e\\transformed\\core-1.15.0\\res\\values-pt\\values-pt.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",

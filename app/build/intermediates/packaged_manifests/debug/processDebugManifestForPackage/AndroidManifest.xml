@@ -28,7 +28,6 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:testOnly="true"
         android:theme="@style/Theme.Retrofit"
         android:usesCleartextTraffic="true" >
         <activity
@@ -43,10 +42,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="androidx.activity.ComponentActivity"
+            android:name="androidx.compose.ui.tooling.PreviewActivity"
             android:exported="true" />
         <activity
-            android:name="androidx.compose.ui.tooling.PreviewActivity"
+            android:name="androidx.activity.ComponentActivity"
             android:exported="true" />
 
         <provider

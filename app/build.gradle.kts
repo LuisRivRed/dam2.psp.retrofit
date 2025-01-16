@@ -70,4 +70,5 @@ dependencies {
     implementation("org.mockito:mockito-core:5.3.1")
     implementation("org.mockito.kotlin:mockito-kotlin:5.1.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.1")
+    testImplementation(libs.mockk)
 }
