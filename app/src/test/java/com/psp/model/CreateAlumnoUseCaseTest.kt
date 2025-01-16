@@ -6,7 +6,6 @@ import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.impl.annotations.RelaxedMockK
 import kotlinx.coroutines.runBlocking
-import org.junit.Assert.assertThrows
 import org.junit.Before
 import org.junit.Test
 
