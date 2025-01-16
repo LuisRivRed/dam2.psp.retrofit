@@ -9,7 +9,7 @@ object AlumnoDataRepository: AlumnoRepository {
     override suspend fun getAlumnos():List<Alumno>{
         return apiService.getAlumnos()
     }
-    override suspend fun getAlumnoByName(name:String):Alumno{
+    override suspend fun getAlumnoByName(name:String):Alumno?{
         return apiService.getAlumnoByNombre(name)
     }
     override suspend fun getAlumnoByCurso(curso:String):List<Alumno>{

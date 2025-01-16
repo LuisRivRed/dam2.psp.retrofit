@@ -14,7 +14,7 @@ interface AlumnoApiService {
     suspend fun getAlumnoByNombre(@Path("nombre") nombre: String): Alumno
 
     @POST("/alumnos")
-    suspend fun saveAlumno(@Body alumno: Alumno): Alumno
+    suspend fun saveAlumno(@Body alumno: Alumno): Alumno?
 
     @DELETE("/alumnos/eliminar/{idAlumno}")
     suspend fun deleteAlumno(@Path("idAlumno") idAlumno: Int)
