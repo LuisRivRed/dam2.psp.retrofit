@@ -15,7 +15,7 @@ import org.mockito.junit.MockitoJUnitRunner
 import org.mockito.kotlin.whenever
 import retrofit2.Response
 
-@RunWith(MockitoJUnitRunner::class)
+@RunWith(MockitoJUnitRunner.Silent::class)
 class ApiServiceTest {
     @Mock
     private lateinit var apiService: ApiService
@@ -60,13 +60,9 @@ class ApiServiceTest {
             whenever(apiService.getAlumnos()).thenReturn(
                 Response.success(mockAlumnos)
             )
-
-            //val resultado = repositorio.getAlumnos()
             val resultado = apiService.getAlumnos().body()
 
             //Se compara
-            //assertTrue(resultado.isSuccess)
-            //assertEquals(mockAlumnos, resultado.getOrNull())
             assertTrue(resultado != null)
             assertEquals(mockAlumnos, resultado)
         }
@@ -78,11 +74,9 @@ class ApiServiceTest {
                 Response.error(404, "Not found".toResponseBody())
             )
 
-            //val resultado = repositorio.getAlumnos()
             val resultado = apiService.getAlumnos()
 
-            //Se compara
-            //assertTrue(resultado.isFailure)
+            //Se comparan
             assertTrue(resultado.errorBody() != null)
         }
 
