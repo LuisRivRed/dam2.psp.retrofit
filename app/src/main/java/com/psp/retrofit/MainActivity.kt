@@ -15,11 +15,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.psp.retrofit.service.AlumnoRepository
 import com.psp.retrofit.service.ApiClient
 import androidx.lifecycle.lifecycleScope
+import com.psp.model.Alumno
 import kotlinx.coroutines.launch
 import com.psp.retrofit.ui.theme.RetrofitTheme
 
 class MainActivity : ComponentActivity() {
-    override  fun onCreate(savedInstanceState: Bundle?) {
+    val apiService = ApiClient.provideApiService()
+    val repository = AlumnoRepository(apiService)
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
@@ -32,15 +35,18 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-        takeAlumnos()
+        //takeAlumnos()
+        //takeAlumno()
+        addAlumno()
+        //deleteAlumno()
     }
+
     fun takeAlumnos() {
         lifecycleScope.launch {
-            val apiService = ApiClient.provideApiService()
-            val repository = AlumnoRepository(apiService)
+
 
             try {
-                val alumnos = repository.getAlumnos() // Este método debería ser suspend
+                val alumnos = repository.getAlumnos()
                 for (alumno in alumnos) {
                     Log.d("Alumno", alumno.toString())
                 }
@@ -50,6 +56,62 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    fun takeAlumno() {
+        lifecycleScope.launch {
+            try {
+                val alumno = repository.getAlumno(1)
+                if (alumno != null) {
+                    Log.d("Alumno", alumno.toString())
+                } else {
+                    Log.d("Alumno", "Alumno no encontrado")
+                }
+            } catch (e: Exception) {
+                Log.e("Error", "Error al obtener alumno: ${e.message}")
+
+            }
+        }
+    }
+
+    fun addAlumno() {
+        lifecycleScope.launch {
+
+            val alumno = Alumno(
+                id = 1,
+                nombre = "juan",
+                fechaNacimiento = "2000-01-01",
+                curso = com.psp.model.Curso.DAM1,
+                email = "john.jay@example.com",
+                asignatura = listOf(com.psp.model.Asignatura.PSP, com.psp.model.Asignatura.PMDM)
+            )
+            try {
+                val alumno = repository.addAlumno(alumno)
+                if (alumno != null) {
+                    Log.d("Alumno", alumno.toString())
+                } else {
+                    Log.d("Alumno", "Alumno no encontrado")
+                }
+            } catch (e: Exception) {
+                Log.e("Error", "Error al obtener alumno: ${e.message}")
+            }
+        }
+
+    }
+    fun deleteAlumno(){
+        lifecycleScope.launch {
+            try {
+                val alumno = repository.deleteAlumno(2)
+
+                if (alumno) {
+                    Log.d("Alumno", "Alumno eliminado")
+                } else {
+                    Log.d("Alumno", "Alumno no encontrado")
+                }
+                } catch (e: Exception) {
+                Log.e("Error", "Error al obtener alumno: ${e.message}")
+            }
+        }
+
+    }
 }
 
 @Composable
