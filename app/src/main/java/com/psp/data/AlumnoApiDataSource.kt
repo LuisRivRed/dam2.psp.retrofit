@@ -1,35 +1,22 @@
 package com.psp.data
 
 import com.psp.model.Alumno
+import com.psp.model.Asignatura
 import com.psp.model.Curso
+import retrofit2.Response
 
 class AlumnoApiDataSource(private val alumnoService: AlumnoService) {
 
-    suspend fun getAlumnos() : List<Alumno> {
-        val result = alumnoService.requestAlumnos()
-        return if (result.isSuccessful) {
-            result.body()!!
-        } else {
-            emptyList()
-        }
+    suspend fun getAlumnos() : Response<List<Alumno>> {
+        return alumnoService.requestAlumnos()
     }
 
-    suspend fun getAlumnosByCurso(curso: String) : List<Alumno> {
-        val result = alumnoService.requestAlumnosByCurso(curso)
-        return if (result.isSuccessful) {
-            result.body()!!
-        } else {
-            emptyList()
-        }
+    suspend fun getAlumnosByCurso(curso: String) : Response<List<Alumno>> {
+        return alumnoService.requestAlumnosByCurso(curso)
     }
 
-    suspend fun getAlumnosByNombre(nombre: String) : Alumno? {
-        val result = alumnoService.requestAlumnoByNombre(nombre)
-        return if (result.isSuccessful) {
-            result.body()!!
-        } else {
-            null
-        }
+    suspend fun getAlumnosByNombre(nombre: String) : Response<Alumno> {
+        return alumnoService.requestAlumnoByNombre(nombre)
     }
 
     suspend fun addAlumno(alumno: Alumno) {
