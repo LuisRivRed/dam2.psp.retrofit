@@ -1,6 +1,6 @@
 package com.psp.data.remote
 
-import com.psp.model.Curso
+import com.psp.model.Course
 import com.psp.model.Student
 import retrofit2.Response
 import retrofit2.http.Body
@@ -21,7 +21,7 @@ interface ApiService {
     suspend fun getStudentByName(@Path("name") name: String): Response<Student>
 
     @GET("students/course/{course}")
-    suspend fun getStudentByCourse(@Path("course") course: Curso): Response<List<Student>>
+    suspend fun getStudentByCourse(@Path("course") course: Course): Response<List<Student>>
 
     @POST("student")
     suspend fun newStudent(@Body student: Student): Response<Student>

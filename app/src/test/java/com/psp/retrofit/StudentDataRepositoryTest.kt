@@ -2,7 +2,7 @@ package com.psp.retrofit
 
 import com.psp.data.StudentDataRepository
 import com.psp.data.remote.ApiService
-import com.psp.model.Curso
+import com.psp.model.Course
 import com.psp.model.Student
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.test.runTest
@@ -14,7 +14,7 @@ import org.mockito.junit.MockitoJUnitRunner
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 import retrofit2.Response
-import javax.security.auth.Subject
+import com.psp.model.Subject
 
 @RunWith(MockitoJUnitRunner::class)
 class StudentDataRepositoryTest {
@@ -35,7 +35,7 @@ class StudentDataRepositoryTest {
                 1,
                 "Pedro",
                 "05/06/2000",
-                Curso.DAM1,
+                Course.DAM1,
                 "pedro@educa.jcyl.es",
                 listOf(Subject.AAD, Subject.PMDM, Subject.EIE)
             ),
@@ -43,7 +43,7 @@ class StudentDataRepositoryTest {
                 2,
                 "Pepe",
                 "12/02/2001",
-                Curso.DAM2,
+                Course.DAM2,
                 "pepe@educa.jcyl.es",
                 listOf(Subject.AAD, Subject.PSP)
             ),
@@ -51,7 +51,7 @@ class StudentDataRepositoryTest {
                 3,
                 "Juan",
                 "15/09/2002",
-                Curso.DAW1,
+                Course.DAW1,
                 "juan@educa.jcuyl.es",
                 listOf(Subject.PSP)
             )
