@@ -9,7 +9,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.psp.data.AlunmnoDataRepository
+import com.psp.data.AlumnoDataRepository
 import com.psp.data.remote.ApiClient
 import com.psp.data.remote.ApiService
 import kotlinx.coroutines.runBlocking
@@ -26,7 +26,7 @@ class MainActivity : ComponentActivity() {
 
     private fun main() {
         val apiService = ApiClient().provideApi().create(ApiService::class.java)
-        AlunmnoDataRepository(apiService)
+        AlumnoDataRepository(apiService)
 
         runBlocking {
             val response1 = apiService.getAlumnos()

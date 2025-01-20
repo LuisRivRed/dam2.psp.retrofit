@@ -5,7 +5,7 @@ import com.psp.data.model.AlumnoRepository
 import com.psp.data.remote.ApiService
 import retrofit2.Response
 
-class AlunmnoDataRepository(
+class AlumnoDataRepository(
     private val apiService: ApiService
 ): AlumnoRepository {
 
