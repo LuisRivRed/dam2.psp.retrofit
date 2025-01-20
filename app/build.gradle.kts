@@ -59,4 +59,8 @@ dependencies {
     implementation (libs.retrofit.gson.converter)
     implementation(libs.kotlinx.serialization.json)
     implementation (libs.logging.interceptor)
+
+    implementation("org.mockito:mockito-core:5.3.1")
+    implementation("org.mockito.kotlin:mockito-kotlin:5.1.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.1")
 }

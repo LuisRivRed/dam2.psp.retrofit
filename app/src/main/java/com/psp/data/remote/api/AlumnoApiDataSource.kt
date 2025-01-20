@@ -3,9 +3,9 @@ package com.psp.data.remote.api
 import com.psp.model.Alumno
 import com.psp.model.Curso
 
-class AlumnoApiDataSource {
-
-    private val service = ApiClient().apiService
+class AlumnoApiDataSource(
+    private val service: ApiService
+) {
 
     suspend fun getAlumnos(): List<Alumno> {
         return service.fetchAlumnos()
