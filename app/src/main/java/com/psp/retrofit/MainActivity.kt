@@ -1,6 +1,7 @@
 package com.psp.retrofit
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -52,7 +53,7 @@ class MainActivity : ComponentActivity() {
             if (response.isSuccessful) {
                 val students = response.body()
                 students?.forEach {
-                    println(it)
+                    Log.d("@dev", it.toString())
                 }
             } else {
                 println("Error: ${response.code()}")
