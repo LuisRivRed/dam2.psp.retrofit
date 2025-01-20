@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.psp.retrofit.model.AlumnoServiceTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-01-20T17:43:18" hostname="MacBook-Pro-de-Enrique.local" time="0.131">
+  <properties/>
+  <testcase name="getAlumnos" classname="com.psp.retrofit.model.AlumnoServiceTest" time="0.129"/>
+  <testcase name="nullAlumnos" classname="com.psp.retrofit.model.AlumnoServiceTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (/Users/enrique/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.14.4/3bf5ac1104554908cc623e40e58a00be37c35f36/byte-buddy-agent-1.14.4.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>

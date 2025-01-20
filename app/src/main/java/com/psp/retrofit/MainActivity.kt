@@ -12,7 +12,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.psp.data.ApiClient
+import com.psp.data.AlumnoDataRepository
+import com.psp.data.remote.ApiClient
+import com.psp.data.remote.ApiService
 import com.psp.retrofit.ui.theme.RetrofitTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -34,42 +36,24 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-        fetchAlumnos()
-        encontrarAlumnoId()
     }
 
-    private fun fetchAlumnos() {
+    private fun main() {
+        val apiService = ApiClient.provideApi().create(ApiService::class.java)
+        AlumnoDataRepository(apiService)
 
-        Thread {
-            try {
-                val apiService = ApiClient.retrofit
-                runBlocking {
-                    val alumnos = apiService.getAlumnos()
-                    Log.d("@dev", alumnos.toString())
-                }
-            } catch (e: Exception) {
-                Log.e("@dev", "Error al obtener alumnos")
-            }
-        }.start()
-    }
+        runBlocking {
+            val response1 = apiService.getAlumnos()
+            Log.d("@Dev", "${response1.body()}")
 
-    private fun encontrarAlumnoId() {
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                val apiService = ApiClient.retrofit
-                val alumno = apiService.getAlumno(3)
-                withContext(Dispatchers.Main) {
-                    Log.d("@dev", alumno.toString())
-                }
-            } catch (e: Exception) {
-                withContext(Dispatchers.Main) {
-                    Log.e("@dev", "Error al obtener alumno", e)
-                }
-            }
+            val response2 = apiService.getAlumno(1)
+            Log.d("@Dev", "${response2.body()}")
         }
     }
+}
 
-    @Composable
+
+@Composable
     fun Greeting(name: String, modifier: Modifier = Modifier) {
         Text(
             text = "Hello $name!", modifier = modifier
@@ -83,4 +67,3 @@ class MainActivity : ComponentActivity() {
             Greeting("Android")
         }
     }
-}
