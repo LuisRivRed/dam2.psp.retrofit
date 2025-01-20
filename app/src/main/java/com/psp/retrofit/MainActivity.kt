@@ -55,7 +55,7 @@ class MainActivity : ComponentActivity() {
             fechaNacimiento = "01/01/1999",
             curso = Curso.DAM1,
             email = "william.henry.harrison@example-pet-store.com",
-            asignaturas = emptyList()
+            asignatura = emptyList()
         )
         lifecycleScope.launch(Dispatchers.IO) {
             val alumnoCreado = alumnosService.createAlumno(alumno)

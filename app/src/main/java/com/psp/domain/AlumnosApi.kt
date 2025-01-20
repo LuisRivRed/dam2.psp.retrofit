@@ -1,7 +1,6 @@
 package com.psp.domain
 
 import com.psp.domain.model.Alumno
-import com.psp.retrofit.AlumnosService
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE

@@ -17,5 +17,5 @@ data class Alumno(
     val fechaNacimiento: String,
     val curso: Curso,
     val email: String,
-    val asignaturas: List<Asignatura>
+    val asignatura: List<Asignatura>
 )

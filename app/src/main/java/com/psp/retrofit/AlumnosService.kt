@@ -7,7 +7,7 @@ import retrofit2.Response
 
 object AlumnosService {
 
-    val alumnosApi: AlumnosApi = ApiClient.retrofit.create(AlumnosApi::class.java)
+    private val alumnosApi: AlumnosApi = ApiClient.provideAlumnosApi()
 
     suspend fun getAlumnos(): Response<List<Alumno>> {
         return alumnosApi.getAlumnos()
