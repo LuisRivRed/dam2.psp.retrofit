@@ -55,6 +55,9 @@ dependencies {
     implementation(libs.gson)
     implementation(libs.converter.gson)
 
+    implementation (libs.jetbrains.kotlinx.serialization.json.v151)
+    implementation (libs.retrofit2.kotlinx.serialization.converter)
+
     testImplementation(libs.junit)
 
     androidTestImplementation(libs.androidx.junit)

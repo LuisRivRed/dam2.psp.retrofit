@@ -2,6 +2,7 @@ package com.psp.retrofit
 
 import com.psp.domain.AlumnosApi
 import com.psp.domain.model.Alumno
+import com.psp.domain.model.Asignatura
 import com.psp.domain.model.Curso
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
@@ -27,24 +28,40 @@ class AlumnosServiceTest {
     @Test
     fun `getAlumnos return succes with list of alumnos`() {
         runTest {
-             val alumnos = listOf(
-                 Alumno(
-                     id = 0,
-                     nombre = "Rubén",
-                     fechaNacimiento = "01/01/1999",
-                     curso = Curso.DAM1,
-                     email = "william.henry.harrison@example-pet-store.com",
-                     asignaturas = emptyList()
-                 ),
-                 Alumno(
-                     id = 0,
-                     nombre = "Rubén",
-                     fechaNacimiento = "01/01/1999",
-                     curso = Curso.DAM1,
-                     email = "james.wilson@example-pet-store.com",
-                     asignaturas = emptyList()
-                 )
-             )
+            val alumnos = listOf(
+                Alumno(
+                    id = 1,
+                    nombre = "Juan",
+                    fechaNacimiento = "01/01/2000",
+                    curso = Curso.DAM1,
+                    email = "a@gmail.com",
+                    asignaturas = listOf(Asignatura.PMDM, Asignatura.SGE)
+                ),
+                Alumno(
+                    id = 2,
+                    nombre = "Ana",
+                    fechaNacimiento = "02/02/2000",
+                    curso = Curso.DAM2,
+                    email = "b@gmail.com",
+                    asignaturas = listOf(Asignatura.PSP, Asignatura.PSP)
+                ),
+                Alumno(
+                    id = 3,
+                    nombre = "Luis",
+                    fechaNacimiento = "03/03/2000",
+                    curso = Curso.DAW1,
+                    email = "c@gmail.com",
+                    asignaturas = listOf(Asignatura.PSP, Asignatura.PSP)
+                ),
+                Alumno(
+                    id = 4,
+                    nombre = "Sofía",
+                    fechaNacimiento = "04/04/2000",
+                    curso = Curso.DAW2,
+                    email = "d@gmail.com",
+                    asignaturas = listOf(Asignatura.PSP, Asignatura.PSP)
+                )
+            )
             // whenever(alumnosService.getAlumnos()).thenReturn((alumnos))
 
             val result = alumnosService.getAlumnos()
