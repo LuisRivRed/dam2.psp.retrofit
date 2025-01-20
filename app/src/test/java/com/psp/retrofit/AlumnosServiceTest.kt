@@ -4,25 +4,27 @@ import com.psp.domain.AlumnosApi
 import com.psp.domain.model.Alumno
 import com.psp.domain.model.Asignatura
 import com.psp.domain.model.Curso
+import io.mockk.MockKAnnotations
+import io.mockk.coEvery
+import io.mockk.every
+import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.mockito.Mock
-import org.mockito.junit.MockitoJUnitRunner
-import org.mockito.kotlin.whenever
 import retrofit2.Response
 
-@RunWith(MockitoJUnitRunner::class)
 class AlumnosServiceTest {
 
-    @Mock
+    @MockK
     private lateinit var alumnosService: AlumnosService
+
+    @MockK
     private lateinit var alumnosApi: AlumnosApi
 
     @Before
     fun setup() {
-        alumnosApi = alumnosService.alumnosApi
+        MockKAnnotations.init(this)
+
     }
 
     @Test
@@ -62,11 +64,17 @@ class AlumnosServiceTest {
                     asignaturas = listOf(Asignatura.PSP, Asignatura.PSP)
                 )
             )
-            // whenever(alumnosService.getAlumnos()).thenReturn((alumnos))
+
+            val response = Response.success(alumnos)
+
+            coEvery {
+                alumnosService.getAlumnos()
+            } returns response
 
             val result = alumnosService.getAlumnos()
 
-            assert(result == alumnos)
+            assert(result == response)
+            assert(result.body() == alumnos)
         }
     }
 
