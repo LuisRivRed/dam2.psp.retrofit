@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.psp.retrofit.AlumnosDataRepositoryTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2025-01-14T15:04:49" hostname="Z11-PC20" time="0.199">
+<testsuite name="com.psp.retrofit.AlumnosDataRepositoryTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2025-01-20T16:08:55" hostname="Z11-PC20" time="0.204">
   <properties/>
-  <testcase name="deleteAlumno should return true if alumno is deleted successfully" classname="com.psp.retrofit.AlumnosDataRepositoryTest" time="0.182"/>
+  <testcase name="deleteAlumno should return true if alumno is deleted successfully" classname="com.psp.retrofit.AlumnosDataRepositoryTest" time="0.184"/>
   <testcase name="test getAlumnoById should return alumno with given id" classname="com.psp.retrofit.AlumnosDataRepositoryTest" time="0.003"/>
-  <testcase name="getStudents returns list of students" classname="com.psp.retrofit.AlumnosDataRepositoryTest" time="0.002"/>
-  <testcase name="getAlumnoByCurso should return a list of alumnos with given curso" classname="com.psp.retrofit.AlumnosDataRepositoryTest" time="0.002"/>
-  <testcase name="getAlumnoByNombre should return a list of alumnos with given curso" classname="com.psp.retrofit.AlumnosDataRepositoryTest" time="0.002"/>
-  <testcase name="addAlumno should return the added alumno" classname="com.psp.retrofit.AlumnosDataRepositoryTest" time="0.005"/>
+  <testcase name="getStudents returns list of students" classname="com.psp.retrofit.AlumnosDataRepositoryTest" time="0.003"/>
+  <testcase name="getAlumnoByCurso should return a list of alumnos with given curso" classname="com.psp.retrofit.AlumnosDataRepositoryTest" time="0.003"/>
+  <testcase name="getAlumnoByNombre should return a list of alumnos with given curso" classname="com.psp.retrofit.AlumnosDataRepositoryTest" time="0.003"/>
+  <testcase name="addAlumno should return the added alumno" classname="com.psp.retrofit.AlumnosDataRepositoryTest" time="0.006"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (C:\Users\alvamun\.gradle\caches\modules-2\files-2.1\net.bytebuddy\byte-buddy-agent\1.14.4\3bf5ac1104554908cc623e40e58a00be37c35f36\byte-buddy-agent-1.14.4.jar)
 WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning

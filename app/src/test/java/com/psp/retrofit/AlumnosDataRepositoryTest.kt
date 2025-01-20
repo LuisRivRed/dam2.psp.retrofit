@@ -91,27 +91,27 @@ class AlumnosDataRepositoryTest {
     }
 
     @Test
-    fun `getAlumnoByNombre should return a list of alumnos with given curso`() = runTest {
+    fun `getAlumnoByNombre should return a unic alumno with given nombre`() = runTest {
         val mockAlumnos = listOf(
             Alumno(
-                2,
-                "Pepe",
-                "12/02/2001",
-                Curso.DAM2,
-                "pepe@educa.jcyl.es",
-                listOf(Asignatura.AAD, Asignatura.PSP)
+                1,
+                "Pedro",
+                "05/06/2000",
+                Curso.DAM1,
+                "pedro@educa.jcyl.es",
+                listOf(Asignatura.PSP, Asignatura.PMDM, Asignatura.EIE)
             )
         )
-        whenever(apiService.getAlumnosByCurso(curso = Curso.DAM2)).thenReturn(
+
+        whenever(apiService.getAlumnoByNombre(nombre = "Pedro")).thenReturn(
             Response.success(
-                mockAlumnos
+                mockAlumnos[0]
             )
         )
 
-        val response = alumnoDataRepository.getAlumnobyCurso(curso = Curso.DAM2)
+        val response = alumnoDataRepository.getAlumnoByNombre(nombre = "Pedro")
         assertEquals(200, response.code())
-        assertEquals(mockAlumnos, response.body())
-
+        assertEquals(mockAlumnos[0], response.body())
     }
 
     @Test
