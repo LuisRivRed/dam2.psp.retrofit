@@ -60,4 +60,8 @@ dependencies {
     implementation (libs.retrofit2.xuse)
     implementation(libs.converter.gson)
     implementation(libs.kotlinx.serialization.json)
+
+    implementation(libs.mockito.core)
+    implementation(libs.mockito.kotlin)
+    implementation(libs.kotlinx.coroutines.test)
 }
