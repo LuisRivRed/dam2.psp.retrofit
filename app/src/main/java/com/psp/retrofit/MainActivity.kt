@@ -56,7 +56,7 @@ class MainActivity : ComponentActivity() {
                     Log.d("@dev", it.toString())
                 }
             } else {
-                println("Error: ${response.code()}")
+                Log.d("@dev","Error: ${response.code()}")
             }
         }
     }
