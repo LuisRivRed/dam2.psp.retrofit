@@ -134,4 +134,35 @@ class AlumnosServiceTest {
         assert(result?.body() == alumno)
     }
 
+    @Test
+    fun `getAlumnoByNombre returns null when alumno not found`() = runTest {
+        val response = Response.success<Alumno?>(null)
+
+        coEvery {
+            alumnosService.getAlumnoByNombre("Pedro")
+        } returns response
+
+        val result = alumnosService.getAlumnoByNombre("Pedro")
+
+        assert(result == response)
+        assert(result?.body() == null)
+    }
+
+    @Test
+    fun `getAlumnoByNombre throws exception on error`() = runTest {
+        val errorResponse = Response.error<Alumno>(
+            404,
+            "Alumno not found".toResponseBody(null)
+        )
+
+        coEvery {
+            alumnosService.getAlumnoByNombre("María")
+        } returns errorResponse
+
+        val result = alumnosService.getAlumnoByNombre("María")
+
+        assert(result?.code() == 404)
+        assert(result?.errorBody()?.string() == "Alumno not found")
+    }
+
 }
