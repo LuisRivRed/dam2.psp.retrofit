@@ -66,4 +66,5 @@ dependencies {
     implementation(libs.org.mockito.mockito.core3)
     implementation(libs.mockito.kotlin)
     implementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockk)
 }

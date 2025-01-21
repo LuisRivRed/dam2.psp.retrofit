@@ -25,15 +25,8 @@ class AlumnoRepository(private val apiService: ApiService) {
 
     suspend fun addAlumno(alumno: Alumno): Alumno? {
         val response = apiService.createAlumno(alumno)
-        if (response.isSuccessful) {
-            val alumnoCreado = response.body()
-            if (alumnoCreado != null) {
-                Log.d("Alumno", alumnoCreado.toString())
-            } else {
-                Log.d("Alumno", "Alumno no encontrado")
-            }
-        } else {
-            Log.e("Error", "Error en la respuesta: ${response.errorBody()?.string()}")
+        if (!response.isSuccessful) {
+            return null
         }
         return response.body()
     }

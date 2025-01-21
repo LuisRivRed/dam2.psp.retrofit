@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.psp.retrofit.service.AlumnoRepositoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-01-21T14:59:02" hostname="D12-PC16" time="0.954">
+  <properties/>
+  <testcase name="when deleteAlumno is called then it returns false" classname="com.psp.retrofit.service.AlumnoRepositoryTest" time="0.954"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (C:\Users\JUANZUN\.gradle\caches\modules-2\files-2.1\net.bytebuddy\byte-buddy-agent\1.14.17\e3c251a39dc90badaf71c83427ba46840f219d8d\byte-buddy-agent-1.14.17.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>

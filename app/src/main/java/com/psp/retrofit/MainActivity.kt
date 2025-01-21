@@ -36,7 +36,7 @@ class MainActivity : ComponentActivity() {
             }
         }
         //takeAlumnos()
-        //takeAlumno()
+        takeAlumno()
         addAlumno()
         //deleteAlumno()
     }
@@ -76,7 +76,7 @@ class MainActivity : ComponentActivity() {
         lifecycleScope.launch {
 
             val alumno = Alumno(
-                id = 1,
+                id = 10,
                 nombre = "juan",
                 fechaNacimiento = "2000-01-01",
                 curso = com.psp.model.Curso.DAM1,
