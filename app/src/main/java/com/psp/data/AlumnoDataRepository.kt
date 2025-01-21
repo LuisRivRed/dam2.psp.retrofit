@@ -29,4 +29,14 @@ class AlumnoDataRepository(
         }
     }
 
+        override suspend fun deleteAlumno(id: Int): Response<Unit> {
+        val response = apiService.deleteAlumno(id)
+
+        return if (response.isSuccessful) {
+            Response.success(response.body())
+        } else {
+            Response.error(response.code(), response.errorBody() ?: okhttp3.ResponseBody.create(null, "Error"))
+        }
+    }
+
 }

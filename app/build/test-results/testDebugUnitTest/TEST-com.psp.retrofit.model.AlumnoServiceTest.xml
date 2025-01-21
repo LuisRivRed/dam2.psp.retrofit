@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.psp.retrofit.model.AlumnoServiceTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-01-20T17:43:18" hostname="MacBook-Pro-de-Enrique.local" time="0.131">
+<testsuite name="com.psp.retrofit.model.AlumnoServiceTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2025-01-21T14:56:13" hostname="mbp-de-enrique.amav.net" time="0.129">
   <properties/>
-  <testcase name="getAlumnos" classname="com.psp.retrofit.model.AlumnoServiceTest" time="0.129"/>
-  <testcase name="nullAlumnos" classname="com.psp.retrofit.model.AlumnoServiceTest" time="0.002"/>
+  <testcase name="deleteAlumno" classname="com.psp.retrofit.model.AlumnoServiceTest" time="0.123"/>
+  <testcase name="getAlumnoById" classname="com.psp.retrofit.model.AlumnoServiceTest" time="0.002"/>
+  <testcase name="getAlumnosNull" classname="com.psp.retrofit.model.AlumnoServiceTest" time="0.001"/>
+  <testcase name="getAlumnos" classname="com.psp.retrofit.model.AlumnoServiceTest" time="0.002"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (/Users/enrique/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.14.4/3bf5ac1104554908cc623e40e58a00be37c35f36/byte-buddy-agent-1.14.4.jar)
 WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning

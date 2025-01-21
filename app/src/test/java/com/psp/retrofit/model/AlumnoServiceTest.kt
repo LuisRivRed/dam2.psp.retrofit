@@ -38,8 +38,16 @@ class AlumnoServiceTest {
             email = "alejandro",
             nombre = "alejandro@gmail.com",
             asignaturas = listOf(Asignatura.AAD, Asignatura.PMDM, Asignatura.PSP),
-            fechaNacimiento = "12121234434"
-        )
+            fechaNacimiento = "453543543"
+        ),
+        Alumno(
+            id = 3,
+            curso = Curso.DAM2,
+            email = "juanda",
+            nombre = "juanda@gmail.com",
+            asignaturas = listOf(Asignatura.AAD, Asignatura.PMDM, Asignatura.PSP),
+            fechaNacimiento = "1443543543"
+        ),
     )
 
     @Before
@@ -59,7 +67,7 @@ class AlumnoServiceTest {
     }
 
     @Test
-    fun nullAlumnos() = runTest {
+    fun getAlumnosNull() = runTest {
         whenever(apiService.getAlumnos()).thenReturn(
             Response.error(404, okhttp3.ResponseBody.create(null, "Not Found"))
         )
@@ -69,6 +77,30 @@ class AlumnoServiceTest {
         Assert.assertFalse(response.isSuccessful)
 
         Assert.assertNull(response.body())
+    }
+
+    @Test
+    fun getAlumnoById() = runTest{
+        val id = 1
+
+        whenever(apiService.getAlumno(id)).thenReturn(Response.success(mockAlumnos[1]))
+
+        val response = data.getAlumno(id)
+
+        Assert.assertTrue(response.isSuccessful)
+        Assert.assertEquals(mockAlumnos[id], response.body())
+    }
+
+    @Test
+    fun deleteAlumno() = runTest {
+        val id = 2
+
+        whenever(apiService.deleteAlumno(id)).thenReturn(Response.success(Unit))
+
+        val response = data.deleteAlumno(id)
+
+        Assert.assertTrue(response.isSuccessful)
+        Assert.assertEquals(Unit, response.body())
     }
 }
 

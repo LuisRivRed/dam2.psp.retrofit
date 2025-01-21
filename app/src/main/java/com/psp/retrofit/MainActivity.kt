@@ -35,6 +35,7 @@ class MainActivity : ComponentActivity() {
                     )
                 }
             }
+            main()
         }
     }
 
@@ -43,11 +44,14 @@ class MainActivity : ComponentActivity() {
         AlumnoDataRepository(apiService)
 
         runBlocking {
-            val response1 = apiService.getAlumnos()
-            Log.d("@Dev", "${response1.body()}")
+            val alumnos = apiService.getAlumnos()
+            Log.d("@dev", "${alumnos.body()}")
 
-            val response2 = apiService.getAlumno(1)
-            Log.d("@Dev", "${response2.body()}")
+            val alumnoId = apiService.getAlumno(2)
+            Log.d("@dev", "${alumnoId.body()}")
+
+            val deleteAlumno = apiService.deleteAlumno(1)
+            Log.d("@dev", "Alumno borrado")
         }
     }
 }
