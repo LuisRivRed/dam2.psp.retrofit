@@ -3,7 +3,9 @@ import com.example.model.Curso
 import com.example.model.Subject
 import com.psp.retrofit.api.StudentsService
 import junit.framework.TestCase.assertEquals
+import junit.framework.TestCase.assertNull
 import kotlinx.coroutines.runBlocking
+import okhttp3.ResponseBody
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
@@ -103,7 +105,6 @@ class StudentServiceTest {
             )
         )
 
-
         // Mock de la respuesta de Retrofit
         val mockResponse = Response.success(students)
 
@@ -115,6 +116,23 @@ class StudentServiceTest {
 
         // Validar que el número de estudiantes sea correcto
         assertEquals(10, response.body()?.size)
+    }
+
+    @Test
+    fun getStudentsReturnsFailure() = runBlocking {
+
+        // Crear una respuesta de error simulada
+        val errorResponse =
+            Response.error<List<Alumno>>(500, ResponseBody.create(null, "Internal Server Error"))
+
+        // Definir el comportamiento del mock para que retorne un error
+        `when`(studentService.getStudents()).thenReturn(errorResponse)
+
+        // Ejecutar el método y verificar la respuesta
+        val response = studentService.getStudents()
+
+        // Validar que la respuesta no tiene un cuerpo
+        assertNull(response.body())
     }
 
     @Test
@@ -167,6 +185,21 @@ class StudentServiceTest {
     }
 
     @Test
+    fun getByCourseReturnFailure() = runBlocking {
+
+        val course = "DAM1"
+
+        val errorResponse =
+            Response.error<List<Alumno>>(500, ResponseBody.create(null, "Internal Server Error"))
+
+        `when`(studentService.getByCourse(course)).thenReturn(errorResponse)
+
+        val response = studentService.getByCourse(course)
+
+        assertNull(response.body())
+    }
+
+    @Test
     fun getStudentsByNameReturnSuccessWithStudent() = runBlocking {
 
         val name = "Ariana Grande"
@@ -187,6 +220,22 @@ class StudentServiceTest {
         val response = studentService.getByName(name)
 
         assertEquals(student, response.body())
+
+    }
+
+    @Test
+    fun getStudentsByNameReturnFailure() = runBlocking {
+
+        val name = "Pedro petete"
+
+        val errorResponse =
+            Response.error<Alumno>(500, ResponseBody.create(null, "No content"))
+
+        `when`(studentService.getByName(name)).thenReturn(errorResponse)
+
+        val response = studentService.getByName(name)
+
+        assertNull(response.body())
 
     }
 
@@ -215,6 +264,22 @@ class StudentServiceTest {
     }
 
     @Test
+    fun getStudentByIdReturnFailure() = runBlocking {
+
+        val id = "17"
+
+        val errorResponse =
+            Response.error<Alumno>(500, ResponseBody.create(null, "Not found id $id"))
+
+        `when`(studentService.getById(id)).thenReturn(errorResponse)
+
+        val response = studentService.getById(id)
+
+        assertNull(response.body())
+
+    }
+
+    @Test
     fun addStudentReturnSuccesWithAdedStudent() = runBlocking {
 
         val newStudent = Alumno(
@@ -236,10 +301,10 @@ class StudentServiceTest {
 
     }
 
-    /*@Test
+    @Test
     fun addStudentReturnSuccesListSizeIncreased() = runBlocking {
 
-        val students = listOf(
+        val students = arrayListOf(
             Alumno(
                 id = 1,
                 name = "Carlos",
@@ -320,7 +385,7 @@ class StudentServiceTest {
                 email = "marta.delgado@example.com",
                 subjects = arrayListOf(Subject.PSP, Subject.SI, Subject.LM)
             )
-        ).size
+        )
 
         val newStudent = Alumno(
             id = 11,
@@ -335,11 +400,13 @@ class StudentServiceTest {
 
         `when`(studentService.addStudent(newStudent)).thenReturn(mockResponse)
 
-        val response = studentService.getStudents().body()?.size
+        val response = students.add((studentService.addStudent(newStudent).body()!!))
 
-        assertEquals(11, response)
+        val studentsSize = students.size
 
-    }*/
+        assertEquals(11, studentsSize)
+
+    }
 
     @Test
     fun removeStudentByIdReturnsSuccessWithTrue() = runBlocking {
