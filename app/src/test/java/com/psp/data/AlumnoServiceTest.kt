@@ -91,13 +91,13 @@ class AlumnoServiceTest {
      */
     @Test
     fun getAlumnos() = runTest {
-        val response = Response.success(listOf(mockAlumno))
+        val response = Response.success(mockListAlumnos)
         whenever(alumnoService.getAlumnos()).thenReturn(response)
 
         val result = alumnoService.getAlumnos()
 
         assertTrue(result.isSuccessful)
-        assertEquals(listOf(mockAlumno), result.body())
+        assertEquals(listOf(mockListAlumnos), result.body())
     }
 
     /**
