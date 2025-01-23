@@ -102,5 +102,41 @@ class AlumnoServiceTest {
         Assert.assertTrue(response.isSuccessful)
         Assert.assertEquals(Unit, response.body())
     }
+
+    @Test
+    fun getAlumnosEmpty() = runTest {
+        whenever(apiService.getAlumnos()).thenReturn(Response.success(emptyList()))
+
+        val response = data.getAlumnos()
+
+        Assert.assertTrue(response.isSuccessful)
+        Assert.assertTrue(response.body().isNullOrEmpty())
+    }
+
+    @Test
+    fun getAlumnosByIdNotFound() = runTest {
+        val id = 99
+
+        whenever(apiService.getAlumno(id)).thenReturn(Response.error(404, okhttp3.ResponseBody.create(null, "Not Found")))
+
+        val response = data.getAlumno(id)
+
+        Assert.assertFalse(response.isSuccessful)
+        Assert.assertNull(response.body())
+    }
+
+    @Test
+    fun deleteAlumnoNotFound() = runTest {
+        val id = 99
+
+        whenever(apiService.deleteAlumno(id)).thenReturn(
+            Response.error(500, okhttp3.ResponseBody.create(null, "Internal Server Error"))
+        )
+
+        val response = data.deleteAlumno(id)
+
+        Assert.assertFalse(response.isSuccessful)
+        Assert.assertEquals(500, response.body())
+    }
 }
 
