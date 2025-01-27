@@ -17,11 +17,11 @@ interface AlumnoService {
     suspend fun requestAlumnosByCurso(@Path("curso") curso: String): Response<List<Alumno>>
 
     @GET("alumnos/nombre/{nombre}")
-    suspend fun requestAlumnoByNombre(@Path("nombre") nombre: String): Response<Alumno>
+    suspend fun requestAlumnoByNombre(@Path("nombre") nombre: String): Response<Alumno?>
 
     @POST("alumnos")
-    suspend fun addAlumno(@Body alumno: Alumno)
+    suspend fun addAlumno(@Body alumno: Alumno): Response<Unit>
 
     @DELETE("alumnos/eliminar/{idAlumno}")
-    suspend fun deleteAlumnoById(@Path("idAlumno") idAlumno: Int)
+    suspend fun deleteAlumnoById(@Path("idAlumno") idAlumno: Int): Response<Unit>
 }

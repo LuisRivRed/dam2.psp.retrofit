@@ -27,8 +27,7 @@ class ApiServiceTest {
 
     @Before
     fun setup() {
-        alumnoService = ApiClient.provideAlumnoService()
-        alumnoApiDataSource = Mockito.mock(AlumnoApiDataSource(alumnoService).javaClass)
+        alumnoApiDataSource = AlumnoApiDataSource(alumnoService)
     }
 
     @Test
@@ -46,7 +45,7 @@ class ApiServiceTest {
                 )
             )
 
-            whenever(alumnoApiDataSource.getAlumnos()).thenReturn(
+            whenever(alumnoService.requestAlumnos()).thenReturn(
                 Response.success(mockAlumnos)
             )
 
@@ -64,7 +63,23 @@ class ApiServiceTest {
             )
             val curso = "DAM2"
 
-            whenever(alumnoApiDataSource.getAlumnosByCurso(curso)).thenReturn(
+            whenever(alumnoService.requestAlumnosByCurso(curso)).thenReturn(
+                Response.success(mockAlumnos)
+            )
+
+            val result = alumnoApiDataSource.getAlumnosByCurso(curso)
+            assertTrue(result.isSuccessful)
+            assertEquals(mockAlumnos, result.body())
+        }
+
+
+    @Test
+    fun getAlumnosByCursoVacio() =
+        runTest {
+            val mockAlumnos = emptyList<Alumno>()
+            val curso = "DAM2"
+
+            whenever(alumnoService.requestAlumnosByCurso(curso)).thenReturn(
                 Response.success(mockAlumnos)
             )
 
@@ -80,12 +95,52 @@ class ApiServiceTest {
 
             val nombre = "Alicia"
 
-            whenever(alumnoApiDataSource.getAlumnosByNombre(nombre)).thenReturn(
+            whenever(alumnoService.requestAlumnoByNombre(nombre)).thenReturn(
                 Response.success(mockAlumno)
             )
 
             val result = alumnoApiDataSource.getAlumnosByNombre(nombre)
             assertTrue(result.isSuccessful)
             assertEquals(mockAlumno, result.body())
+        }
+
+    @Test
+    fun getAlumnosByNombreVacio() =
+        runTest {
+            val mockAlumno = null
+            val nombre = "Alicia"
+
+            whenever(alumnoService.requestAlumnoByNombre(nombre)).thenReturn(
+                Response.success(mockAlumno)
+            )
+
+            val result = alumnoApiDataSource.getAlumnosByNombre(nombre)
+            assertTrue(result.isSuccessful)
+            assertEquals(mockAlumno, result.body())
+        }
+
+    @Test
+    fun addAlumno() =
+        runTest {
+            val alumno = Alumno(5, "Javier", "27/08/2004", Curso.DAM2, "javier@educa.jcyl.es", listOf(Asignatura.DDI, Asignatura.AAD, Asignatura.PSP))
+
+            whenever(alumnoService.addAlumno(alumno)).thenReturn(
+                Response.success(Unit)
+            )
+
+            val result = alumnoApiDataSource.addAlumno(alumno)
+            assertTrue(result.isSuccessful)
+        }
+
+    @Test
+    fun deleteAlumno() =
+        runTest {
+            val id = 3
+            whenever(alumnoService.deleteAlumnoById(id)).thenReturn(
+                Response.success(Unit)
+            )
+
+            val result = alumnoApiDataSource.removeAlumno(id)
+            assertTrue(result.isSuccessful)
         }
 }

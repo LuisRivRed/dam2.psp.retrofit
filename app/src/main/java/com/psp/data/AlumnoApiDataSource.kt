@@ -15,16 +15,16 @@ class AlumnoApiDataSource(private val alumnoService: AlumnoService) {
         return alumnoService.requestAlumnosByCurso(curso)
     }
 
-    suspend fun getAlumnosByNombre(nombre: String) : Response<Alumno> {
+    suspend fun getAlumnosByNombre(nombre: String) : Response<Alumno?> {
         return alumnoService.requestAlumnoByNombre(nombre)
     }
 
-    suspend fun addAlumno(alumno: Alumno) {
-        alumnoService.addAlumno(alumno)
+    suspend fun addAlumno(alumno: Alumno):Response<Unit> {
+        return alumnoService.addAlumno(alumno)
     }
 
-    suspend fun removeAlumno(alumnoId: Int) {
-        alumnoService.deleteAlumnoById(alumnoId)
+    suspend fun removeAlumno(alumnoId: Int):Response<Unit> {
+        return alumnoService.deleteAlumnoById(alumnoId)
     }
 
 }

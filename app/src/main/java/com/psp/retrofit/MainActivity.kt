@@ -42,25 +42,25 @@ class MainActivity : ComponentActivity() {
         val dataSource = AlumnoApiDataSource(ApiClient.provideAlumnoService())
 
         runBlocking {
-            val alumnos = dataSource.getAlumnos()
+            val alumnos = dataSource.getAlumnos().body()
             Log.d("@dev", "GET alumnos")
             Log.d("@dev", alumnos.toString())
 
-            val alumnosCurso = dataSource.getAlumnosByCurso("DAW1")
+            val alumnosCurso = dataSource.getAlumnosByCurso("DAW1").body()
             Log.d("@dev", "GET alumnos/curso/DAW1")
             Log.d("@dev", alumnosCurso.toString())
 
-            val alumnoNombre = dataSource.getAlumnosByNombre("Pedro")
+            val alumnoNombre = dataSource.getAlumnosByNombre("Pedro").body()
             Log.d("@dev", "GET alumnos/nombre/Pedro")
             Log.d("@dev", alumnoNombre.toString())
 
             dataSource.addAlumno(Alumno(20, "Javier", "27/08/2004", Curso.DAW2, "javier.lozher@educa.jcyl.es", listOf(Asignatura.PSP, Asignatura.PMDM)))
-            val alumnosAdd = dataSource.getAlumnos()
+            val alumnosAdd = dataSource.getAlumnos().body()
             Log.d("@dev", "POST alumnos")
             Log.d("@dev", alumnosAdd.toString())
 
             dataSource.removeAlumno(1)
-            val alumnosRemove = dataSource.getAlumnos()
+            val alumnosRemove = dataSource.getAlumnos().body()
             Log.d("@dev", "DELETE alumnos/eliminar/1")
             Log.d("@dev", alumnosRemove.toString())
         }
