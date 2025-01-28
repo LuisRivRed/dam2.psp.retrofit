@@ -61,4 +61,5 @@ dependencies {
     implementation(libs.gsonconverter)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.serialization.json)
+    testImplementation ("org.mockito.kotlin:mockito-kotlin:4.2.0")
 }
