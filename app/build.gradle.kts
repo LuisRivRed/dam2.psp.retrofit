@@ -42,7 +42,6 @@ android {
 dependencies {
 
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
@@ -68,6 +67,9 @@ dependencies {
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.appcompat)
 
+    implementation(libs.org.jetbrains.kotlinx.kotlinx.coroutines.test)// "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.2"
+    implementation(libs.mockito.core.v531)// "org.mockito:mockito-core:5.3.1"
+    implementation(libs.mockito.kotlin.v510)// "org.mockito.kotlin:mockito-kotlin:5.1.0"
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
