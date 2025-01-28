@@ -10,16 +10,17 @@ import retrofit2.http.Path
 
 
 interface AlumnoApiService {
+
     @GET("/alumnos")
     suspend fun getAlumnos(): Response<List<Alumno>>
 
-    @GET("/alumnos/curso/{curso}")
+    @GET("/alumnos/cursos/{curso}")
     suspend fun getAlumnosByCurso(@Path("curso") curso: String): Response<List<Alumno>>
 
-    @GET("/alumnos/alumno/{nombre}")
-    suspend fun getAlumnoByNombre(@Path("nombre") nombre: String): Response<List<Alumno>>
+    @GET("/alumnos/nombre/{nombre}")
+    suspend fun getAlumnoByNombre(@Path("nombre") nombre: String): Response<Alumno>
 
-    @POST("/alumnos")
+    @POST("/alumnos/nuevo")
     suspend fun addAlumno(@Body alumno: Alumno): Response<Alumno>
 
     @DELETE("/alumnos/eliminar/{idAlumno}")

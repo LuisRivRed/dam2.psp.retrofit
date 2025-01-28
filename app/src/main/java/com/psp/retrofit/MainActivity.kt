@@ -29,31 +29,46 @@ class MainActivity : ComponentActivity() {
 
 fun retrofitEjemplo() {
     val apiAlumno = AlumnoApiClient().apiService
-
     runBlocking {
-        Log.d("@prueba", "${apiAlumno.getAlumnos()}")
+        try {
+            val alumnos = apiAlumno.getAlumnos()
+            Log.d("@prueba", "Lista de alumnos: $alumnos")
 
-        Log.d("@prueba", "${apiAlumno.getAlumnosByCurso("DAM1")}")
+            val alumnosDAM1 = apiAlumno.getAlumnosByCurso("DAM1")
+            Log.d("@prueba", "Alumnos en el curso DAM1: $alumnosDAM1")
 
-        Log.d("@prueba", "${apiAlumno.getAlumnoByNombre("Kai")}")
-
-        val alumnoDeEjemplo = Alumno(
-            6,
-            "Juan   ",
-            "2001-10-08",
-            Curso.DAW1,
-            "juangararr@gmail.com",
-            listOf(Asignatura.PSP, Asignatura.DDI, Asignatura.AAD)
-        )
-        Log.d("@prueba", "${apiAlumno.addAlumno(alumnoDeEjemplo)}")
-        Log.d("@prueba", "${apiAlumno.getAlumnos()}")
-
-        apiAlumno.deleteAlumno(5)
-        Log.d("@prueba", "${apiAlumno.getAlumnos()}")
+            val alumnoJuan = apiAlumno.getAlumnoByNombre("Juan")
+            Log.d("@prueba", "Alumno con nombre 'Juan': $alumnoJuan")
 
 
+           // ERROR AL AÑADIR EL ALUMNO
+            /**
+             *
+             *             val alumnoDeEjemplo = Alumno(
+             *                 id = 6,
+             *                 nombre = "Juan",
+             *                 fechaNacimiento = "2001-10-08",
+             *                 curso = Curso.DAW1,
+             *                 email = "juangararr@gmail.com",
+             *                 asignaturas = listOf(Asignatura.PSP, Asignatura.DDI, Asignatura.AAD)
+             *             )
+             *             val nuevoAlumnoResponse = apiAlumno.addAlumno(alumnoDeEjemplo)
+             *             Log.d("@prueba", "Alumno añadido: $nuevoAlumnoResponse")
+             *
+             *             val alumnosActualizados = apiAlumno.getAlumnos()
+             *             Log.d("@prueba", "Lista de alumnos tras añadir a Juan: $alumnosActualizados")
+             */
+
+            apiAlumno.deleteAlumno(5)
+            Log.d("@prueba", "Alumno con ID 5 eliminado")
+
+            val alumnosFinal = apiAlumno.getAlumnos()
+            Log.d("@prueba", "Lista de alumnos tras eliminar al alumno con ID 5: $alumnosFinal")
+
+        } catch (e: Exception) {
+            Log.e("@prueba", "Error durante la operación de Retrofit: ${e.message}", e)
+        }
     }
-
 }
 
 @Composable

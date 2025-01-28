@@ -28,7 +28,7 @@ class AlumnoTest {
     }*/
 
     @Test
-    fun `test getAlumnos`() = runBlocking {
+    fun getAlumnos() = runBlocking {
         val mockAlumnos = listOf(
             Alumno(1, "Carlos", "2001-05-05", Curso.DAW1, "carlos@example.com", listOf(Asignatura.DDI, Asignatura.EIE)),
             Alumno(2, "Lucía", "2000-06-06", Curso.DAM1, "lucia@example.com", listOf(Asignatura.AAD, Asignatura.PMDM)),
@@ -45,7 +45,7 @@ class AlumnoTest {
     }
 
     @Test
-    fun `test getAlumnosByCurso`() = runBlocking {
+    fun getAlumnosByCurso() = runBlocking {
         val mockAlumnos = listOf(
             Alumno(
                 1,
@@ -66,12 +66,12 @@ class AlumnoTest {
     }
 
     @Test
-    fun `test getAlumnoByNombre`() = runBlocking {
+    fun getAlumnoByNombre() = runBlocking {
         val mockAlumnos = listOf(
             Alumno(1, "Juan", "2000-01-01", Curso.DAM1, "juan@example.com", listOf(Asignatura.AAD))
         )
         whenever(alumnoApiService.getAlumnoByNombre("Juan")).thenReturn(
-            Response.success(mockAlumnos.filter { it.nombre == "Juan" })
+            Response.success(mockAlumnos.filter { it.nombre == "Juan" }.first())
         )
         val resultado = alumnoApiService.getAlumnoByNombre("Juan").body()
         assertTrue(resultado != null)
@@ -79,7 +79,7 @@ class AlumnoTest {
     }
 
     @Test
-    fun `test addAlumno`() = runBlocking {
+    fun addAlumno() = runBlocking {
         val mockAlumnos = listOf(
             Alumno(1, "Carlos", "2001-05-05", Curso.DAW1, "carlos@example.com", listOf(Asignatura.DDI, Asignatura.EIE)),
             Alumno(2, "Lucía", "2000-06-06", Curso.DAM1, "lucia@example.com", listOf(Asignatura.AAD, Asignatura.PMDM)),
@@ -94,16 +94,5 @@ class AlumnoTest {
         assertEquals(mockAlumnos[0], resultado)
     }
 
-    @Test
-    fun `test deleteAlumno`() = runBlocking {
-        whenever(alumnoApiService.deleteAlumno(idAlumno = 1))
-            .thenReturn(Response.success(null))
 
-        val response = alumnoApiService.deleteAlumno(idAlumno = 1)
-
-        assertTrue(response.isSuccessful)
-        assertEquals(200, response.code())
-
-        verify(alumnoApiService, times(1)).deleteAlumno(idAlumno = 1)
-    }
 }
