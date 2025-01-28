@@ -1,7 +1,7 @@
 [versions]
-agp = "8.7.3"
+agp = "8.8.0"
 converterGson = "2.11.0"
-jetbrainsKotlinxCoroutinesTest = "1.7.3"
+jetbrainsKotlinxCoroutinesTest = "1.8.1"
 kotlin = "2.0.21"
 coreKtx = "1.15.0"
 junit = "4.13.2"
