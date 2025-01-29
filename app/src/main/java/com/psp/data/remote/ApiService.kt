@@ -1,7 +1,9 @@
 package com.psp.data.remote
 
 import com.psp.model.Course
+import com.psp.model.LoginRequest
 import com.psp.model.Student
+import com.psp.model.TokenResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -10,6 +12,9 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface ApiService {
+
+    @POST("login")
+    suspend fun login(@Body loginRequest: LoginRequest): Response<TokenResponse>
 
     @GET("students")
     suspend fun getStudents(): Response<List<Student>>
@@ -23,9 +28,9 @@ interface ApiService {
     @GET("students/course/{course}")
     suspend fun getStudentByCourse(@Path("course") course: Course): Response<List<Student>>
 
-    @POST("student")
+    @POST("students")
     suspend fun newStudent(@Body student: Student): Response<Student>
 
-    @DELETE("student/{id}")
+    @DELETE("students/{id}")
     suspend fun deleteStudent(@Path("id") id: Int): Response<Boolean>
 }

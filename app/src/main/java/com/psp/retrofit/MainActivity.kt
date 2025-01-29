@@ -15,6 +15,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.psp.data.StudentDataRepository
 import com.psp.data.remote.ApiClient
+import com.psp.model.Course
+import com.psp.model.Student
+import com.psp.model.Subject
 import com.psp.retrofit.ui.theme.RetrofitTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -41,8 +44,32 @@ class MainActivity : ComponentActivity() {
                 }
 
                 LaunchedEffect(Unit) {
-                    fetchStudents()
+                    loginAndFetchStudents()
                 }
+            }
+        }
+    }
+
+    private fun loginAndFetchStudents() {
+        CoroutineScope(Dispatchers.IO).launch {
+            val loginResponse = studentRepository.login("admin@educa.jcyl.es", "password")
+            if (loginResponse.isSuccessful) {
+                val token = loginResponse.body()?.token
+                if (!token.isNullOrEmpty()) {
+                    ApiClient.setToken(token) // Almacenar el token en el interceptor
+                    Log.d("@dev", "Login exitoso, token: $token")
+
+                    fetchStudents()
+                    getStudentByName()
+                    getStudentByCourse()
+                    newStudent()
+                    deleteStudent()
+
+                } else {
+                    Log.d("@dev", "Error: el token recibido es nulo o vacío")
+                }
+            } else {
+                Log.d("@dev", "Error de login: ${loginResponse.code()}")
             }
         }
     }
@@ -56,8 +83,52 @@ class MainActivity : ComponentActivity() {
                     Log.d("@dev", it.toString())
                 }
             } else {
-                Log.d("@dev","Error: ${response.code()}")
+                Log.d("@dev", "Error al obtener estudiantes: ${response.code()}")
             }
+        }
+    }
+
+    private suspend fun getStudentByName() {
+        val response = studentRepository.getStudentByName("Pedro")
+        if (response.isSuccessful) {
+            Log.d("@dev", "Estudiante encontrado por nombre: ${response.body()}")
+        } else {
+            Log.d("@dev", "Error al obtener estudiante por nombre: ${response.code()}")
+        }
+    }
+
+    private suspend fun getStudentByCourse() {
+        val response = studentRepository.getStudentByCourse(Course.DAM1)
+        if (response.isSuccessful) {
+            Log.d("@dev", "Estudiantes encontrados en el curso: ${response.body()}")
+        } else {
+            Log.d("@dev", "Error al obtener estudiantes por curso: ${response.code()}")
+        }
+    }
+
+    private suspend fun newStudent() {
+        val newStudent = Student(
+            id = 0,
+            name = "Maria",
+            dateBirth = "10/10/2000",
+            course = Course.DAW1,
+            email = "maria@educa.jcyl.es",
+            subject = listOf(Subject.PSP, Subject.AAD)
+        )
+        val response = studentRepository.newStudent(newStudent)
+        if (response.isSuccessful) {
+            Log.d("@dev", "Nuevo estudiante agregado: ${response.body()}")
+        } else {
+            Log.d("@dev", "Error al agregar nuevo estudiante: ${response.code()}")
+        }
+    }
+
+    private suspend fun deleteStudent() {
+        val response = studentRepository.deleteStudent(3)
+        if (response.isSuccessful) {
+            Log.d("@dev", "Estudiante eliminado correctamente")
+        } else {
+            Log.d("@dev", "Error al eliminar estudiante: ${response.code()}")
         }
     }
 }
