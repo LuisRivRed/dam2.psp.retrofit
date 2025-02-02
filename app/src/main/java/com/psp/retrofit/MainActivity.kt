@@ -21,26 +21,21 @@ class MainActivity : ComponentActivity() {
         main()
     }
     fun main() {
-        //Cliente
         val apiClient = ApiClient()
         val apiService = apiClient.apiService
-        //Ejemplo de uso de getAlumnos
         runBlocking {
             val response1 = apiService.requestStudents()
             println(response1.body())
-            //Ejemplo de uso de getAlumnosByCurso
-            val response2 = apiService.requestStudentsByCourse("DAM1")
+            val response2 = apiService.requestStudentByName("Carlos")
             println(response2.body())
-            //Ejemplo de uso de getAlumnoByNombre
-            val response3 = apiService.requestStudentByName("Ana")
+            val response3 = apiService.requestStudentsByCourse("DAM2")
             println(response3.body())
-            //Ejemplo de uso de addAlumno
-            val alumno = Alumno(5, "Pepa", "1996-07-08", Curso.DAW2, "email5@gmail.com", listOf(Asignatura.PSP, Asignatura.SGE, Asignatura.PMDM))
-            apiService.addStudent(alumno)
+
+            val student = Alumno(2, "Henar", "2003-06-15", Curso.DAM2, "henarhh14@gmail.com", listOf(Asignatura.AAD, Asignatura.DDI, Asignatura.PMDM))
+            apiService.addStudent(student)
             val response4 = apiService.requestStudents()
             println(response4.body())
-            //Ejemplo de uso de deleteAlumno
-            val response5 = apiService.deleteStudentById(1) // idAlumno de ejemplo
+            val response5 = apiService.deleteStudentById(1)
             println(response5.toString())
             val response6 = apiService.requestStudents()
             println(response6.body())
