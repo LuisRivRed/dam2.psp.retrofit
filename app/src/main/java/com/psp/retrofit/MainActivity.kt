@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.lifecycleScope
+import com.psp.data.remote.ApiClient
 import com.psp.domain.model.Alumno
 import com.psp.domain.model.Curso
 import com.psp.retrofit.ui.theme.RetrofitTheme
@@ -15,8 +16,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import retrofit2.Response
-import com.psp.data.remote.ApiClient
-import com.psp.domain.LoginRequest
 
 
 class MainActivity : ComponentActivity() {

@@ -2,10 +2,15 @@ package com.psp.retrofit
 
 import com.psp.data.remote.ApiClient
 import com.psp.domain.AlumnosApi
-import com.psp.domain.LoginRequest
-import com.psp.domain.TokenResponse
 import com.psp.domain.model.Alumno
+import kotlinx.serialization.Serializable
 import retrofit2.Response
+
+@Serializable
+data class LoginRequest(val username: String, val password: String)
+
+@Serializable
+data class TokenResponse(val token: String)
 
 object AlumnosService {
 
