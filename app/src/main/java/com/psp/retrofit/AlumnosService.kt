@@ -3,24 +3,25 @@ package com.psp.retrofit
 import com.psp.data.remote.ApiClient
 import com.psp.domain.AlumnosApi
 import com.psp.domain.model.Alumno
+import retrofit2.Response
 
 object AlumnosService {
 
-    private val alumnosApi: AlumnosApi = ApiClient.retrofit.create(AlumnosApi::class.java)
+    private val alumnosApi: AlumnosApi = ApiClient.provideAlumnosApi()
 
-    suspend fun getAlumnos(): List<Alumno> {
+    suspend fun getAlumnos(): Response<List<Alumno>> {
         return alumnosApi.getAlumnos()
     }
 
-    suspend fun getAlumnosByCurso(curso: String): List<Alumno> {
+    suspend fun getAlumnosByCurso(curso: String): Response<List<Alumno>> {
         return alumnosApi.getAlumnosByCurso(curso)
     }
 
-    suspend fun createAlumno(alumno: Alumno): Alumno {
+    suspend fun createAlumno(alumno: Alumno): Response<Alumno> {
         return alumnosApi.createAlumno(alumno)
     }
 
-    suspend fun getAlumnoByNombre(nombre: String): Alumno? {
+    suspend fun getAlumnoByNombre(nombre: String): Response<Alumno>? {
         return alumnosApi.getAlumnoByNombre(nombre)
     }
 

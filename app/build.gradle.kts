@@ -1,3 +1,5 @@
+import com.android.build.api.dsl.Packaging
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -37,6 +39,18 @@ android {
     buildFeatures {
         compose = true
     }
+
+    fun Packaging.excludeLicenses() {
+        exclude(
+            pattern = "**/LICENSE.md"
+        )
+    }
+
+    packagingOptions {
+        pickFirst(
+            pattern = "META-INF/LICENSE.md"
+        )
+    }
 }
 
 dependencies {
@@ -54,16 +68,25 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.gson)
     implementation(libs.converter.gson)
+    implementation(libs.retrofit2.kotlinx.serialization.converter)
+    implementation(libs.okhttp)
+
 
     testImplementation(libs.junit)
-
+    testImplementation (libs.mockk)
+    androidTestImplementation (libs.mockk.android)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
+    testImplementation (libs.okhttp)
+    testImplementation (libs.mockwebserver)
 
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+
+    implementation(libs.kotlinx.coroutines.test)
 
 
 }

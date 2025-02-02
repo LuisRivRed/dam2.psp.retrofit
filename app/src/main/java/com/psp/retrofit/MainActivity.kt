@@ -26,14 +26,14 @@ class MainActivity : ComponentActivity() {
         getAlumnosByCurso()
         createAlumno()
         getAlumnoByNombre()
-        deleteAlumnoWithGet()
+        //deleteAlumnoWithGet()
         deleteAlumno()
     }
 
     fun getAlumnos() {
         lifecycleScope.launch(Dispatchers.IO) {
-            val alumnos = alumnosService.getAlumnos()
-            alumnos.forEach { alumno ->
+            val alumnos = alumnosService.getAlumnos().body()
+            alumnos?.forEach { alumno ->
                 Log.d("Alumno", alumno.toString())
             }
         }
@@ -41,8 +41,8 @@ class MainActivity : ComponentActivity() {
 
     fun getAlumnosByCurso() {
         lifecycleScope.launch(Dispatchers.IO) {
-            val alumnos = alumnosService.getAlumnosByCurso("DAM1")
-            alumnos.forEach { alumno ->
+            val alumnos = alumnosService.getAlumnosByCurso("DAM1").body()
+            alumnos?.forEach { alumno ->
                 Log.d("Alumno", alumno.toString())
             }
         }
@@ -55,7 +55,7 @@ class MainActivity : ComponentActivity() {
             fechaNacimiento = "01/01/1999",
             curso = Curso.DAM1,
             email = "william.henry.harrison@example-pet-store.com",
-            asignaturas = emptyList()
+            asignatura = emptyList()
         )
         lifecycleScope.launch(Dispatchers.IO) {
             val alumnoCreado = alumnosService.createAlumno(alumno)
@@ -65,7 +65,7 @@ class MainActivity : ComponentActivity() {
 
     fun getAlumnoByNombre() {
         lifecycleScope.launch(Dispatchers.IO) {
-            val alumno = alumnosService.getAlumnoByNombre("Rubén")
+            val alumno = alumnosService.getAlumnoByNombre("Rubén")?.body()
             Log.d("Alumno", alumno.toString())
         }
     }
