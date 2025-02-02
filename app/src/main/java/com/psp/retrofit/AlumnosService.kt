@@ -2,12 +2,18 @@ package com.psp.retrofit
 
 import com.psp.data.remote.ApiClient
 import com.psp.domain.AlumnosApi
+import com.psp.domain.LoginRequest
+import com.psp.domain.TokenResponse
 import com.psp.domain.model.Alumno
 import retrofit2.Response
 
 object AlumnosService {
 
     private val alumnosApi: AlumnosApi = ApiClient.provideAlumnosApi()
+
+    suspend fun login(request: LoginRequest): Response<TokenResponse> { // 🔹 Se añade login()
+        return alumnosApi.login(request)
+    }
 
     suspend fun getAlumnos(): Response<List<Alumno>> {
         return alumnosApi.getAlumnos()
@@ -21,8 +27,8 @@ object AlumnosService {
         return alumnosApi.createAlumno(alumno)
     }
 
-    suspend fun getAlumnoByNombre(nombre: String): Response<Alumno>? {
-        return alumnosApi.getAlumnoByNombre(nombre)
+    suspend fun getAlumnoByNombre(nombre: String): Response<Alumno> {
+        return alumnosApi.getAlumnoByNombre(nombre)!!
     }
 
     suspend fun deleteAlumnoWithGet(id: Int): String {
