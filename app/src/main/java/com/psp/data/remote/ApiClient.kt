@@ -9,7 +9,7 @@ class ApiClient {
 
     fun provideApi(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("http://192.168.18.114:8080")
+            .baseUrl("http://192.168.84.46:8080")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
     }

@@ -10,13 +10,26 @@ class AlumnoDataRepository(
 ): AlumnoRepository {
 
     override suspend fun getAlumnos(): Response<List<Alumno>> {
-        val response = apiService.getAlumnos()
-        return Response.success(response.body())
+        return apiService.getAlumnos()
     }
 
-    override suspend fun getAlumnosByName(nombre: String): Response<List<Alumno>> {
-        val response = apiService.getAlumnosByName(nombre)
-        return Response.success(response.body())
+    override suspend fun getAlumnosByName(nombre: String): Response<Alumno> {
+        return apiService.getAlumnosByName(nombre)
     }
 
+    override suspend fun getAlumnoByCurso(curso: String): Response<List<Alumno>> {
+        return apiService.getAlumnosByCurso(curso)
+    }
+
+    override suspend fun getAlumnoById(id: Int): Response<Alumno> {
+        return apiService.getAlumnoById(id)
+    }
+
+    override suspend fun addAlumno(alumno: Alumno): Response<Alumno> {
+        return apiService.addAlumno(alumno)
+    }
+
+    override suspend fun deleteAlumno(id: Int): Response<Unit> {
+        return apiService.deleteAlumno(id)
+    }
 }
