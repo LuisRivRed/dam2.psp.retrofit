@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.lifecycle.lifecycleScope
 import com.psp.data.AlumnoDataRepository
 import com.psp.model.Alumno
 import com.psp.model.Asignatura
@@ -14,6 +15,7 @@ import com.psp.model.DeleteAlumnoUseCase
 import com.psp.model.GetAlumnoByNombreUseCase
 import com.psp.model.GetAlumnosByCursoUseCase
 import com.psp.model.GetAlumnosUseCase
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import java.io.IOException
 
@@ -28,8 +30,24 @@ class MainActivity : ComponentActivity() {
         retrofitGetAlumnoByNombre()
         retrofitSaveAlumno()
         retrofitDeleteAlumnos()
+
+        loginUser()
+    }
+
+
+    private fun loginUser() {
+        lifecycleScope.launch {
+            val result = AlumnoDataRepository.login("admin", "password")
+            if (result.isSuccess) {
+                val alumnos = AlumnoDataRepository.getAlumnos()
+
+            } else {
+                // Manejar error
+            }
+        }
     }
 }
+
 
 fun retrofitGetAlumnos() {
     runBlocking {
@@ -109,3 +127,5 @@ fun retrofitDeleteAlumnos() {
 
     }
 }
+
+

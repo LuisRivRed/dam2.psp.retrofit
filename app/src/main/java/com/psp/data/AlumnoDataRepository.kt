@@ -4,10 +4,30 @@ import com.psp.model.Alumno
 import com.psp.model.AlumnoRepository
 
 object AlumnoDataRepository: AlumnoRepository {
-    private val apiService = AlumnoApiClient().apiService
+    private val apiService = AlumnoApiClient.apiService
 
-    override suspend fun getAlumnos():List<Alumno>{
-        return apiService.getAlumnos()
+    suspend fun login(username: String, password: String): Result<String> = try {
+        val response = apiService.login(LoginRequest(username, password))
+        if (response.isSuccessful) {
+            val token = response.body()?.token ?: throw Exception("Token no encontrado")
+            AlumnoApiClient.setToken(token)
+            Result.success(token)
+        } else {
+            Result.failure(Exception("Error de autenticación"))
+        }
+    } catch (e: Exception) {
+        Result.failure(e)
+    }
+
+    override suspend fun getAlumnos():Result<List<Alumno>> = try {
+        val response = apiService.getAlumnos()
+        if (response.isSuccessful) {
+            Result.success(response.body() ?: emptyList())
+        } else {
+            Result.failure(Exception("Error: ${response.code()}"))
+        }
+    } catch (e: Exception) {
+        Result.failure(e)
     }
     override suspend fun getAlumnoByName(name:String):Alumno?{
         return apiService.getAlumnoByNombre(name)

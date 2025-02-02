@@ -67,8 +67,15 @@ dependencies {
     implementation(libs.kotlinx.serialization)
 
     //JUnit (Testing)
-    implementation("org.mockito:mockito-core:5.3.1")
-    implementation("org.mockito.kotlin:mockito-kotlin:5.1.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.1")
+    implementation(libs.mockito.core)
+    implementation(libs.mockito.kotlin)
+    implementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.mockk)
+
+    //Autentificación
+    implementation(libs.retrofit.v290)
+    implementation(libs.kotlinx.serialization.json.v151)
+    implementation(libs.retrofit2.kotlinx.serializationconverter)
+    implementation(libs.okhttp)
+
 }
