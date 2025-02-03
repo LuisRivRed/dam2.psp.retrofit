@@ -9,6 +9,12 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface ApiService {
+    @POST("login")
+    suspend fun login(@Body loginRequest: LoginRequest): Response<TokenResponse>
+
+    @GET("aulas")
+    suspend fun getAulas(@Header("Authorization") token: String): Response<List<Aula>>
+
     @GET("/alumnos")
     suspend fun getAlumnos(): Response<List<Alumno>>
 
