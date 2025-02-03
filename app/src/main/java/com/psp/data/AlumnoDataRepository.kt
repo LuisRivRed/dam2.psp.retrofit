@@ -32,4 +32,6 @@ class AlumnoDataRepository(
     override suspend fun deleteAlumno(id: Int): Response<Unit> {
         return apiService.deleteAlumno(id)
     }
+
+
 }

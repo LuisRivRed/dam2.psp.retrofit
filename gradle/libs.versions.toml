@@ -15,7 +15,9 @@ activityCompose = "1.8.0"
 composeBom = "2024.04.01"
 mockitoCore = "5.3.1"
 mockitoKotlin = "5.1.0"
+okhttp = "4.12.0"
 retrofit = "2.11.0"
+retrofit2KotlinxSerializationconverter = "1.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -39,7 +41,9 @@ kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-t
 kotlinx-coroutines-test-v164 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTestVersion" }
 mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
 mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockitoKotlin" }
+okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+retrofit2-kotlinx-serializationconverter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serializationconverter", version.ref = "retrofit2KotlinxSerializationconverter" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
