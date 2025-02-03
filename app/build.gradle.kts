@@ -67,7 +67,10 @@ dependencies {
     implementation (libs.kotlinx.coroutines)
     //serializable
     implementation(libs.kotlinx.serialization)
-
+    //jakeWharton
+    implementation(libs.jakewharton)
+    //okhttp3
+    implementation(libs.okhttp3)
     //test:mockito
     implementation(libs.mockito)
     implementation(libs.mockito.kotlin)

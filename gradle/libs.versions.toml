@@ -16,6 +16,8 @@ kotlinxSerialization = "1.6.0"
 mockVersion = "5.3.1"
 mockKotlinVersion = "5.1.0"
 mockTestCoroutines ="1.7.1"
+jakewhartonVersion = "1.0.0"
+okhttp3Version = "4.11.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -39,6 +41,9 @@ logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", ver
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
 kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutine" }
 kotlinx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
+jakewharton = {module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref= "jakewhartonVersion"}
+okhttp3 = { module ="com.squareup.okhttp3:okhttp", version.ref = "okhttp3Version"}
+
 
 mockito = { module ="org.mockito:mockito-core", version.ref="mockVersion"}
 mockito-kotlin = { module ="org.mockito.kotlin:mockito-kotlin", version.ref="mockKotlinVersion"}

@@ -1,9 +1,12 @@
 package com.psp.data
 
+
 import com.psp.domain.model.Alumno
 import retrofit2.Response
 
 class AlumnoDataRepository(private val alumnoApiService: AlumnoApiService) {
+
+
 
     suspend fun getAlumnos(): Response<List<Alumno>> {
         return alumnoApiService.getAlumnos()
