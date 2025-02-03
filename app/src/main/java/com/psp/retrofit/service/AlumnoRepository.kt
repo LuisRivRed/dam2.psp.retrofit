@@ -2,38 +2,35 @@ package com.psp.retrofit.service
 
 import android.util.Log
 import com.psp.model.Alumno
+import com.psp.model.LoginRequest
+import com.psp.retrofit.service.ApiClient.apiService
 
 class AlumnoRepository(private val apiService: ApiService) {
-    suspend fun getAlumnos(): List<Alumno> {
-        val response = apiService.requestAlumnos()
+    suspend fun login(username: String, password: String): Result<String> = try {
+        val response = apiService.login(LoginRequest(username, password))
         if (response.isSuccessful) {
-            return response.body() ?: emptyList()
+            val token = response.body()?.token ?: throw Exception("Token no encontrado")
+            // Aquí decides almacenar el token manualmente (por ejemplo, en ApiClient o en tu repositorio)
+            // No uses el interceptor para inyectarlo automáticamente.
+            Result.success(token)
         } else {
-            return emptyList()
+            Result.failure(Exception("Error de autenticación"))
         }
+    } catch (e: Exception) {
+        Result.failure(e)
     }
 
-    suspend fun getAlumno(id: Int): Alumno? {
-        val response = apiService.requestAlumno(id)
+    suspend fun getAlumnos(token: String): Result<List<Alumno>> = try {
+        // Asegúrate de pasar el token en el formato correcto, por ejemplo: "Bearer <tu_token>"
+        val response = apiService.getAlumnos(token)
         if (response.isSuccessful) {
-            return response.body()
+            Result.success(response.body() ?: emptyList())
         } else {
-            return null
+            Result.failure(Exception("Error: ${response.code()}"))
         }
-
+    } catch (e: Exception) {
+        Result.failure(e)
     }
 
-    suspend fun addAlumno(alumno: Alumno): Alumno? {
-        val response = apiService.createAlumno(alumno)
-        if (!response.isSuccessful) {
-            return null
-        }
-        return response.body()
-    }
-
-    suspend fun deleteAlumno(id: Int): Boolean {
-        val response = apiService.deleteAlumno(id)
-        return response.isSuccessful
-    }
 
 }

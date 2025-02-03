@@ -1,19 +1,31 @@
 package com.psp.retrofit.service
 
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import kotlinx.serialization.json.Json
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClient {
-    private const val BASE_URL="http://10.0.2.2:8080/"
 
-    fun providerRetrofit(): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
 
+    private const val BASE_URL = "http://localhost:8080/"
+    private val authInterceptor = AuthInterceptor()
+    private val okHttpClient = OkHttpClient.Builder().addInterceptor(authInterceptor).build()
+    private val json = Json {
+        ignoreUnknownKeys = true
+        coerceInputValues = true
     }
-    fun provideApiService(): ApiService {
-        return providerRetrofit().create(ApiService::class.java)
+    private val retrofit = Retrofit.Builder()
+        .baseUrl(BASE_URL)
+        .client(okHttpClient)
+        .addConverterFactory(
+            json.asConverterFactory("application/json".toMediaType())
+        )
+        .build()
+    val apiService: ApiService = retrofit.create(ApiService::class.java)
+    fun setToken(token: String) {
+        authInterceptor.setToken(token)
     }
 }

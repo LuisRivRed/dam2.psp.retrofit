@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.serialization)
 }
 
 android {
@@ -67,4 +68,10 @@ dependencies {
     implementation(libs.mockito.kotlin)
     implementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.mockk)
+
+    implementation(libs.retrofit.v290)
+    implementation(libs.kotlinx.serialization.json.v151)
+    implementation(libs.okhttp)
+    implementation(libs.retrofit2.kotlinx.serialization.converter)
 }
+
