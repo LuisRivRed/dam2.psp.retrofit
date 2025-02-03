@@ -3,24 +3,24 @@
 3    package="com.psp.retrofit.test" >
 4
 5    <uses-sdk
-5-->C:\Users\juanc\StudioProjects\dam2.psp.retrofit\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest1750516397420865284.xml:5:5-74
+5-->C:\Users\juanc\StudioProjects\dam2.psp.retrofit\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest12806275371062491061.xml:5:5-74
 6        android:minSdkVersion="24"
-6-->C:\Users\juanc\StudioProjects\dam2.psp.retrofit\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest1750516397420865284.xml:5:15-41
+6-->C:\Users\juanc\StudioProjects\dam2.psp.retrofit\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest12806275371062491061.xml:5:15-41
 7        android:targetSdkVersion="34" />
-7-->C:\Users\juanc\StudioProjects\dam2.psp.retrofit\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest1750516397420865284.xml:5:42-71
+7-->C:\Users\juanc\StudioProjects\dam2.psp.retrofit\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest12806275371062491061.xml:5:42-71
 8
 9    <instrumentation
-9-->C:\Users\juanc\StudioProjects\dam2.psp.retrofit\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest1750516397420865284.xml:11:5-15:66
+9-->C:\Users\juanc\StudioProjects\dam2.psp.retrofit\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest12806275371062491061.xml:11:5-15:66
 10        android:name="androidx.test.runner.AndroidJUnitRunner"
-10-->C:\Users\juanc\StudioProjects\dam2.psp.retrofit\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest1750516397420865284.xml:11:22-76
+10-->C:\Users\juanc\StudioProjects\dam2.psp.retrofit\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest12806275371062491061.xml:11:22-76
 11        android:functionalTest="false"
-11-->C:\Users\juanc\StudioProjects\dam2.psp.retrofit\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest1750516397420865284.xml:14:22-52
+11-->C:\Users\juanc\StudioProjects\dam2.psp.retrofit\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest12806275371062491061.xml:14:22-52
 12        android:handleProfiling="false"
-12-->C:\Users\juanc\StudioProjects\dam2.psp.retrofit\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest1750516397420865284.xml:13:22-53
+12-->C:\Users\juanc\StudioProjects\dam2.psp.retrofit\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest12806275371062491061.xml:13:22-53
 13        android:label="Tests for com.psp.retrofit"
-13-->C:\Users\juanc\StudioProjects\dam2.psp.retrofit\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest1750516397420865284.xml:15:22-64
+13-->C:\Users\juanc\StudioProjects\dam2.psp.retrofit\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest12806275371062491061.xml:15:22-64
 14        android:targetPackage="com.psp.retrofit" />
-14-->C:\Users\juanc\StudioProjects\dam2.psp.retrofit\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest1750516397420865284.xml:12:22-62
+14-->C:\Users\juanc\StudioProjects\dam2.psp.retrofit\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest12806275371062491061.xml:12:22-62
 15
 16    <uses-permission android:name="android.permission.REORDER_TASKS" />
 16-->[androidx.test:core:1.5.0] C:\Users\juanc\.gradle\caches\8.9\transforms\28051dd05c36e6932e987aa4b009fc5d\transformed\core-1.5.0\AndroidManifest.xml:24:5-72
@@ -40,12 +40,12 @@
 22    </queries>
 23
 24    <application
-24-->C:\Users\juanc\StudioProjects\dam2.psp.retrofit\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest1750516397420865284.xml:7:5-9:19
+24-->C:\Users\juanc\StudioProjects\dam2.psp.retrofit\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest12806275371062491061.xml:7:5-9:19
 25        android:debuggable="true"
 26        android:extractNativeLibs="false" >
 27        <uses-library android:name="android.test.runner" />
-27-->C:\Users\juanc\StudioProjects\dam2.psp.retrofit\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest1750516397420865284.xml:8:9-60
-27-->C:\Users\juanc\StudioProjects\dam2.psp.retrofit\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest1750516397420865284.xml:8:23-57
+27-->C:\Users\juanc\StudioProjects\dam2.psp.retrofit\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest12806275371062491061.xml:8:9-60
+27-->C:\Users\juanc\StudioProjects\dam2.psp.retrofit\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest12806275371062491061.xml:8:23-57
 28
 29        <activity
 29-->[androidx.test:core:1.5.0] C:\Users\juanc\.gradle\caches\8.9\transforms\28051dd05c36e6932e987aa4b009fc5d\transformed\core-1.5.0\AndroidManifest.xml:27:9-34:20
