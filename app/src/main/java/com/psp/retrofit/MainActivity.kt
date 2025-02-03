@@ -2,14 +2,10 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import com.psp.data.ApiClient
 import com.psp.model.Alumno
 import com.psp.model.Asignatura
 import com.psp.model.Curso
-import com.psp.retrofit.ui.theme.RetrofitTheme
 import kotlinx.coroutines.runBlocking
 
 class MainActivity : ComponentActivity() {
@@ -41,17 +37,5 @@ class MainActivity : ComponentActivity() {
             println(response6.body())
         }
     }
-    @Composable
-    fun Greeting(name: String, modifier: Modifier = Modifier) {
-        Text(
-            text = "Hello $name!",
-            modifier = modifier
-        )
-    }
-    @Composable
-    fun GreetingPreview() {
-        RetrofitTheme {
-            Greeting("Android")
-        }
-    }
+
 }
