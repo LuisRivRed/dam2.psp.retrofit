@@ -6,6 +6,7 @@ import com.psp.model.Course
 import com.psp.model.Student
 import com.psp.model.Subject
 import kotlinx.coroutines.test.runTest
+import okhttp3.ResponseBody.Companion.toResponseBody
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
@@ -187,5 +188,21 @@ class StudentDataRepositoryTest {
         assertEquals(200, response.code())
         assertEquals(true, response.body())
         verify(apiService).deleteStudent(1)
+    }
+
+    @Test
+    fun `test getStudents handles API error gracefully`() = runTest {
+        // Given
+        whenever(apiService.getStudents()).thenReturn(
+            Response.error(404, "Not Found".toResponseBody(null))
+        )
+
+        // When
+        val response = studentDataRepository.getStudents()
+
+        // Then
+        assertEquals(404, response.code())
+        assertEquals("Not Found", response.errorBody()?.string())
+        verify(apiService).getStudents()
     }
 }
