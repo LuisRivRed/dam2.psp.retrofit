@@ -4,24 +4,7 @@
             "outputFile": "com.psp.retrofit.test.app-mergeDebugAndroidTestResources-32:/values-or/values-or.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\JUANZUN\\.gradle\\caches\\8.9\\transforms\\66f4bc55d84c052904eae7f4318024aa\\transformed\\core-1.12.0\\res\\values-or\\values-or.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,158,260,363,468,569,671,790",
-                        "endColumns": "102,101,102,104,100,101,118,100",
-                        "endOffsets": "153,255,358,463,564,666,785,886"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,23",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,208,310,413,518,619,721,2022",
-                        "endColumns": "102,101,102,104,100,101,118,100",
-                        "endOffsets": "203,305,408,513,614,716,835,2118"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\JUANZUN\\.gradle\\caches\\8.9\\transforms\\efc3fb10673657da426980a8131886d5\\transformed\\ui-release\\res\\values-or\\values-or.xml",
+                    "source": "C:\\Users\\juanc\\.gradle\\caches\\8.9\\transforms\\3f5504a052ce74400c6b89811097c65e\\transformed\\ui-release\\res\\values-or\\values-or.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -35,6 +18,23 @@
                         "startOffsets": "840,937,1024,1116,1216,1302,1379,1477,1565,1652,1722,1792,1870,1952,2123,2206,2273",
                         "endColumns": "96,86,91,99,85,76,97,87,86,69,69,77,81,69,82,66,118",
                         "endOffsets": "932,1019,1111,1211,1297,1374,1472,1560,1647,1717,1787,1865,1947,2017,2201,2268,2387"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\juanc\\.gradle\\caches\\8.9\\transforms\\6bbb9adddf82004b6ee1fa49dd51f91b\\transformed\\core-1.12.0\\res\\values-or\\values-or.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,158,260,363,468,569,671,790",
+                        "endColumns": "102,101,102,104,100,101,118,100",
+                        "endOffsets": "153,255,358,463,564,666,785,886"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,23",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,208,310,413,518,619,721,2022",
+                        "endColumns": "102,101,102,104,100,101,118,100",
+                        "endOffsets": "203,305,408,513,614,716,835,2118"
                     }
                 }
             ]

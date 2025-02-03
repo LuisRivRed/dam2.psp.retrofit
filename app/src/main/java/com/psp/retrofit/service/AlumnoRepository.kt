@@ -10,19 +10,44 @@ class AlumnoRepository(private val apiService: ApiService) {
         val response = apiService.login(LoginRequest(username, password))
         if (response.isSuccessful) {
             val token = response.body()?.token ?: throw Exception("Token no encontrado")
-            // Aquí decides almacenar el token manualmente (por ejemplo, en ApiClient o en tu repositorio)
-            // No uses el interceptor para inyectarlo automáticamente.
             Result.success(token)
         } else {
-            Result.failure(Exception("Error de autenticación"))
+            Result.failure(Exception("Error: ${response.code()}"))
         }
     } catch (e: Exception) {
         Result.failure(e)
     }
 
     suspend fun getAlumnos(token: String): Result<List<Alumno>> = try {
-        // Asegúrate de pasar el token en el formato correcto, por ejemplo: "Bearer <tu_token>"
-        val response = apiService.getAlumnos(token)
+        val response = apiService.getAlumnos(("Bearer $token"))
+        Log.d("AlumnoRepository", "Token enviado: $token")
+        if (response.isSuccessful) {
+            Log.d("AlumnoRepository", "Respuesta exitosa: ${response.body()}")
+            Result.success(response.body() ?: emptyList())
+        } else {
+            Result.failure(Exception("Error: ${response.code()}"))
+        }
+    } catch (e: Exception) {
+        Result.failure(e)
+    }
+    suspend fun getAlumnoById(token: String, id: Int): Result<Alumno> = try {
+        val response = apiService.getAlumnoById("Bearer $token", id)
+        if (response.isSuccessful) {
+            val alumno = response.body()
+            if (alumno != null) {
+                Result.success(alumno)
+            } else {
+                Result.failure(Exception("Alumno no encontrado"))
+            }
+        } else {
+            Result.failure(Exception("Error: ${response.code()}"))
+        }
+    } catch (e: Exception) {
+        Result.failure(e)
+    }
+
+    suspend fun getAlumnosByCurso(token: String, curso: String): Result<List<Alumno>> = try {
+        val response = apiService.getAlumnosByCurso("Bearer $token", curso)
         if (response.isSuccessful) {
             Result.success(response.body() ?: emptyList())
         } else {
@@ -31,6 +56,5 @@ class AlumnoRepository(private val apiService: ApiService) {
     } catch (e: Exception) {
         Result.failure(e)
     }
-
 
 }

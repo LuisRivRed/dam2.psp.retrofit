@@ -4,24 +4,7 @@
             "outputFile": "com.psp.retrofit.test.app-mergeDebugAndroidTestResources-32:/values-ne/values-ne.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\JUANZUN\\.gradle\\caches\\8.9\\transforms\\66f4bc55d84c052904eae7f4318024aa\\transformed\\core-1.12.0\\res\\values-ne\\values-ne.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,158,261,363,469,567,667,775",
-                        "endColumns": "102,102,101,105,97,99,107,100",
-                        "endOffsets": "153,256,358,464,562,662,770,871"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,23",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,208,311,413,519,617,717,2034",
-                        "endColumns": "102,102,101,105,97,99,107,100",
-                        "endOffsets": "203,306,408,514,612,712,820,2130"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\JUANZUN\\.gradle\\caches\\8.9\\transforms\\efc3fb10673657da426980a8131886d5\\transformed\\ui-release\\res\\values-ne\\values-ne.xml",
+                    "source": "C:\\Users\\juanc\\.gradle\\caches\\8.9\\transforms\\3f5504a052ce74400c6b89811097c65e\\transformed\\ui-release\\res\\values-ne\\values-ne.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -35,6 +18,23 @@
                         "startOffsets": "825,924,1014,1108,1205,1291,1373,1469,1556,1642,1708,1774,1864,1957,2135,2216,2284",
                         "endColumns": "98,89,93,96,85,81,95,86,85,65,65,89,92,76,80,67,119",
                         "endOffsets": "919,1009,1103,1200,1286,1368,1464,1551,1637,1703,1769,1859,1952,2029,2211,2279,2399"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\juanc\\.gradle\\caches\\8.9\\transforms\\6bbb9adddf82004b6ee1fa49dd51f91b\\transformed\\core-1.12.0\\res\\values-ne\\values-ne.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,158,261,363,469,567,667,775",
+                        "endColumns": "102,102,101,105,97,99,107,100",
+                        "endOffsets": "153,256,358,464,562,662,770,871"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,23",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,208,311,413,519,617,717,2034",
+                        "endColumns": "102,102,101,105,97,99,107,100",
+                        "endOffsets": "203,306,408,514,612,712,820,2130"
                     }
                 }
             ]

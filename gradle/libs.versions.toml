@@ -11,6 +11,7 @@ kotlinxSerializationJsonVersion = "1.5.1"
 lifecycleRuntimeKtx = "2.6.1"
 activityCompose = "1.8.0"
 composeBom = "2024.04.01"
+lifecycleRuntimeKtxVersion = "2.8.7"
 mockitoKotlin = "5.1.0"
 mockk = "1.13.16"
 okhttp = "4.12.0"
@@ -23,6 +24,7 @@ serialization = "2.1.20-Beta2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-lifecycle-runtime-ktx-v287 = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtxVersion" }
 com-squareup-retrofit2-xuse = { module = "com.squareup.retrofit2:<use", version.ref = "squareupXuseVersion" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
