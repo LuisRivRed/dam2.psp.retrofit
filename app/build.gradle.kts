@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace = "com.psp.retrofit"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.psp.retrofit"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -22,8 +22,7 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
         }
     }
@@ -56,10 +55,16 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    implementation (libs.squareup.retrofit)
-    implementation (libs.retrofit2.xuse)
+    implementation(libs.squareup.retrofit)
+    implementation(libs.retrofit2.xuse)
     implementation(libs.converter.gson)
     implementation(libs.kotlinx.serialization.json)
+
+    implementation(libs.retrofit2.kotlinx.serializationconverter)
+
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.okhttp)
+
 
     implementation(libs.mockito.core)
     implementation(libs.mockito.kotlin)
