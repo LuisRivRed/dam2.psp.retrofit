@@ -19,8 +19,9 @@ interface ApiService {
     suspend fun requestStudentByName(@Path("name") name: String): Response<Alumno>
 
     @POST("students")
-    suspend fun addStudent(@Body student: Alumno): Response<Void>
+    suspend fun addStudent(@Body student: Alumno): Response<Alumno>
 
     @DELETE("students/delete/{studentId}")
-    suspend fun deleteStudentById(@Path("studentId") studentId: Int): Response<Void>
+    suspend fun deleteStudentById(@Path("studentId") studentId: String): Response<Boolean>
+
 }
