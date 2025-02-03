@@ -16,7 +16,7 @@ object AlumnosService {
 
     private val alumnosApi: AlumnosApi = ApiClient.provideAlumnosApi()
 
-    suspend fun login(request: LoginRequest): Response<TokenResponse> { // 🔹 Se añade login()
+    suspend fun login(request: LoginRequest): Response<TokenResponse> {
         return alumnosApi.login(request)
     }
 
