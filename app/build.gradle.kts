@@ -70,6 +70,12 @@ dependencies {
     implementation(libs.org.jetbrains.kotlinx.kotlinx.coroutines.test)// "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.2"
     implementation(libs.mockito.core.v531)// "org.mockito:mockito-core:5.3.1"
     implementation(libs.mockito.kotlin.v510)// "org.mockito.kotlin:mockito-kotlin:5.1.0"
+
+    implementation(libs.retrofit.v290) // com.squareup.retrofit2:retrofit:2.9.0
+    implementation(libs.kotlinx.serialization.json.v151) // org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1
+    implementation(libs.retrofit2.kotlinx.serializationconverter) // com.jakewharton.retrofit:retrofit2-kotlinx-serializationconverter:1.0.0
+    implementation(libs.okhttp) // com.squareup.okhttp3:okhttp:4.11.0
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
