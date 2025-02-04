@@ -1,6 +1,7 @@
 package com.psp.data
 
 import okhttp3.Interceptor
+import okhttp3.Response
 
 class AuthInterceptor : Interceptor {
     private var token: String? = null
@@ -9,14 +10,18 @@ class AuthInterceptor : Interceptor {
         token = newToken
     }
 
-    override fun intercept(chain: Interceptor.Chain): okhttp3.Response {
-        val request = chain.request()
-        token?.let {
-            val newRequest = request.newBuilder()
-                .addHeader("Authorization", "Bearer $it")
-                .build()
-            return chain.proceed(newRequest)
+    override fun intercept(chain: Interceptor.Chain): Response {
+        val token = AlumnoDataRepository.authToken
+        val requestBuilder = chain.request().newBuilder()
+
+        if (token.isNullOrEmpty()) {
+            println(" No se está enviando un token. Es posible que no se haya guardado correctamente.")
+        } else {
+            println(" Enviando token: Bearer $token")
+            requestBuilder.addHeader("Authorization", "Bearer $token")
         }
-        return chain.proceed(request)
+
+        return chain.proceed(requestBuilder.build())
     }
+
 }

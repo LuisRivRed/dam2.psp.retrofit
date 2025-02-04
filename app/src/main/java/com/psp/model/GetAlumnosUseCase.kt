@@ -1,7 +1,6 @@
 package com.psp.model
 
-class GetAlumnosUseCase (private val repository: AlumnoRepository) {
-    suspend fun invoke():List<Alumno>{
-        return repository.getAlumnos()
-    }
+class GetAlumnosUseCase(private val repository: AlumnoRepository) {
+    suspend operator fun invoke(): Result<List<Alumno>> =
+        repository.getAlumnos()
 }

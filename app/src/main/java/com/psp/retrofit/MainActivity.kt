@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.lifecycle.lifecycleScope
+import com.psp.data.AlumnoApiClient
 import com.psp.data.AlumnoDataRepository
 import com.psp.model.Alumno
 import com.psp.model.Asignatura
@@ -15,35 +16,47 @@ import com.psp.model.DeleteAlumnoUseCase
 import com.psp.model.GetAlumnoByNombreUseCase
 import com.psp.model.GetAlumnosByCursoUseCase
 import com.psp.model.GetAlumnosUseCase
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import java.io.IOException
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {}
 
-        retrofitGetAlumnos()
-        retrofitGetAlumnosByCurso()
-        retrofitGetAlumnoByNombre()
-        retrofitSaveAlumno()
-        retrofitDeleteAlumnos()
-
         loginUser()
-    }
 
+        //retrofitGetAlumnos()
+        //retrofitGetAlumnosByCurso()
+        //retrofitGetAlumnoByNombre()
+        //retrofitSaveAlumno()
+        //retrofitDeleteAlumno()
+    }
 
     private fun loginUser() {
         lifecycleScope.launch {
-            val result = AlumnoDataRepository.login("admin", "password")
-            if (result.isSuccess) {
-                val alumnos = AlumnoDataRepository.getAlumnos()
+            // Realizamos el login y, en caso de éxito, obtenemos la lista de alumnos.
+            AlumnoDataRepository.login("admin", "password")
+                .onSuccess { tokenResponse ->
+                    val token = tokenResponse.token
+                    if (token.isNotEmpty()) {
+                        AlumnoApiClient.setToken(token)
+                        Log.d("@dev", "Login exitoso, token: $token")
+                            retrofitGetAlumnos()
+                        retrofitGetAlumnosByCurso()
+                        retrofitGetAlumnoByNombre()
+                        retrofitSaveAlumno()
+                        retrofitDeleteAlumno()
 
-            } else {
-                // Manejar error
-            }
+                    } else {
+                        Log.e("@dev", "Error: el token recibido es nulo o vacío")
+                    }
+                }
+                .onFailure { e ->
+                    Log.e("@dev", "Error en el login: ${e.localizedMessage}", e)
+                }
         }
     }
 }
@@ -51,44 +64,44 @@ class MainActivity : ComponentActivity() {
 
 fun retrofitGetAlumnos() {
     runBlocking {
-        try {
-            Log.d("@retrofit", "Lista de Alumnos:")
-            val alumnos = GetAlumnosUseCase(AlumnoDataRepository).invoke()
-            for (alumno in alumnos) {
-                Log.d("@retrofit", "$alumno")
+        GetAlumnosUseCase(AlumnoDataRepository).invoke()
+            .onSuccess { alumnos ->
+                Log.d("@retrofit", "Lista de Alumnos:")
+                alumnos.forEach { alumno ->
+                    Log.d("@retrofit", "$alumno")
+                }
             }
-        } catch (e: IOException) {
-            Log.d("@retrofit", "Error de conexión: {$e}")
-        }
-
+            .onFailure { error ->
+                Log.d("@retrofit", "Error al obtener alumnos: $error")
+            }
     }
 }
 
 fun retrofitGetAlumnosByCurso() {
     runBlocking {
-        try {
-            Log.d("@retrofit", "Lista de Alumnos filtrados por curso:")
-            val alumnosByCurso = GetAlumnosByCursoUseCase(AlumnoDataRepository).invoke("DAM1")
-            for (alumno in alumnosByCurso) {
-                Log.d("@retrofit", "$alumno")
+        GetAlumnosByCursoUseCase(AlumnoDataRepository).invoke("DAM1")
+            .onSuccess { alumnos ->
+                Log.d("@retrofit", "Lista de Alumnos filtrados por curso:")
+                alumnos.forEach { alumno ->
+                    Log.d("@retrofit", "$alumno")
+                }
             }
-        } catch (e: IOException) {
-            Log.d("@retrofit", "Error de conexión: {$e}")
-        }
-
+            .onFailure { error ->
+                Log.d("@retrofit", "Error al obtener alumnos por curso: $error")
+            }
     }
 }
 
 fun retrofitGetAlumnoByNombre() {
     runBlocking {
-        try {
-            Log.d("@retrofit", "Datos de un Alumno recogido por su nombre:")
-            val alumnoByName = GetAlumnoByNombreUseCase(AlumnoDataRepository).invoke("Kai")
-            Log.d("@retrofit", "$alumnoByName")
-        } catch (e: IOException) {
-            Log.d("@retrofit", "Error de conexión: {$e}")
-        }
-
+        GetAlumnoByNombreUseCase(AlumnoDataRepository).invoke("Kai")
+            .onSuccess { alumno ->
+                Log.d("@retrofit", "Datos de Alumno por nombre:")
+                Log.d("@retrofit", "$alumno")
+            }
+            .onFailure { error ->
+                Log.d("@retrofit", "Error al obtener alumno por nombre: $error")
+            }
     }
 }
 
@@ -96,35 +109,49 @@ fun retrofitSaveAlumno() {
     runBlocking {
         try {
             val alumno = Alumno(
-                5, "Ian", "2004/05/10", Curso.DAM2, "ian@example.com",
-                listOf(Asignatura.PSP, Asignatura.SGE, Asignatura.AAD)
+                id = 5,
+                nombre = "Ian",
+                fechaNacimiento = "2004/05/10",
+                curso = Curso.DAM2,
+                email = "ian@example.com",
+                asignaturas = listOf(Asignatura.PSP, Asignatura.SGE, Asignatura.AAD)
             )
             CreateAlumnoUseCase(AlumnoDataRepository).invoke(alumno)
-            Log.d("@retrofit", "Lista de alumnos despues de agregarle uno nuevo:")
-            val alumnosNuevo = GetAlumnosUseCase(AlumnoDataRepository).invoke()
-            for (a in alumnosNuevo) {
-                Log.d("@retrofit", "$a")
-            }
-        } catch (e: IOException) {
-            Log.d("@retrofit", "Error de conexión: {$e}")
+            Log.d("@retrofit", "Alumno guardado correctamente")
+            GetAlumnosUseCase(AlumnoDataRepository).invoke()
+                .onSuccess { alumnos ->
+                    Log.d("@retrofit", "Lista de alumnos tras agregar uno nuevo:")
+                    alumnos.forEach { alumnoItem ->
+                        Log.d("@retrofit", "$alumnoItem")
+                    }
+                }
+                .onFailure { error ->
+                    Log.d("@retrofit", "Error al obtener alumnos: $error")
+                }
+        } catch (e: Exception) {
+            Log.d("@retrofit", "Error al guardar alumno: $e")
         }
-
     }
 }
 
-fun retrofitDeleteAlumnos() {
+fun retrofitDeleteAlumno() {
     runBlocking {
         try {
-            Log.d("@retrofit", "Lista de alumnos despues de borrarle el que agregamos antes:")
             DeleteAlumnoUseCase(AlumnoDataRepository).invoke(5)
-            val alumnosDelete = GetAlumnosUseCase(AlumnoDataRepository).invoke()
-            for (a in alumnosDelete) {
-                Log.d("@retrofit", "$a")
-            }
-        } catch (e: IOException) {
-            Log.d("@retrofit", "Error de conexión: {$e}")
+            Log.d("@retrofit", "Alumno eliminado correctamente")
+            GetAlumnosUseCase(AlumnoDataRepository).invoke()
+                .onSuccess { alumnos ->
+                    Log.d("@retrofit", "Lista de alumnos tras eliminar:")
+                    alumnos.forEach { alumno ->
+                        Log.d("@retrofit", "$alumno")
+                    }
+                }
+                .onFailure { error ->
+                    Log.d("@retrofit", "Error al obtener alumnos: $error")
+                }
+        } catch (e: Exception) {
+            Log.d("@retrofit", "Error al eliminar alumno: $e")
         }
-
     }
 }
 

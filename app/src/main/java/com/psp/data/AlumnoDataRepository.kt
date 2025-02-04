@@ -6,39 +6,58 @@ import com.psp.model.AlumnoRepository
 object AlumnoDataRepository: AlumnoRepository {
     private val apiService = AlumnoApiClient.apiService
 
-    suspend fun login(username: String, password: String): Result<String> = try {
-        val response = apiService.login(LoginRequest(username, password))
-        if (response.isSuccessful) {
-            val token = response.body()?.token ?: throw Exception("Token no encontrado")
-            AlumnoApiClient.setToken(token)
-            Result.success(token)
-        } else {
-            Result.failure(Exception("Error de autenticación"))
+    var authToken: String? = null
+
+    suspend fun login(username: String, password: String): Result<TokenResponse> =
+        runCatching {
+            val response = apiService.login(LoginRequest(username, password))
+            if (response.isSuccessful) {
+                response.body()?.also { authToken = it.token }
+                    ?: throw Exception("Respuesta exitosa pero sin body")
+            } else {
+                throw Exception("Error ${response.code()}: ${response.message()}")
+            }
         }
-    } catch (e: Exception) {
-        Result.failure(e)
+
+    override suspend fun getAlumnos(): Result<List<Alumno>> =
+        runCatching {
+            val response = apiService.getAlumnos()
+            if (response.isSuccessful) {
+                response.body() ?: emptyList()
+            } else {
+                throw Exception("Error ${response.code()}: ${response.message()}")
+            }
+        }
+
+    override suspend fun getAlumnoByName(name: String): Result<Alumno?> =
+        runCatching {
+            val response = apiService.getAlumnoByNombre(name)
+            if (response.isSuccessful) {
+                response.body() // Puede ser null
+            } else {
+                throw Exception("Error ${response.code()}: ${response.message()}")
+            }
+        }
+
+    override suspend fun getAlumnoByCurso(curso: String): Result<List<Alumno>> =
+        runCatching {
+            val response = apiService.getAlumnosByCurso(curso)
+            if (response.isSuccessful) {
+                response.body() ?: emptyList()
+            } else {
+                throw Exception("Error ${response.code()}: ${response.message()}")
+            }
+        }
+
+    override suspend fun saveAlumno(alumno: Alumno) {
+        val response = apiService.saveAlumno(alumno)
+        if (!response.isSuccessful) {
+            throw Exception("Error ${response.code()}: ${response.message()}")
+        }
     }
 
-    override suspend fun getAlumnos():Result<List<Alumno>> = try {
-        val response = apiService.getAlumnos()
-        if (response.isSuccessful) {
-            Result.success(response.body() ?: emptyList())
-        } else {
-            Result.failure(Exception("Error: ${response.code()}"))
-        }
-    } catch (e: Exception) {
-        Result.failure(e)
-    }
-    override suspend fun getAlumnoByName(name:String):Alumno?{
-        return apiService.getAlumnoByNombre(name)
-    }
-    override suspend fun getAlumnoByCurso(curso:String):List<Alumno>{
-        return apiService.getAlumnosByCurso(curso)
-    }
-    override suspend fun saveAlumno(alumno:Alumno){
-        apiService.saveAlumno(alumno)
-    }
-    override suspend fun deleteAlumno(id:Int){
+    override suspend fun deleteAlumno(id: Int) {
         apiService.deleteAlumno(id)
     }
 }
+

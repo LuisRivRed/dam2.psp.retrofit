@@ -1,8 +1,6 @@
 package com.psp.model
 
-class GetAlumnoByNombreUseCase (private val repository: AlumnoRepository) {
-    suspend fun invoke(name:String):Alumno?{
-        return repository.getAlumnoByName(name)
-    }
-
+class GetAlumnoByNombreUseCase(private val repository: AlumnoRepository) {
+    suspend operator fun invoke(name: String): Result<Alumno?> =
+        repository.getAlumnoByName(name)
 }

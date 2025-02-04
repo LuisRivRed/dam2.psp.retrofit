@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -75,7 +76,7 @@ dependencies {
     //Autentificación
     implementation(libs.retrofit.v290)
     implementation(libs.kotlinx.serialization.json.v151)
-    implementation(libs.retrofit2.kotlinx.serializationconverter)
+    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0")
     implementation(libs.okhttp)
 
 }
