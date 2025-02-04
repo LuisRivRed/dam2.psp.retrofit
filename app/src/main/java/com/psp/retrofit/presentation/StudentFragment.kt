@@ -10,16 +10,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.psp.retrofit.R
 import com.psp.retrofit.data.StudentDataRepository
-import com.psp.retrofit.data.remote.RetrofitClient
 import com.psp.retrofit.data.remote.ApiService
+import com.psp.retrofit.data.remote.RetrofitClient
 import com.psp.retrofit.model.StudentRepository
 import kotlinx.coroutines.launch
 
 class StudentFragment : Fragment() {
 
     private val repository: StudentRepository by lazy {
-        val apiService = RetrofitClient.provideRetrofit().create(ApiService::class.java)
-        StudentDataRepository(apiService)
+        StudentDataRepository(RetrofitClient.apiService)
     }
 
     override fun onCreateView(
@@ -43,13 +42,21 @@ class StudentFragment : Fragment() {
 
     private fun fetchStudents(recyclerView: RecyclerView) {
         lifecycleScope.launch {
-            val response = repository.getStudents()
-            if (response.isSuccessful) {
-                val students = response.body() ?: emptyList()
+            // Obtener los estudiantes desde el repositorio
+            val result = repository.getStudents()
+
+            // Verificar si la operación fue exitosa
+            if (result.isSuccess) {
+                // Si es exitoso, obtener la lista de estudiantes
+                val students = result.getOrDefault(emptyList())
+                // Configurar el adaptador con la lista de estudiantes
                 recyclerView.adapter = StudentAdapter(students)
             } else {
-                // Manejo de errores
+                // Si falla, manejar el error (por ejemplo, mostrar un mensaje)
+                val error = result.exceptionOrNull()
+                // Mostrar el error o hacer alguna acción con él
             }
         }
     }
+
 }

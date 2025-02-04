@@ -5,7 +5,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
-    private const val BASE_URL = "http://localhost:8080/"  // Cambiar a tu URL real
+    //private const val BASE_URL = "https://192.168.1.136:8443/"  // Cambiar a tu URL real
+    private const val BASE_URL = "https://https://10.0.2.2:8443/"  // Cambiar a tu URL real
 
     private val authInterceptor = AuthInterceptor()
 

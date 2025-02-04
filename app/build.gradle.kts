@@ -69,18 +69,13 @@ dependencies {
     implementation(libs.mockito.kotlin.v510)// "org.mockito.kotlin:mockito-kotlin:5.1.0"
 
     implementation(libs.kotlinx.serialization.json.v151) // org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1
-    implementation(libs.retrofit2.kotlinx.serializationconverter) // com.jakewharton.retrofit:retrofit2-kotlinx-serializationconverter:1.0.0
 
     implementation(libs.retrofit2.retrofit.v290) // com.squareup.retrofit2:retrofit:2.9.0
-    implementation(libs.converter.gson.v290) // com.squareup.retrofit2:converter-gson:2.9.0
     implementation(libs.okhttp.v493) // com.squareup.okhttp3:okhttp:4.9.3
     implementation(libs.logging.interceptor) // com.squareup.okhttp3:logging-interceptor:4.9.3
 
     implementation(libs.retrofit2.converter.gson.v290)
-    implementation(libs.kotlinx.serialization.json.v160)
     implementation(libs.retrofit2.kotlinx.serialization.converter)
-    implementation(libs.retrofit.v290)
-    implementation(libs.okhttp.v4110)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -12,22 +12,22 @@ class StudentDataRepository(
     private val apiService: ApiService
 ) : StudentRepository {
 
-    suspend fun login(username: String, password: String): Result<String> = try {
-        val response = apiService.login(LoginRequest(username, password))
-        if (response.isSuccessful) {
-            val token = response.body()?.token
-            if (token != null) {
-                RetrofitClient.setToken(token) // Establecer el token para futuras solicitudes
-                Result.success(token)
-            } else {
-                Result.failure(Exception("Token no encontrado"))
-            }
-        } else {
-            Result.failure(Exception("Error de autenticación"))
-        }
-    } catch (e: Exception) {
-        Result.failure(e)
-    }
+    //suspend fun login(username: String, password: String): Result<String> = try {
+    //    val response = apiService.login(LoginRequest(username, password))
+    //    if (response.isSuccessful) {
+    //        val token = response.body()?.token
+    //        if (token != null) {
+    //            RetrofitClient.setToken(token) // Establecer el token para futuras solicitudes
+    //            Result.success(token)
+    //        } else {
+    //            Result.failure(Exception("Token no encontrado"))
+    //        }
+    //    } else {
+    //        Result.failure(Exception("Error de autenticación"))
+    //    }
+    //} catch (e: Exception) {
+    //    Result.failure(e)
+    //}
 
 
     override suspend fun getStudents(): Result<List<Student>> = try {
