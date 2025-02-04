@@ -1,6 +1,5 @@
 package com.psp.model
 
-
 enum class Curso {
     DAM1, DAM2, DAW1, DAW2
 }
@@ -17,6 +16,3 @@ data class Alumno(
     val email: String,
     val asignaturas: List<Asignatura>
 )
-
-
-
