@@ -112,6 +112,7 @@ class MainActivity : AppCompatActivity() {
             } else {
                 Log.e("@dev", "Error al eliminar alumno: ${response.message()}")
             }
+
         } catch (e: Exception) {
             Log.e("@dev", "Error al eliminar alumno: ${e.message}", e)
         }
