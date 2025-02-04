@@ -1,16 +1,32 @@
 package com.psp.data
 
+import com.google.gson.GsonBuilder
+import com.psp.model.AuthInterceptor
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClient {
-    private const val BASE_URL = "http://192.168.1.44:88/"
 
-    val retrofit: AlumnoService by lazy {
-        val retrofit = Retrofit.Builder().baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+    private const val BASE_URL = "http://192.168.56.1:8080/"
 
-        retrofit.create(AlumnoService::class.java)
+    private val gson = GsonBuilder().create()
+
+    private val authInterceptor = AuthInterceptor()
+
+    private val okHttpClient = OkHttpClient.Builder()
+        .addInterceptor(authInterceptor)
+        .build()
+
+    private val retrofit: Retrofit = Retrofit.Builder()
+        .baseUrl(BASE_URL)
+        .client(okHttpClient)
+        .addConverterFactory(GsonConverterFactory.create(gson))
+        .build()
+
+    val apiService: AlumnoService = retrofit.create(AlumnoService::class.java)
+
+    fun setToken(token: String) {
+        authInterceptor.setToken(token)
     }
 }

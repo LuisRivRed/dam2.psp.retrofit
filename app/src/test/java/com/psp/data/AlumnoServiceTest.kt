@@ -17,6 +17,7 @@ import retrofit2.Response
 class AlumnoServiceTest {
     @Mock
     private lateinit var alumnoService: AlumnoService
+    private var token= "token"
     private var mockAlumno: AlumnoApiModel = AlumnoApiModel(
         "1",
         "Alejandro",
@@ -92,12 +93,12 @@ class AlumnoServiceTest {
     @Test
     fun getAlumnos() = runTest {
         val response = Response.success(mockListAlumnos)
-        whenever(alumnoService.getAlumnos()).thenReturn(response)
+        whenever(alumnoService.getAlumnos(token)).thenReturn(response)
 
-        val result = alumnoService.getAlumnos()
+        val result = alumnoService.getAlumnos(token)
 
         assertTrue(result.isSuccessful)
-        assertEquals(listOf(mockListAlumnos), result.body())
+        assertEquals(mockListAlumnos, result.body())
     }
 
     /**
@@ -106,9 +107,9 @@ class AlumnoServiceTest {
      */
     @Test
     fun getAlumnosWithNull() = runTest {
-        whenever(alumnoService.getAlumnos()).thenReturn(Response.success(null))
+        whenever(alumnoService.getAlumnos(token)).thenReturn(Response.success(null))
 
-        val result = alumnoService.getAlumnos()
+        val result = alumnoService.getAlumnos(token)
 
         assertTrue(result.isSuccessful)
         assertEquals(null, result.body())
