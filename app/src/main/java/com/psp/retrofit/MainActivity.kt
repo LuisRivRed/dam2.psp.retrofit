@@ -9,12 +9,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.lifecycleScope
 import com.psp.data.AlumnoDataRepository
 import com.psp.data.model.Alumno
 import com.psp.data.model.Asignatura
 import com.psp.data.model.Curso
 import com.psp.data.remote.ApiClient
 import com.psp.data.remote.ApiService
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 class MainActivity : ComponentActivity() {
@@ -28,35 +30,52 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun main() {
-        val apiService = ApiClient().provideApi().create(ApiService::class.java)
+        val apiService = ApiClient.provideApi()
         val alumnoRepository = AlumnoDataRepository(apiService)
 
         runBlocking {
-            // 🔹 Obtener todos los alumnos
-            val response1 = alumnoRepository.getAlumnos()
-            if (response1.isSuccessful) {
-                Log.d("@Dev", "Alumnos: ${response1.body()}")
-            } else {
-                Log.e("@Dev", "Error al obtener alumnos: ${response1.code()} - ${response1.errorBody()?.string()}")
+            // Obtener el listado de alumnos mediante autenticación
+            val result = alumnoRepository.login("admin", "password")
+            result.onSuccess { token ->
+                Log.d("@dev", "Token recibido: $token")
+
+                val alumnosResponse = alumnoRepository.getAlumnos()
+                alumnosResponse.onSuccess { alumnos ->
+                    Log.d("@dev", "Alumnos: $alumnos")
+                }.onFailure { e ->
+                    Log.e("@dev", "Error al obtener alumnos: ${e.localizedMessage}", e)
+                }
+            }.onFailure { e ->
+                Log.e("@dev", "Error en el login: ${e.localizedMessage}", e)
             }
 
-            // 🔹 Obtener un alumno por nombre
+            // Obtener un alumno por nombre
             val response2 = alumnoRepository.getAlumnosByName("Marcos")
             if (response2.isSuccessful) {
                 Log.d("@Dev", "Alumno encontrado: ${response2.body()}")
             } else {
-                Log.e("@Dev", "Error al obtener alumno: ${response2.code()} - ${response2.errorBody()?.string()}")
+                Log.e(
+                    "@Dev",
+                    "Error al obtener alumno: ${response2.code()} - ${
+                        response2.errorBody()?.string()
+                    }"
+                )
             }
 
-            // 🔹 Obtener un alumno por ID
+            // Obtener un alumno por ID
             val response3 = alumnoRepository.getAlumnoById(3)
             if (response3.isSuccessful) {
-                Log.d("@Dev", "Alumno con ID 1: ${response3.body()}")
+                Log.d("@Dev", "Alumno con ID 3: ${response3.body()}")
             } else {
-                Log.e("@Dev", "Error al obtener alumno por ID: ${response3.code()} - ${response3.errorBody()?.string()}")
+                Log.e(
+                    "@Dev",
+                    "Error al obtener alumno por ID: ${response3.code()} - ${
+                        response3.errorBody()?.string()
+                    }"
+                )
             }
 
-            // 🔹 Agregar un nuevo alumno
+            // Agregar un nuevo alumno
             val nuevoAlumno = Alumno(
                 id = 0, // Se generará un nuevo ID automáticamente
                 nombre = "Carlos",
@@ -70,16 +89,26 @@ class MainActivity : ComponentActivity() {
             if (response5.isSuccessful) {
                 Log.d("@Dev", "Alumno añadido: ${response5.body()}")
             } else {
-                Log.e("@Dev", "Error al añadir alumno: ${response5.code()} - ${response5.errorBody()?.string()}")
+                Log.e(
+                    "@Dev",
+                    "Error al añadir alumno: ${response5.code()} - ${
+                        response5.errorBody()?.string()
+                    }"
+                )
             }
 
-            // 🔹 Eliminar un alumno por ID
+            // Eliminar un alumno por ID
             val idToDelete = 2
             val response6 = alumnoRepository.deleteAlumno(idToDelete)
             if (response6.isSuccessful) {
                 Log.d("@Dev", "Alumno con ID $idToDelete eliminado")
             } else {
-                Log.e("@Dev", "Error al eliminar alumno: ${response6.code()} - ${response6.errorBody()?.string()}")
+                Log.e(
+                    "@Dev",
+                    "Error al eliminar alumno: ${response6.code()} - ${
+                        response6.errorBody()?.string()
+                    }"
+                )
             }
         }
     }

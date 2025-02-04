@@ -1,6 +1,8 @@
 package com.psp.data.remote
 
 import com.psp.data.model.Alumno
+import com.psp.data.model.LoginRequest
+import com.psp.data.model.TokenResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -15,9 +17,6 @@ interface ApiService {
     suspend fun login(@Body loginRequest: LoginRequest): Response<TokenResponse>
 
     @GET("alumnos")
-    suspend fun getAlumnos(@Header("Authorization") token: String): Response<List<Alumno>>
-
-    @GET("/alumnos")
     suspend fun getAlumnos(): Response<List<Alumno>>
 
     @GET("/alumnos/{nombre}")

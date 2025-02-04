@@ -56,8 +56,6 @@ dependencies {
     implementation(libs.kotlinx.coroutines.test)
     implementation(libs.mockito.core)
     implementation(libs.mockito.kotlin)
-    testImplementation (libs.kotlinx.coroutines.test.v164)
-    implementation(libs.retrofit2.kotlinx.serializationconverter)
     implementation(libs.okhttp)
 
 

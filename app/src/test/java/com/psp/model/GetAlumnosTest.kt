@@ -54,8 +54,8 @@ class GetAlumnosTest {
 
         val response = dataRepository.getAlumnos()
 
-        Assert.assertTrue(response.isSuccessful)
-        Assert.assertEquals(mockAlumnos, response.body())
+        Assert.assertTrue(response.isSuccess)
+        Assert.assertEquals(mockAlumnos, response.getOrNull())
     }
 
     //Obtener todos los alumnos (error)
@@ -65,7 +65,7 @@ class GetAlumnosTest {
 
         val response = dataRepository.getAlumnos()
 
-        Assert.assertFalse(response.isSuccessful)
+        Assert.assertFalse(response.isFailure)
     }
 
     //Obtener alumno por nombre (éxito)
