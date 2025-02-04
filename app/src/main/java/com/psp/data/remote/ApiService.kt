@@ -11,7 +11,10 @@ import retrofit2.http.Path
 
 // Interfaz que define los endpoints para realizar operaciones CRUD sobre estudiantes en una API REST
 interface ApiService {
-
+    /*
+        @POST("login")
+        suspend fun login(@Body loginRequest: LoginRequest): Response<TokenResponse>
+    */
     // Obtiene la lista completa de estudiantes
     @GET("students")
     suspend fun getStudents(): Response<List<Student>>
