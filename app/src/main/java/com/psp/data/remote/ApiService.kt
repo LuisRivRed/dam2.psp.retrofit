@@ -11,9 +11,6 @@ import retrofit2.http.Path
 
 interface ApiService {
 
-    @POST("login")
-    suspend fun login(@Body loginRequest: LoginRequest): Response<TokenResponse>
-
     @GET("students")
     suspend fun getStudents(): Response<List<Student>>
 
