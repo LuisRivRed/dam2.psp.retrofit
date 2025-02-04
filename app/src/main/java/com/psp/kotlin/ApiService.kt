@@ -1,13 +1,15 @@
 package com.psp.kotlin
 
 import com.psp.model.Alumno
+import com.psp.model.LoginRequest
+import com.psp.model.TokenResponse
 import retrofit2.Response
 import retrofit2.http.*
 
 interface ApiService {
 
-    @GET("/alumnos")
-    suspend fun getAlumnos(): Response<List<Alumno>>
+    /*@GET("/alumnos")
+    suspend fun getAlumnos(): Response<List<Alumno>>*/
 
     @GET("/alumnos/curso/{curso}")
     suspend fun getAlumnosByCurso(@Path("curso") curso: String): Response<List<Alumno>>
@@ -20,4 +22,12 @@ interface ApiService {
 
     @DELETE("/alumnos/eliminar/{idAlumno}")
     suspend fun deleteAlumno(@Path("idAlumno") idAlumno: Int): Response<Void>
+
+    @POST("/login")
+    suspend fun login(@Body loginRequest: LoginRequest): Response<TokenResponse>
+
+    @GET("/alumnos")
+    suspend fun getAlumnos(): Response<List<Alumno>>
+
+
 }
