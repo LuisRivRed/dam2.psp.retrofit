@@ -1,9 +1,22 @@
 package com.psp.data.model
 
-import retrofit2.Response
+import com.psp.data.remote.ApiClient
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
-interface AlumnoRepository {
-    suspend fun getAlumnos(): Response<List<Alumno>>
-    suspend fun getAlumno(id: Int): Response<Alumno>
-    suspend fun deleteAlumno(id: Int): Response<Unit>
+object AlumnoRepository {
+    suspend fun login(username: String, password: String): Result<String> = withContext(Dispatchers.IO) {
+        try {
+            val response = ApiClient.apiService.login(LoginRequest(username, password))
+            if (response.isSuccessful) {
+                val token = response.body()?.token ?: throw Exception("Token no encontrado")
+                ApiClient.setToken(token)
+                Result.success(token)
+            } else {
+                Result.failure(Exception("Error de autenticación: ${response.code()}"))
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
 }

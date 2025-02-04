@@ -12,15 +12,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.psp.data.AlumnoDataRepository
 import com.psp.data.remote.ApiClient
-import com.psp.data.remote.ApiService
+import com.psp.data.model.LoginRequest
 import com.psp.retrofit.ui.theme.RetrofitTheme
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
 
 class MainActivity : ComponentActivity() {
 
@@ -35,39 +31,51 @@ class MainActivity : ComponentActivity() {
                     )
                 }
             }
-            main()
         }
+        // Llamamos a la función que realiza el login y luego otras peticiones
+        loginAndFetchData()
     }
 
-    private fun main() {
-        val apiService = ApiClient.provideApi().create(ApiService::class.java)
-        AlumnoDataRepository(apiService)
+    private fun loginAndFetchData() {
+        lifecycleScope.launch {
+            try {
+                val loginResponse = ApiClient.apiService.login(LoginRequest("admin", "password"))
+                if (loginResponse.isSuccessful) {
+                    val token = loginResponse.body()?.token
+                    if (token != null) {
+                        Log.d("@dev", "Token recibido: $token")
+                        ApiClient.setToken(token)
 
-        runBlocking {
-            val alumnos = apiService.getAlumnos()
-            Log.d("@dev", "${alumnos.body()}")
-
-            val alumnoId = apiService.getAlumno(2)
-            Log.d("@dev", "${alumnoId.body()}")
-
-            val deleteAlumno = apiService.deleteAlumno(1)
-            Log.d("@dev", "Alumno borrado")
+                        val alumnosResponse = ApiClient.apiService.getAlumnos()
+                        if (alumnosResponse.isSuccessful) {
+                            Log.d("@dev", "Alumnos: ${alumnosResponse.body()}")
+                        } else {
+                            Log.d("@dev", "Error al obtener alumnos: ${alumnosResponse.errorBody()?.string()}")
+                        }
+                    } else {
+                        Log.d("@dev", "El token no se encontró en la respuesta.")
+                    }
+                } else {
+                    Log.d("@dev", "Error en el login: ${loginResponse.errorBody()?.string()}")
+                }
+            } catch (e: Exception) {
+                Log.e("@dev", "Excepción en el login: ${e.localizedMessage}", e)
+            }
         }
     }
 }
 
-
 @Composable
-    fun Greeting(name: String, modifier: Modifier = Modifier) {
-        Text(
-            text = "Hello $name!", modifier = modifier
-        )
-    }
+fun Greeting(name: String, modifier: Modifier = Modifier) {
+    Text(
+        text = "Hello $name!", modifier = modifier
+    )
+}
 
-    @Preview(showBackground = true)
-    @Composable
-    fun GreetingPreview() {
-        RetrofitTheme {
-            Greeting("Android")
-        }
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview() {
+    RetrofitTheme {
+        Greeting("Android")
     }
+}

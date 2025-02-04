@@ -1,11 +1,13 @@
 package com.psp.retrofit.model
 
-
-import com.psp.data.AlumnoDataRepository
-import com.psp.data.remote.ApiService
 import com.psp.data.model.Alumno
 import com.psp.data.model.Asignatura
 import com.psp.data.model.Curso
+import com.psp.data.model.LoginRequest
+import com.psp.data.model.TokenResponse
+import com.psp.data.remote.ApiService
+import junit.framework.TestCase.assertEquals
+import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert
 import org.junit.Before
@@ -13,7 +15,10 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
+import org.mockito.kotlin.any
 import org.mockito.kotlin.whenever
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.ResponseBody
 import retrofit2.Response
 
 @RunWith(MockitoJUnitRunner::class)
@@ -21,9 +26,9 @@ class AlumnoServiceTest {
 
     @Mock
     private lateinit var apiService: ApiService
-    private lateinit var data: AlumnoDataRepository
 
-    val mockAlumnos = listOf(
+    // Lista de alumnos simulados
+    private val mockAlumnos = listOf(
         Alumno(
             id = 1,
             curso = Curso.DAM1,
@@ -35,91 +40,88 @@ class AlumnoServiceTest {
         Alumno(
             id = 2,
             curso = Curso.DAM2,
-            email = "alejandro",
-            nombre = "alejandro@gmail.com",
+            email = "alejandro@gmail.com",
+            nombre = "alejandro",
             asignaturas = listOf(Asignatura.AAD, Asignatura.PMDM, Asignatura.PSP),
             fechaNacimiento = "453543543"
         ),
         Alumno(
             id = 3,
             curso = Curso.DAM2,
-            email = "juanda",
-            nombre = "juanda@gmail.com",
+            email = "juanda@gmail.com",
+            nombre = "juanda",
             asignaturas = listOf(Asignatura.AAD, Asignatura.PMDM, Asignatura.PSP),
             fechaNacimiento = "1443543543"
-        ),
+        )
     )
 
     @Before
     fun setup() {
-        data = AlumnoDataRepository(apiService)
+        // No es necesario instanciar ningún repositorio, trabajamos directamente con apiService
     }
 
     @Test
     fun getAlumnos() = runTest {
         whenever(apiService.getAlumnos()).thenReturn(Response.success(mockAlumnos))
 
-        val response = data.getAlumnos()
+        val response = apiService.getAlumnos()
 
         Assert.assertTrue(response.isSuccessful)
-
-        Assert.assertEquals(mockAlumnos, response.body())
+        assertEquals(mockAlumnos, response.body())
     }
 
     @Test
     fun getAlumnosNull() = runTest {
-        whenever(apiService.getAlumnos()).thenReturn(
-            Response.error(404, okhttp3.ResponseBody.create(null, "Not Found"))
-        )
+        // Simulamos un error 404 con un cuerpo de error "Not Found"
+        val errorResponseBody = ResponseBody.create("application/json".toMediaTypeOrNull(), "Not Found")
+        whenever(apiService.getAlumnos()).thenReturn(Response.error(404, errorResponseBody))
 
-        val response = data.getAlumnos()
+        val response = apiService.getAlumnos()
 
         Assert.assertFalse(response.isSuccessful)
-
         Assert.assertNull(response.body())
     }
 
     @Test
-    fun getAlumnoById() = runTest{
+    fun getAlumnoById() = runTest {
         val id = 1
-
+        // Para este test simulamos que cuando se pida el alumno con id 1, se retorna el segundo elemento de la lista
         whenever(apiService.getAlumno(id)).thenReturn(Response.success(mockAlumnos[1]))
 
-        val response = data.getAlumno(id)
+        val response = apiService.getAlumno(id)
 
         Assert.assertTrue(response.isSuccessful)
-        Assert.assertEquals(mockAlumnos[id], response.body())
+        assertEquals(mockAlumnos[1], response.body())
     }
 
     @Test
     fun deleteAlumno() = runTest {
         val id = 2
-
         whenever(apiService.deleteAlumno(id)).thenReturn(Response.success(Unit))
 
-        val response = data.deleteAlumno(id)
+        val response = apiService.deleteAlumno(id)
 
         Assert.assertTrue(response.isSuccessful)
-        Assert.assertEquals(Unit, response.body())
+        assertEquals(Unit, response.body())
     }
 
     @Test
     fun getAlumnosEmpty() = runTest {
         whenever(apiService.getAlumnos()).thenReturn(Response.success(emptyList()))
 
-        val response = data.getAlumnos()
+        val response = apiService.getAlumnos()
 
         Assert.assertTrue(response.isSuccessful)
         Assert.assertTrue(response.body().isNullOrEmpty())
     }
 
     @Test
-    fun getAlumnosByIdNotFound() = runTest {
+    fun getAlumnoByIdNotFound() = runTest {
         val id = 99
+        val errorResponseBody = ResponseBody.create("application/json".toMediaTypeOrNull(), "Not Found")
+        whenever(apiService.getAlumno(id)).thenReturn(Response.error(404, errorResponseBody))
 
-        whenever(apiService.getAlumno(id)).thenReturn(Response.error(404, okhttp3.ResponseBody.create(null, "Not Found")))
-
-        val response = data.getAlumno(id)
+        val response = apiService.getAlumno(id)
 
         Assert.assertFalse(response.isSuccessful)
         Assert.assertNull(response.body())
@@ -128,15 +130,24 @@ class AlumnoServiceTest {
     @Test
     fun deleteAlumnoNotFound() = runTest {
         val id = 99
+        val errorResponseBody = ResponseBody.create("application/json".toMediaTypeOrNull(), "Internal Server Error")
+        whenever(apiService.deleteAlumno(id)).thenReturn(Response.error(500, errorResponseBody))
 
-        whenever(apiService.deleteAlumno(id)).thenReturn(
-            Response.error(500, okhttp3.ResponseBody.create(null, "Internal Server Error"))
-        )
-
-        val response = data.deleteAlumno(id)
+        val response = apiService.deleteAlumno(id)
 
         Assert.assertFalse(response.isSuccessful)
-        Assert.assertEquals(500, response.body())
+        // El body en un error es nulo
+        Assert.assertNull(response.body())
+    }
+
+    @Test
+    fun `login success returns token`() = runTest {
+        val token = "test_token"
+        whenever(apiService.login(any())).thenReturn(Response.success(TokenResponse(token)))
+
+        val response = apiService.login(LoginRequest("admin", "password"))
+
+        assertTrue(response.isSuccessful)
+        assertEquals(token, response.body()?.token)
     }
 }
-
