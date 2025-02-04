@@ -19,3 +19,13 @@ data class Alumno(
     val email: String,
     val asignaturas: List<Asignatura>
 )
+@Serializable
+data class LoginRequest(
+    val username: String,
+    val password: String
+)
+
+@Serializable
+data class TokenResponse(
+    val token: String
+)

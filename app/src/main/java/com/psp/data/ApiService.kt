@@ -1,27 +1,39 @@
 package com.psp.data
 
 import com.psp.model.Alumno
+import com.psp.model.LoginRequest
+import com.psp.model.TokenResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface ApiService {
-    @GET("students")
-    suspend fun requestStudents(): Response<List<Alumno>>
+         @POST("login")
+        suspend fun login(@Body loginRequest: LoginRequest): Response<TokenResponse>
 
-    @GET("students/course/{course}")
-    suspend fun requestStudentsByCourse(@Path("course") course: String): Response<List<Alumno>>
+        @GET("alumnos")
+        suspend fun getAlumnos(@Header("Authorization") token: String): Response<List<Alumno>>
 
-    @GET("students/name/{name}")
-    suspend fun requestStudentByName(@Path("name") name: String): Response<Alumno>
+        @GET("alumno/{id}")
+        suspend fun getAlumnoById(
+            @Header("Authorization") token: String,
+            @Path("id") id: Int
+        ): Response<Alumno>
 
-    @POST("students")
-    suspend fun addStudent(@Body student: Alumno): Response<Alumno>
+        @GET("alumno/{curso}")
+        suspend fun getAlumnosByCurso(
+            @Header("Authorization") token: String,
+            @Path("curso") curso: String
+        ): Response<List<Alumno>>
 
-    @DELETE("students/delete/{studentId}")
-    suspend fun deleteStudentById(@Path("studentId") studentId: String): Response<Boolean>
+        @POST("alumno")
+        suspend fun addStudent(@Body alumno: Alumno): Response<Alumno>
 
-}
+        @DELETE("alumno/{id}")
+        suspend fun deleteStudentById(@Path("id") id: String): Response<Boolean>
+    }
+

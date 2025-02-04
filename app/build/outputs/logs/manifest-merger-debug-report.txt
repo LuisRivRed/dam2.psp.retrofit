@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\henar\StudioProjects\dam2.psp.retrofit\app\src\main\AndroidManifest.xml:2:1-37:12
-INJECTED from C:\Users\henar\StudioProjects\dam2.psp.retrofit\app\src\main\AndroidManifest.xml:2:1-37:12
-INJECTED from C:\Users\henar\StudioProjects\dam2.psp.retrofit\app\src\main\AndroidManifest.xml:2:1-37:12
-INJECTED from C:\Users\henar\StudioProjects\dam2.psp.retrofit\app\src\main\AndroidManifest.xml:2:1-37:12
+ADDED from C:\Users\henar\StudioProjects\dam2.psp.retrofit\app\src\main\AndroidManifest.xml:2:1-36:12
+INJECTED from C:\Users\henar\StudioProjects\dam2.psp.retrofit\app\src\main\AndroidManifest.xml:2:1-36:12
+INJECTED from C:\Users\henar\StudioProjects\dam2.psp.retrofit\app\src\main\AndroidManifest.xml:2:1-36:12
+INJECTED from C:\Users\henar\StudioProjects\dam2.psp.retrofit\app\src\main\AndroidManifest.xml:2:1-36:12
 MERGED from [androidx.compose.material3:material3-android:1.3.1] C:\Users\henar\.gradle\caches\8.9\transforms\cebe7b538e37df2ac21b8866f0628b85\transformed\material3-release\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.compose.material:material-android:1.7.6] C:\Users\henar\.gradle\caches\8.9\transforms\37e7186b86746359843ad07ec49293a5\transformed\material-release\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.compose.material:material-ripple-android:1.7.6] C:\Users\henar\.gradle\caches\8.9\transforms\5d1c24b16da58179f49a6de8b33142e6\transformed\material-ripple-release\AndroidManifest.xml:2:1-7:12
@@ -65,8 +65,8 @@ ADDED from C:\Users\henar\StudioProjects\dam2.psp.retrofit\app\src\main\AndroidM
 	android:name
 		ADDED from C:\Users\henar\StudioProjects\dam2.psp.retrofit\app\src\main\AndroidManifest.xml:5:22-64
 application
-ADDED from C:\Users\henar\StudioProjects\dam2.psp.retrofit\app\src\main\AndroidManifest.xml:7:5-36:19
-INJECTED from C:\Users\henar\StudioProjects\dam2.psp.retrofit\app\src\main\AndroidManifest.xml:7:5-36:19
+ADDED from C:\Users\henar\StudioProjects\dam2.psp.retrofit\app\src\main\AndroidManifest.xml:7:5-35:19
+INJECTED from C:\Users\henar\StudioProjects\dam2.psp.retrofit\app\src\main\AndroidManifest.xml:7:5-35:19
 MERGED from [androidx.compose.ui:ui-tooling-android:1.7.6] C:\Users\henar\.gradle\caches\8.9\transforms\839076b30d6bc91dc875e88d2903352b\transformed\ui-tooling-release\AndroidManifest.xml:22:5-26:19
 MERGED from [androidx.compose.ui:ui-tooling-android:1.7.6] C:\Users\henar\.gradle\caches\8.9\transforms\839076b30d6bc91dc875e88d2903352b\transformed\ui-tooling-release\AndroidManifest.xml:22:5-26:19
 MERGED from [androidx.compose.ui:ui-test-manifest:1.7.6] C:\Users\henar\.gradle\caches\8.9\transforms\26587312370821c11c58eb6be55d3892\transformed\ui-test-manifest-1.7.6\AndroidManifest.xml:22:5-26:19
@@ -120,25 +120,23 @@ ADDED from C:\Users\henar\StudioProjects\dam2.psp.retrofit\app\src\main\AndroidM
 	android:name
 		ADDED from C:\Users\henar\StudioProjects\dam2.psp.retrofit\app\src\main\AndroidManifest.xml:20:13-57
 activity#com.psp.MainActivity
-ADDED from C:\Users\henar\StudioProjects\dam2.psp.retrofit\app\src\main\AndroidManifest.xml:25:9-35:20
-	android:label
-		ADDED from C:\Users\henar\StudioProjects\dam2.psp.retrofit\app\src\main\AndroidManifest.xml:28:13-45
+ADDED from C:\Users\henar\StudioProjects\dam2.psp.retrofit\app\src\main\AndroidManifest.xml:25:9-34:20
 	android:exported
 		ADDED from C:\Users\henar\StudioProjects\dam2.psp.retrofit\app\src\main\AndroidManifest.xml:27:13-36
 	android:theme
-		ADDED from C:\Users\henar\StudioProjects\dam2.psp.retrofit\app\src\main\AndroidManifest.xml:29:13-50
+		ADDED from C:\Users\henar\StudioProjects\dam2.psp.retrofit\app\src\main\AndroidManifest.xml:28:13-50
 	android:name
 		ADDED from C:\Users\henar\StudioProjects\dam2.psp.retrofit\app\src\main\AndroidManifest.xml:26:13-48
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\henar\StudioProjects\dam2.psp.retrofit\app\src\main\AndroidManifest.xml:30:13-34:29
+ADDED from C:\Users\henar\StudioProjects\dam2.psp.retrofit\app\src\main\AndroidManifest.xml:29:13-33:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\henar\StudioProjects\dam2.psp.retrofit\app\src\main\AndroidManifest.xml:31:17-69
+ADDED from C:\Users\henar\StudioProjects\dam2.psp.retrofit\app\src\main\AndroidManifest.xml:30:17-69
 	android:name
-		ADDED from C:\Users\henar\StudioProjects\dam2.psp.retrofit\app\src\main\AndroidManifest.xml:31:25-66
+		ADDED from C:\Users\henar\StudioProjects\dam2.psp.retrofit\app\src\main\AndroidManifest.xml:30:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\henar\StudioProjects\dam2.psp.retrofit\app\src\main\AndroidManifest.xml:33:17-77
+ADDED from C:\Users\henar\StudioProjects\dam2.psp.retrofit\app\src\main\AndroidManifest.xml:32:17-77
 	android:name
-		ADDED from C:\Users\henar\StudioProjects\dam2.psp.retrofit\app\src\main\AndroidManifest.xml:33:27-74
+		ADDED from C:\Users\henar\StudioProjects\dam2.psp.retrofit\app\src\main\AndroidManifest.xml:32:27-74
 uses-sdk
 INJECTED from C:\Users\henar\StudioProjects\dam2.psp.retrofit\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\henar\StudioProjects\dam2.psp.retrofit\app\src\main\AndroidManifest.xml
