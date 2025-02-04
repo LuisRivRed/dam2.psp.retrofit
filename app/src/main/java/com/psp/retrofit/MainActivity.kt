@@ -39,9 +39,19 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun llamadasApi() {
-        val dataSource = AlumnoApiDataSource(ApiClient.provideAlumnoService())
+        val dataSource = AlumnoApiDataSource(ApiClient.alumnoService)
 
         runBlocking {
+            val login = dataSource.login("admin", "password")
+
+            if (login.isSuccess) {
+                Log.d("@dev", "GET alumnos login")
+                val alumnos = dataSource.getAlumnosLogin().getOrNull()
+                Log.d("@dev", alumnos.toString())
+            } else {
+                Log.d("@dev", "Fallo login")
+            }
+
             val alumnos = dataSource.getAlumnos().body()
             Log.d("@dev", "GET alumnos")
             Log.d("@dev", alumnos.toString())

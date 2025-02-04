@@ -4,7 +4,7 @@
             "outputFile": "com.psp.retrofit.app-mergeDebugResources-42:/values-v16/values-v16.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\javier\\.gradle\\caches\\8.9\\transforms\\0e1fe2bee2d785e8ba22d67955cec912\\transformed\\core-1.12.0\\res\\values-v16\\values-v16.xml",
+                    "source": "C:\\Users\\Alumno\\.gradle\\caches\\8.9\\transforms\\0e1fe2bee2d785e8ba22d67955cec912\\transformed\\core-1.12.0\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

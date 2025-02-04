@@ -2,10 +2,10 @@ package com.psp.retrofit
 
 import com.psp.data.AlumnoApiDataSource
 import com.psp.data.AlumnoService
-import com.psp.data.ApiClient
 import com.psp.model.Alumno
 import com.psp.model.Asignatura
 import com.psp.model.Curso
+import com.psp.model.TokenResponse
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.test.runTest
@@ -13,9 +13,8 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
-import org.mockito.Mockito
-import org.mockito.Mockito.doReturn
 import org.mockito.junit.MockitoJUnitRunner
+import org.mockito.kotlin.any
 import org.mockito.kotlin.whenever
 import retrofit2.Response
 
@@ -29,6 +28,44 @@ class ApiServiceTest {
     fun setup() {
         alumnoApiDataSource = AlumnoApiDataSource(alumnoService)
     }
+
+    @Test
+    fun loginSuccess() =
+        runTest {
+            val token = "test_token"
+            whenever(alumnoService.login(any())).thenReturn(
+                Response.success(TokenResponse(token))
+            )
+
+            val result = alumnoApiDataSource.login("admin", "password")
+
+            assertTrue(result.isSuccess)
+            assertEquals(token, result.getOrNull())
+        }
+
+
+    @Test
+    fun getAlumnosLogin() =
+        runTest {
+            val mockAlumnos = listOf(
+                Alumno(1, "Pedro", "05/06/2000", Curso.DAM1,
+                    "pedro@educa.jcyl.es", listOf(Asignatura.AAD, Asignatura.PMDM, Asignatura.EIE)
+                ),
+                Alumno(2, "Pepe", "12/02/2001", Curso.DAM2,
+                    "pepe@educa.jcyl.es", listOf(Asignatura.AAD, Asignatura.PSP)
+                ),
+                Alumno(3, "Alicia", "05/06/2000", Curso.DAW1,
+                    "alicia@educa.jcyl.es", listOf(Asignatura.DDI, Asignatura.AAD, Asignatura.PSP)
+                )
+            )
+            whenever(alumnoService.getAlumnos(any())).thenReturn(
+                Response.success(mockAlumnos)
+            )
+
+            val result = alumnoApiDataSource.getAlumnosLogin()
+            assertTrue(result.isSuccess)
+            assertEquals(mockAlumnos, result.getOrNull())
+        }
 
     @Test
     fun getAlumnosBueno() =
