@@ -2,15 +2,16 @@ package com.psp.model
 
 import com.psp.data.AlumnoApiModel
 import com.psp.data.AlumnoService
-import com.psp.data.RetrofitClient
+import com.psp.data.ApiClient
 
-class AlumnoRepository(private val apiService: AlumnoService) {
+object AlumnoRepository {
+    private val apiService: AlumnoService = ApiClient.apiService
 
     suspend fun login(username: String, password: String): Result<String> = try {
         val response = apiService.login(LoginRequest(username, password))
         if (response.isSuccessful) {
             val token = response.body()?.token ?: throw Exception("Token no encontrado")
-            RetrofitClient.setToken(token)
+            ApiClient.setToken(token)
             Result.success(token)
         } else {
             Result.failure(Exception("Error de autenticación"))
@@ -20,7 +21,7 @@ class AlumnoRepository(private val apiService: AlumnoService) {
     }
 
     suspend fun getAlumnos(token: String): Result<List<AlumnoApiModel>> = try {
-        val response = apiService.getAlumnos("Bearer $token")
+        val response = apiService.getAlumnos(token)
         if (response.isSuccessful) {
             Result.success(response.body() ?: emptyList())
         } else {
@@ -29,4 +30,5 @@ class AlumnoRepository(private val apiService: AlumnoService) {
     } catch (e: Exception) {
         Result.failure(e)
     }
+
 }

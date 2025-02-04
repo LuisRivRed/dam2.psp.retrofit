@@ -1,107 +1,106 @@
 package com.psp.data
 
+import com.psp.model.Asignatura
 import com.psp.model.Curso
-import kotlinx.coroutines.runBlocking
-import org.junit.Assert.assertTrue
+import junit.framework.TestCase.*
+import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
-import org.mockito.junit.MockitoJUnitRunner
 import org.mockito.kotlin.whenever
-import org.testng.Assert.assertEquals
 import retrofit2.Response
 
+class AlumnoServiceTest {
 
-    @RunWith(MockitoJUnitRunner::class)
-    class AlumnoServiceTest {
+    @Mock
+    private lateinit var alumnoService: AlumnoService
 
-        @Mock
-        private lateinit var service: AlumnoService
+    private val token = "token"
+    private val mockAlumno = AlumnoApiModel(
+        "1", "Iker", "05/06/2001", Curso.DAM1, "iker@gmail.com",
+        listOf(Asignatura.PSP, Asignatura.DDI, Asignatura.PMDM)
+    )
 
-        @Before
-        fun setup() {
-            MockitoAnnotations.openMocks(this)
-        }
+    private val mockListAlumnos = listOf(
+        mockAlumno,
+        AlumnoApiModel("2", "Carlos", "15/03/2000", Curso.DAM2, "carlos123@gmail.com", listOf(Asignatura.AAD, Asignatura.EIE, Asignatura.PSP)),
+        AlumnoApiModel("3", "Lucía", "22/09/1999", Curso.DAW1, "lucia99@gmail.com", listOf(Asignatura.AAD, Asignatura.PMDM, Asignatura.PSP)),
+        AlumnoApiModel("4", "Marco", "18/11/2002", Curso.DAW2, "marco88@gmail.com", listOf(Asignatura.PSP, Asignatura.PMDM, Asignatura.DDI))
+    )
 
-        @Test
-        fun testGetAlumnosByCursoSuccess() = runBlocking {
-            // Datos falsos del servidor
-            val mockApiModels = listOf(
-                AlumnoApiModel(
-                    id = "1",
-                    nombre = "Pedro",
-                    fechaNacimiento = "2000-06-05",
-                    curso = Curso.DAM1,
-                    email = "pedro@educa.jcyl.es",
-                    asignaturas = emptyList()
-                )
-            )
-
-            // Simulamos la respuesta del servidor
-            whenever(service.getAlumnosByCurso("DAM1")).thenReturn(Response.success(mockApiModels))
-
-            // Llamamos al método del servicio
-            val response = service.getAlumnosByCurso("DAM1")
-
-            // Comprobamos el resultado
-            assertTrue(response.isSuccessful)
-            assertEquals(mockApiModels, response.body())
-        }
-
-        @Test
-        fun testGetAlumnoByNombreSuccess() = runBlocking {
-            // Creamos el alumno de prueba
-            val mockAlumno = AlumnoApiModel(
-                id = "1",
-                nombre = "Pedro",
-                fechaNacimiento = "2000-06-05",
-                curso = Curso.DAM1,
-                email = "pedro@educa.jcyl.es",
-                asignaturas = emptyList()
-            )
-
-            // Simulamos la respuesta del servidor
-            whenever(service.getAlumnoByNombre("Pedro")).thenReturn(Response.success(mockAlumno))
-
-            // Llamamos al método del servicio
-            val response = service.getAlumnoByNombre("Pedro")
-
-            // Comprobamos el resultado
-            assertTrue(response.isSuccessful)
-            assertEquals(mockAlumno, response.body())
-        }
-
-        @Test
-        fun testAddAlumnoSuccess() = runBlocking{
-
-            val mockAlumno = AlumnoApiModel(
-                id = "1",
-                nombre = "Pedro",
-                fechaNacimiento = "2000-06-05",
-                curso = Curso.DAM1,
-                email = "pedro@educa.jcyl.es",
-                asignaturas = emptyList()
-            )
-
-            whenever(service.addAlumno(mockAlumno)).thenReturn(Response.success(mockAlumno))
-
-            val response = service.addAlumno(mockAlumno)
-
-            assertTrue(response.isSuccessful)
-            assertEquals(mockAlumno, response.body())
-        }
-
-        @Test
-        fun testEliminarAlumnoSuccess() = runBlocking {
-
-            whenever(service.eliminarAlumnoDelete(1)).thenReturn(Response.success("Alumno eliminado con éxito"))
-
-            val response = service.eliminarAlumnoDelete(1)
-
-            assertTrue(response.isSuccessful)
-            assertEquals("Alumno eliminado con éxito", response.body())
-        }
+    @Before
+    fun setup() {
+        MockitoAnnotations.openMocks(this)
     }
 
+    @Test
+    fun getListaDeAlumnos() = runTest {
+        whenever(alumnoService.getAlumnos(token)).thenReturn(Response.success(mockListAlumnos))
+        val result = alumnoService.getAlumnos(token)
+        assertTrue(result.isSuccessful)
+        assertEquals(mockListAlumnos, result.body())
+    }
+
+    @Test
+    fun getAlumnosRespuestaNula() = runTest {
+        whenever(alumnoService.getAlumnos(token)).thenReturn(Response.success(null))
+        val result = alumnoService.getAlumnos(token)
+        assertTrue(result.isSuccessful)
+        assertNull(result.body())
+    }
+
+    @Test
+    fun getAlumnoPorCurso() = runTest {
+        val curso = Curso.DAM1
+        whenever(alumnoService.getAlumno(curso.toString())).thenReturn(Response.success(listOf(mockAlumno)))
+        val result = alumnoService.getAlumno(curso.toString())
+        assertTrue(result.isSuccessful)
+        assertEquals(listOf(mockAlumno), result.body())
+    }
+
+    @Test
+    fun getAlumnoPorCursoConRespuestaNula() = runTest {
+        val curso = Curso.DAM1
+        whenever(alumnoService.getAlumno(curso.toString())).thenReturn(Response.success(null))
+        val result = alumnoService.getAlumno(curso.toString())
+        assertTrue(result.isSuccessful)
+        assertNull(result.body())
+    }
+
+    @Test
+    fun getAlumnoPorNombre() = runTest {
+        val nombre = "Iker"
+        whenever(alumnoService.getAlumnoPorNombre(nombre)).thenReturn(Response.success(listOf(mockAlumno)))
+        val result = alumnoService.getAlumnoPorNombre(nombre)
+        assertTrue(result.isSuccessful)
+        assertEquals(listOf(mockAlumno), result.body())
+    }
+
+    @Test
+    fun getAlumnoPorNombreConRespuestaNula() = runTest {
+        val nombre = "Iker"
+        whenever(alumnoService.getAlumnoPorNombre(nombre)).thenReturn(Response.success(null))
+        val result = alumnoService.getAlumnoPorNombre(nombre)
+        assertTrue(result.isSuccessful)
+        assertNull(result.body())
+    }
+
+    @Test
+    fun agregarAlumno() = runTest {
+        whenever(alumnoService.addAlumno(mockAlumno)).thenReturn(Response.success(mockAlumno))
+        val result = alumnoService.addAlumno(mockAlumno)
+        assertTrue(result.isSuccessful)
+        assertEquals(mockAlumno, result.body())
+    }
+
+    @Test
+    fun eliminarAlumno() = runTest {
+        val id = "1"
+        whenever(alumnoService.deleteAlumno(id)).thenReturn(Response.success(Unit))
+        val result = alumnoService.deleteAlumno(id)
+        assertTrue(result.isSuccessful)
+        assertEquals(Unit, result.body())
+    }
+
+}

@@ -1,7 +1,7 @@
-// build.gradle.kts file
 plugins {
-    id("com.android.application") version "8.7.3"
-    id("org.jetbrains.kotlin.android") version "2.0.0"
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.compose)
 }
 
 android {
@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.psp.retrofit"
-        minSdk = 21
+        minSdk = 24
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -21,41 +21,58 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = "11"
+    }
+    buildFeatures {
+        compose = true
     }
 }
 
 dependencies {
-    implementation(libs.androidx.core.ktx.v1150)
-    implementation(libs.androidx.appcompat.v161)
-    implementation(libs.material)
-    implementation(libs.androidx.constraintlayout)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit.v121)
-    androidTestImplementation(libs.androidx.espresso.core.v361)
 
-    implementation(libs.kotlinx.coroutines.android)
-
-    // Retrofit
-    implementation(libs.retrofit.v2110)
-    implementation(libs.logging.interceptor)
-    implementation(libs.retrofit2.kotlinx.serialization.converter.v080)
-
-    // Kotlinx Serialization
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.activity.compose)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.material3)
+    implementation (libs.retrofit)
+    implementation (libs.converter.gson)
+    implementation (libs.kotlinx.coroutines.android)
+    implementation (libs.jetbrains.kotlinx.serialization.json)
+    implementation(libs.kotlinx.coroutines.test)
+    implementation(libs.mockito.core)
+    implementation(libs.mockito.kotlin)
+    implementation(libs.retrofit)
     implementation(libs.kotlinx.serialization.json.v151)
+    implementation(libs.retrofit2.kotlinx.serialization.converter)
+    implementation(libs.okhttp)
+    implementation(libs.androidx.appcompat)
 
-    // Guava
-    implementation(libs.guava)
+    testImplementation(libs.junit)
 
-    implementation(libs.gson)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+    debugImplementation(libs.androidx.ui.tooling)
+    debugImplementation(libs.androidx.ui.test.manifest)
+
+    implementation(libs.retrofit)
     implementation(libs.converter.gson)
-
+    implementation(libs.okhttp.v493)
+    implementation(libs.logging.interceptor.v493)
 }
