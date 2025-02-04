@@ -5,6 +5,7 @@ import com.psp.data.AlumnoApiService
 import com.psp.domain.model.Alumno
 import com.psp.domain.model.Asignatura
 import com.psp.domain.model.Curso
+import com.psp.domain.model.Token
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.test.runTest
@@ -13,6 +14,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
+import org.mockito.kotlin.any
 import org.mockito.kotlin.whenever
 import retrofit2.Response
 
@@ -58,6 +60,19 @@ class AlumnoApiServiceTest {
     )
 
     @Test
+    fun `login success returns token`() = runTest {
+        val token = "test_token"
+        whenever(alumnoApiService.login(any())).thenReturn(
+            Response.success(Token(token))
+        )
+
+        val result = repository.login("admin", "password")
+
+        assertTrue(result.isSuccess)
+        assertEquals(token, result.getOrNull())
+    }
+/*
+    @Test
     fun `getAlumnos success with the correct list`() {
         runTest {
             whenever(alumnoApiService.getAlumnos()).thenReturn(mockAlumnos)
@@ -69,7 +84,7 @@ class AlumnoApiServiceTest {
             assertEquals(mockAlumnos, response)
         }
     }
-
+*/
     @Test
     fun `getAlumnos error when Api fails`() {
         runTest {

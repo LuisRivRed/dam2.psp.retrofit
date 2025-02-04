@@ -41,8 +41,17 @@ fun main() {
     println("Respuestas de la api: Alumnos\n")
 
     runBlocking {
-        val alumnos = apiService.getAlumnos()
-        println("Todos los alumnos: \n ${alumnos.body()}")
+        val token = ApiClient.getToken()
+        if (token != null) {
+            val alumnos = apiService.getAlumnos("Bearer $token") // Pasamos el token en la cabecera
+            if (alumnos.isSuccessful) {
+                println("Todos los alumnos: \n ${alumnos.body()}")
+            } else {
+                println("Error al obtener alumnos: ${alumnos.code()} - ${alumnos.message()}")
+            }
+        } else {
+            println("No hay un token disponible. Inicia sesión primero.")
+        }
 
         val nombre = "Alicia" //Cambia este parametro por: Pedro, Pepe, Alicia
         val alumnoNombre = apiService.getAlumnoNombre(nombre)
