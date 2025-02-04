@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.psp.retrofit.model.AlumnoServiceTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2025-01-23T01:15:10" hostname="MacBook-Pro-de-Enrique.local" time="0.183">
+<testsuite name="com.psp.retrofit.model.AlumnoServiceTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2025-02-04T11:19:56" hostname="MacBook-Pro-de-Enrique.local" time="0.163">
   <properties/>
-  <testcase name="deleteAlumno" classname="com.psp.retrofit.model.AlumnoServiceTest" time="0.171"/>
-  <testcase name="getAlumnoById" classname="com.psp.retrofit.model.AlumnoServiceTest" time="0.002"/>
-  <testcase name="getAlumnosNull" classname="com.psp.retrofit.model.AlumnoServiceTest" time="0.003"/>
-  <testcase name="getAlumnos" classname="com.psp.retrofit.model.AlumnoServiceTest" time="0.002"/>
-  <testcase name="getAlumnosByIdNotFound" classname="com.psp.retrofit.model.AlumnoServiceTest" time="0.001"/>
+  <testcase name="deleteAlumnoNotFound" classname="com.psp.retrofit.model.AlumnoServiceTest" time="0.147"/>
+  <testcase name="deleteAlumno" classname="com.psp.retrofit.model.AlumnoServiceTest" time="0.003"/>
+  <testcase name="getAlumnoByIdNotFound" classname="com.psp.retrofit.model.AlumnoServiceTest" time="0.002"/>
+  <testcase name="getAlumnoById" classname="com.psp.retrofit.model.AlumnoServiceTest" time="0.001"/>
+  <testcase name="getAlumnosNull" classname="com.psp.retrofit.model.AlumnoServiceTest" time="0.002"/>
+  <testcase name="getAlumnos" classname="com.psp.retrofit.model.AlumnoServiceTest" time="0.001"/>
+  <testcase name="login success returns token" classname="com.psp.retrofit.model.AlumnoServiceTest" time="0.005"/>
   <testcase name="getAlumnosEmpty" classname="com.psp.retrofit.model.AlumnoServiceTest" time="0.002"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (/Users/enrique/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.14.4/3bf5ac1104554908cc623e40e58a00be37c35f36/byte-buddy-agent-1.14.4.jar)
