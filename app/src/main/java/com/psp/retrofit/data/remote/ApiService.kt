@@ -7,13 +7,17 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface ApiService {
 
+    @POST("login")
+    suspend fun login(@Body loginRequest: LoginRequest): Response<TokenResponse>
+
     @GET("alumnos")
-    suspend fun requestStudents(): Response<List<Student>>
+    suspend fun requestStudents(@Header("Authorization") token: String): Response<List<Student>>
 
     @GET("alumnos/id/{id}")
     suspend fun requestStudentById(@Path("id") id: Int): Response<Student>
