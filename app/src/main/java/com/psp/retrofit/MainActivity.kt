@@ -10,9 +10,7 @@ import com.psp.data.ApiClient
 import com.psp.model.AlumnoRepository
 import com.psp.model.Asignatura
 import com.psp.model.Curso
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
 
@@ -39,17 +37,9 @@ class MainActivity : AppCompatActivity() {
                     asignaturas = listOf(Asignatura.PSP, Asignatura.DDI, Asignatura.PMDM)
                 )
                 agregarAlumno(alumno)
-
-
-
-                // Una vez que tengas el token, realiza las solicitudes que necesitan autorización
-                // Secuencialmente, esperar que una termine antes de la siguiente
                 obtenerAlumnoPorCurso("DAM1")
                 obtenerAlumnoPorNombre("Iker")
-
-                // Agregar alumno y esperar que termine antes de eliminarlo
-
-                eliminarAlumno("3")  // Esto se ejecutará solo después de agregar el alumno
+                eliminarAlumno("3")
             }.onFailure {
                 Log.e("@dev", "Error en el inicio de sesión: ${it.localizedMessage}", it)
             }
