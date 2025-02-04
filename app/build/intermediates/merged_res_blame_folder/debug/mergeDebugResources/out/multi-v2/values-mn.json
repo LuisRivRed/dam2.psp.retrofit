@@ -4,7 +4,24 @@
             "outputFile": "com.psp.retrofit.app-mergeDebugResources-45:/values-mn/values-mn.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\ianga\\.gradle\\caches\\8.9\\transforms\\d91267bebe9e3d08ee9a19883bf35e46\\transformed\\foundation-release\\res\\values-mn\\values-mn.xml",
+                    "source": "C:\\Users\\ianga\\.gradle\\caches\\8.9\\transforms\\d9c677cafb0254b4b318911e9261d003\\transformed\\ui-release\\res\\values-mn\\values-mn.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,197,283,375,471,554,640,734,821,902,985,1068,1141,1218,1298,1375,1452,1518",
+                        "endColumns": "91,85,91,95,82,85,93,86,80,82,82,72,76,79,76,76,65,116",
+                        "endOffsets": "192,278,370,466,549,635,729,816,897,980,1063,1136,1213,1293,1370,1447,1513,1630"
+                    },
+                    "to": {
+                        "startLines": "9,10,11,12,13,14,15,73,74,75,76,77,78,79,80,82,83,84",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "840,932,1018,1110,1206,1289,1375,7723,7810,7891,7974,8057,8130,8207,8287,8465,8542,8608",
+                        "endColumns": "91,85,91,95,82,85,93,86,80,82,82,72,76,79,76,76,65,116",
+                        "endOffsets": "927,1013,1105,1201,1284,1370,1464,7805,7886,7969,8052,8125,8202,8282,8359,8537,8603,8720"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\ianga\\.gradle\\caches\\8.9\\transforms\\30d4822e3aca7fcdf21813aa65dcaacf\\transformed\\foundation-release\\res\\values-mn\\values-mn.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -21,24 +38,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\ianga\\.gradle\\caches\\8.9\\transforms\\09d23fdaa474d3adfc412ac8d4d8b6e3\\transformed\\core-1.15.0\\res\\values-mn\\values-mn.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,153,255,356,454,559,671,790",
-                        "endColumns": "97,101,100,97,104,111,118,100",
-                        "endOffsets": "148,250,351,449,554,666,785,886"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,81",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,203,305,406,504,609,721,8364",
-                        "endColumns": "97,101,100,97,104,111,118,100",
-                        "endOffsets": "198,300,401,499,604,716,835,8460"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\ianga\\.gradle\\caches\\8.9\\transforms\\7921f8a14f1b4d31c778a2f5f5091a86\\transformed\\material3-release\\res\\values-mn\\values-mn.xml",
+                    "source": "C:\\Users\\ianga\\.gradle\\caches\\8.9\\transforms\\de2aa19dcf26c5c89d0eae250647a8c5\\transformed\\material3-release\\res\\values-mn\\values-mn.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -55,20 +55,20 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\ianga\\.gradle\\caches\\8.9\\transforms\\73248c072751162c28b92a3af89cab3d\\transformed\\ui-release\\res\\values-mn\\values-mn.xml",
+                    "source": "C:\\Users\\ianga\\.gradle\\caches\\8.9\\transforms\\34b102fa3bfbb72f9df5e6aa73155632\\transformed\\core-1.15.0\\res\\values-mn\\values-mn.xml",
                     "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,197,283,375,471,554,640,734,821,902,985,1068,1141,1218,1298,1375,1452,1518",
-                        "endColumns": "91,85,91,95,82,85,93,86,80,82,82,72,76,79,76,76,65,116",
-                        "endOffsets": "192,278,370,466,549,635,729,816,897,980,1063,1136,1213,1293,1370,1447,1513,1630"
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,153,255,356,454,559,671,790",
+                        "endColumns": "97,101,100,97,104,111,118,100",
+                        "endOffsets": "148,250,351,449,554,666,785,886"
                     },
                     "to": {
-                        "startLines": "9,10,11,12,13,14,15,73,74,75,76,77,78,79,80,82,83,84",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "840,932,1018,1110,1206,1289,1375,7723,7810,7891,7974,8057,8130,8207,8287,8465,8542,8608",
-                        "endColumns": "91,85,91,95,82,85,93,86,80,82,82,72,76,79,76,76,65,116",
-                        "endOffsets": "927,1013,1105,1201,1284,1370,1464,7805,7886,7969,8052,8125,8202,8282,8359,8537,8603,8720"
+                        "startLines": "2,3,4,5,6,7,8,81",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,203,305,406,504,609,721,8364",
+                        "endColumns": "97,101,100,97,104,111,118,100",
+                        "endOffsets": "198,300,401,499,604,716,835,8460"
                     }
                 }
             ]

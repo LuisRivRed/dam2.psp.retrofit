@@ -5,16 +5,21 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
+import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import com.psp.model.Alumno
 import com.psp.model.Asignatura
 import com.psp.model.Curso
+import com.psp.model.LoginRequest
 import com.psp.retrofit.ui.theme.RetrofitTheme
 import kotlinx.coroutines.runBlocking
 
@@ -25,72 +30,73 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             RetrofitTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
+                MainScreen()
+            }
+        }
+    }
+}
+
+@Composable
+fun MainScreen() {
+    val loginRequest = LoginRequest("admin", "password")
+    val mainFactory = MainFactory()
+    val loginUseCase = mainFactory.createLoginUseCase()
+    val getAlumnosUseCase = mainFactory.createGetAlumnoUseCase()
+    val getAlumnosByCursoUseCase = mainFactory.createGetAlumnoByCursoUseCase()
+    val getAlumnosByNameUseCase = mainFactory.createGetAlumnoByNameUseCase()
+    val saveAlumnoUseCase = mainFactory.createSaveAlumnoUseCase()
+    val deleteAlumnoByIdUseCase = mainFactory.createDeleteAlumnoByIdUseCase()
+
+    // Lógica para el login con LaunchedEffect y manejo de errores
+    LaunchedEffect(Unit) {
+        // Ejecutar operaciones en un hilo de fondo sin bloquear el hilo principal
+        try {
+            val result = loginUseCase.login(loginRequest)
+
+            if (result.isSuccess) {
+                val token = result.getOrNull()?.token
+                Log.d("@dev", "Login Successful, Token: $token")
+
+                // Realizar las demás llamadas y loguearlas de manera no bloqueante
+                val alumnosResult = getAlumnosUseCase.invoke()
+                Log.d("@dev", "Alumnos: ${alumnosResult.getOrNull()}")
+
+                val alumnosByCursoResult = getAlumnosByCursoUseCase.invoke(Curso.DAM2)
+                Log.d("@dev", "Alumnos by curso: ${alumnosByCursoResult.getOrNull()}")
+
+                val alumnoByNameResult = getAlumnosByNameUseCase.invoke("Pepe")
+                Log.d("@dev", "Alumno by name: ${alumnoByNameResult.getOrNull()}")
+
+                // Guardar un alumno nuevo y loguear el resultado
+                val saveResult = saveAlumnoUseCase.invoke(
+                    Alumno(
+                        4, "Ian", "12/02/2001", Curso.DAM2,
+                        "Ian@educa.jcyl.es", listOf(Asignatura.AAD, Asignatura.PSP)
+                    )
+                )
+                if (saveResult.isSuccess) {
+                    Log.d("@dev", "Alumno saved successfully")
+                } else {
+                    Log.d("@dev", "Failed to save alumno: ${saveResult.exceptionOrNull()?.message}")
+                }
+
+                // Borrar el alumno por ID y loguear el resultado
+                val deleteResult = deleteAlumnoByIdUseCase.invoke(1)
+                if (deleteResult.isSuccess) {
+                    Log.d("@dev", "Alumno deleted successfully")
+                } else {
+                    Log.d(
+                        "@dev",
+                        "Failed to delete alumno: ${deleteResult.exceptionOrNull()?.message}"
                     )
                 }
+
+            } else {
+                Log.d("@dev", "Login failed: ${result.exceptionOrNull()?.message}")
             }
-        }
-
-        main()
-    }
-}
-
-    fun main() {
-        val mainFactory = MainFactory()
-        val getAlumnosUseCase = mainFactory.createGetAlumnoUseCase()
-        val getAlumnosByCursoUseCase = mainFactory.createGetAlumnoByCursoUseCase()
-        val getAlumnosByNameUseCase = mainFactory.createGetAlumnoByNameUseCase()
-        val saveAlumnoUseCase = mainFactory.createSaveAlumnoUseCase()
-        val deleteAlumnoByIdUseCase = mainFactory.createDeleteAlumnoByIdUseCase()
-
-        //Revisar LOG para ver los resultados y OkkHttp para ver las peticiones :D
-        runBlocking {
-            val alumnos = getAlumnosUseCase.invoke()
-            Log.d("@dev", "Alumnos: $alumnos")
-
-            val alumnosByCurso = getAlumnosByCursoUseCase.invoke(Curso.DAM2)
-            Log.d("@dev", "Alumnos by curso: $alumnosByCurso")
-
-            val alumnoByName = getAlumnosByNameUseCase.invoke("Pepe")
-            Log.d("@dev", "Alumno by name: $alumnoByName")
-
-            saveAlumnoUseCase.invoke(
-                Alumno(4, "Ian", "12/02/2001", Curso.DAM2,
-                    "Ian@educa.jcyl.es", listOf(Asignatura.AAD, Asignatura.PSP))
-            )
-            try {
-                val savedAlumno = getAlumnosByNameUseCase.invoke("Ian")
-                Log.d("@dev", "Alumno saved succesfully: $savedAlumno")
-
-            } catch (e: Exception) {
-                Log.d("@dev", "Alumno was not saved correctly: ${e.message}")
-            }
-
-            deleteAlumnoByIdUseCase.invoke(4)
-            try {
-                getAlumnosByNameUseCase.invoke("Ian")
-            } catch (e: Exception) {
-                Log.d("@dev", "Alumno deleted succesfully")
-            }
-
+        } catch (e: Exception) {
+            Log.d("@dev", "Error: ${e.message}")
         }
     }
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
 }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    RetrofitTheme {
-        Greeting("Android")
-    }
-}

@@ -3,6 +3,7 @@ package com.psp.retrofit.data.remote.api
 import com.psp.data.remote.api.AlumnoApiDataSource
 import com.psp.data.remote.api.ApiService
 import com.psp.model.Alumno
+import com.psp.model.AuthInterceptor
 import com.psp.model.Curso
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
@@ -17,10 +18,12 @@ class AlumnoApiDataSourceTest {
 
     @Mock
     private lateinit var apiService: ApiService
+    @Mock
+    private lateinit var authInterceptor: AuthInterceptor
     private lateinit var dataSource: AlumnoApiDataSource
     @Before
     fun setUp() {
-        dataSource = AlumnoApiDataSource(apiService)
+        dataSource = AlumnoApiDataSource(apiService, authInterceptor)
     }
 
     @Test

@@ -3,14 +3,18 @@ package com.psp.retrofit
 import com.psp.data.AlumnoDataRepository
 import com.psp.data.remote.api.AlumnoApiDataSource
 import com.psp.data.remote.api.ApiClient
-import com.psp.data.remote.api.ApiService
 import com.psp.model.usecases.*
 
 class MainFactory {
 
-    private val remoteDataSource = AlumnoApiDataSource(ApiClient().apiService)
+    // Crea una instancia de ApiClient
+    private val apiClient = ApiClient()
+
+    // Usa el mismo AuthInterceptor de ApiClient
+    private val remoteDataSource = AlumnoApiDataSource(apiClient.apiService, apiClient.authInterceptor)
     private val dataRepository = AlumnoDataRepository(remoteDataSource)
 
+    fun createLoginUseCase() = LoginUseCase(dataRepository)
 
     fun createGetAlumnoUseCase() = GetAlumnosUseCase(dataRepository)
 
@@ -21,6 +25,4 @@ class MainFactory {
     fun createSaveAlumnoUseCase() = SaveAlumnoUseCase(dataRepository)
 
     fun createDeleteAlumnoByIdUseCase() = DeleteAlumnoByIdUseCase(dataRepository)
-
-
 }

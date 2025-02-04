@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.psp.retrofit.data.remote.api.AlumnoApiDataSourceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-01-20T17:49:53" hostname="IANPC" time="0.304">
+<testsuite name="com.psp.retrofit.data.remote.api.AlumnoApiDataSourceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-02-03T23:42:20" hostname="IANPC" time="0.792">
   <properties/>
-  <testcase name="when requested, api returns list of alumnos" classname="com.psp.retrofit.data.remote.api.AlumnoApiDataSourceTest" time="0.304"/>
+  <testcase name="when requested, api returns list of alumnos" classname="com.psp.retrofit.data.remote.api.AlumnoApiDataSourceTest" time="0.792"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (C:\Users\ianga\.gradle\caches\modules-2\files-2.1\net.bytebuddy\byte-buddy-agent\1.14.4\3bf5ac1104554908cc623e40e58a00be37c35f36\byte-buddy-agent-1.14.4.jar)
 WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
