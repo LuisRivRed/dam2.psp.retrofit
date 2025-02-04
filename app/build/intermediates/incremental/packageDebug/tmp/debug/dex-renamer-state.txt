@@ -1,4 +1,4 @@
-#Tue Feb 04 01:25:33 CET 2025
+#Tue Feb 04 23:57:12 CET 2025
 base.0=C\:\\Users\\henar\\StudioProjects\\dam2.psp.retrofit\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=C\:\\Users\\henar\\StudioProjects\\dam2.psp.retrofit\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
 base.2=C\:\\Users\\henar\\StudioProjects\\dam2.psp.retrofit\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\10\\classes.dex

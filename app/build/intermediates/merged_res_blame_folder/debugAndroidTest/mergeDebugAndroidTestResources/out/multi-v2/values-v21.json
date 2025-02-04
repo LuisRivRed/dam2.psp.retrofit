@@ -4,7 +4,7 @@
             "outputFile": "com.psp.retrofit.test.app-mergeDebugAndroidTestResources-34:/values-v21/values-v21.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\henar\\.gradle\\caches\\8.9\\transforms\\12d5a4cc9d2d33b61a36fea9b8c6fd23\\transformed\\core-1.6.1\\res\\values-v21\\values.xml",
+                    "source": "C:\\Users\\henar\\.gradle\\caches\\8.9\\transforms\\c3450da239cfbb516dc607e0767f37bb\\transformed\\core-1.6.1\\res\\values-v21\\values.xml",
                     "from": {
                         "startLines": "4,13",
                         "startColumns": "0,0",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\henar\\.gradle\\caches\\8.9\\transforms\\783d75c05be9e174e57a7879ce930dbf\\transformed\\core-1.13.1\\res\\values-v21\\values-v21.xml",
+                    "source": "C:\\Users\\henar\\.gradle\\caches\\8.9\\transforms\\41fe455daf30fe5c051d913a9d3a6f85\\transformed\\core-1.13.1\\res\\values-v21\\values-v21.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,13",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",

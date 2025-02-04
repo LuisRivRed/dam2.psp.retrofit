@@ -19,6 +19,8 @@ mockitoAndroid = "4.11.0"
 mockitoCoreVersion = "5.3.1"
 mockitoKotlinVersion = "5.1.0"
 retrofit = "2.11.0"
+serialization = "2.1.20-Beta2"
+retrofit2KotlinxSerializationConverterVersion= "1.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -48,7 +50,9 @@ jetbrains-kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-co
 mockito-android = { module = "org.mockito:mockito-android", version.ref = "mockitoAndroid" }
 mockito-core-v4110 = { module = "org.mockito:mockito-core", version.ref = "mockitoCoreVersion" }
 mockito-kotlin-v410 = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockitoKotlinVersion" }
+retrofit2-kotlinx-serialization-converter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "retrofit2KotlinxSerializationConverterVersion" }
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "serialization" }

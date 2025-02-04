@@ -4,7 +4,7 @@
             "outputFile": "com.psp.retrofit.app-mergeDebugResources-44:/values-nb/values-nb.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\henar\\.gradle\\caches\\8.9\\transforms\\cebe7b538e37df2ac21b8866f0628b85\\transformed\\material3-release\\res\\values-nb\\values-nb.xml",
+                    "source": "C:\\Users\\henar\\.gradle\\caches\\8.9\\transforms\\275e3d87714a2abf0d6e860bc7819e49\\transformed\\material3-release\\res\\values-nb\\values-nb.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\henar\\.gradle\\caches\\8.9\\transforms\\783d75c05be9e174e57a7879ce930dbf\\transformed\\core-1.13.1\\res\\values-nb\\values-nb.xml",
+                    "source": "C:\\Users\\henar\\.gradle\\caches\\8.9\\transforms\\5e5857a7bfb6a76bd383383df33b91db\\transformed\\core-1.13.1\\res\\values-nb\\values-nb.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",
@@ -38,24 +38,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\henar\\.gradle\\caches\\8.9\\transforms\\dbefd8416dbcbf4aa7222ea0512ca2ab\\transformed\\foundation-release\\res\\values-nb\\values-nb.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,145",
-                        "endColumns": "89,87",
-                        "endOffsets": "140,228"
-                    },
-                    "to": {
-                        "startLines": "85,86",
-                        "startColumns": "4,4",
-                        "startOffsets": "8577,8667",
-                        "endColumns": "89,87",
-                        "endOffsets": "8662,8750"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\henar\\.gradle\\caches\\8.9\\transforms\\f4fae1c13f60bde1dcc3a1bde652df40\\transformed\\ui-release\\res\\values-nb\\values-nb.xml",
+                    "source": "C:\\Users\\henar\\.gradle\\caches\\8.9\\transforms\\440125542c08fa50c985240b27fe748a\\transformed\\ui-release\\res\\values-nb\\values-nb.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -69,6 +52,23 @@
                         "startOffsets": "831,924,1005,1102,1202,1290,1366,7594,7683,7765,7845,7927,7997,8071,8142,8313,8390,8457",
                         "endColumns": "92,80,96,99,87,75,87,88,81,79,81,69,73,70,69,76,66,119",
                         "endOffsets": "919,1000,1097,1197,1285,1361,1449,7678,7760,7840,7922,7992,8066,8137,8207,8385,8452,8572"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\henar\\.gradle\\caches\\8.9\\transforms\\569f6457977b4b20fad114b1f204611e\\transformed\\foundation-release\\res\\values-nb\\values-nb.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,145",
+                        "endColumns": "89,87",
+                        "endOffsets": "140,228"
+                    },
+                    "to": {
+                        "startLines": "85,86",
+                        "startColumns": "4,4",
+                        "startOffsets": "8577,8667",
+                        "endColumns": "89,87",
+                        "endOffsets": "8662,8750"
                     }
                 }
             ]
