@@ -1,7 +1,6 @@
 package com.psp.retrofit.presentation
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.psp.retrofit.R
 import com.psp.retrofit.data.StudentDataRepository
-import com.psp.retrofit.data.remote.ApiClient
+import com.psp.retrofit.data.remote.RetrofitClient
 import com.psp.retrofit.data.remote.ApiService
 import com.psp.retrofit.model.StudentRepository
 import kotlinx.coroutines.launch
@@ -19,7 +18,7 @@ import kotlinx.coroutines.launch
 class StudentFragment : Fragment() {
 
     private val repository: StudentRepository by lazy {
-        val apiService = ApiClient.provideRetrofit().create(ApiService::class.java)
+        val apiService = RetrofitClient.provideRetrofit().create(ApiService::class.java)
         StudentDataRepository(apiService)
     }
 

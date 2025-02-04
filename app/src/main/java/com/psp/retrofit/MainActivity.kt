@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.psp.retrofit.data.StudentDataRepository
-import com.psp.retrofit.data.remote.ApiClient
+import com.psp.retrofit.data.remote.RetrofitClient
 import com.psp.retrofit.data.remote.ApiService
 import com.psp.retrofit.presentation.ClassroomFragment
 import com.psp.retrofit.presentation.StudentFragment
@@ -13,7 +13,7 @@ import com.psp.retrofit.presentation.StudentFragment
 class MainActivity : AppCompatActivity() {
 
     private val repository: StudentDataRepository by lazy {
-        val apiService = ApiClient.provideRetrofit().create(ApiService::class.java)
+        val apiService = RetrofitClient.provideRetrofit().create(ApiService::class.java)
         StudentDataRepository(apiService)
     }
 
