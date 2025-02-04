@@ -1,5 +1,7 @@
 package com.psp.model
 
+import com.google.gson.annotations.SerializedName
+
 data class TokenResponse(
-    val token: String
+    @SerializedName("token") val token: String
 )

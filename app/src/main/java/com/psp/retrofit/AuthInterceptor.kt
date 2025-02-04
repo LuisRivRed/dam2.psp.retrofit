@@ -11,8 +11,7 @@ class AuthInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): okhttp3.Response {
         val request = chain.request()
         token?.let {
-            val newRequest = request.newBuilder().addHeader("Authorization", "Bearer $it")
-                .build()
+            val newRequest = request.newBuilder().addHeader("Authorization", "Bearer $it").build()
             return chain.proceed(newRequest)
         }
         return chain.proceed(request)

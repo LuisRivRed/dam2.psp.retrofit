@@ -48,20 +48,13 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.appcompat)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.squareup.retrofit)
     implementation(libs.retrofit2.xuse)
     implementation(libs.converter.gson)
+    implementation (libs.kotlinx.coroutines.android)
+
     implementation(libs.kotlinx.serialization.json)
-
     implementation(libs.retrofit2.kotlinx.serializationconverter)
-
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.okhttp)
 
@@ -69,4 +62,13 @@ dependencies {
     implementation(libs.mockito.core)
     implementation(libs.mockito.kotlin)
     implementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.junit)
+
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+    debugImplementation(libs.androidx.ui.tooling)
+    debugImplementation(libs.androidx.ui.test.manifest)
+
 }

@@ -33,6 +33,6 @@ interface AlumnoApiService {
     suspend fun login(@Body loginRequest:Login): Response<TokenResponse>
 
     @GET("alumnos")
-    suspend fun getAlumnos(@Header("Authorization") token: String): Response<List<Alumno>>
+    suspend fun getAlumnos(): Response<List<Alumno>>
 
 }

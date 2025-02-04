@@ -1,16 +1,18 @@
 package com.psp.model
 
+import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
 
 
-@Serializable
+
 data class Alumno(
-    var id: Int,
-    val nombre: String,
-    val fechaNacimiento: String,
-    val curso: Curso,
-    val email: String,
-    val asignaturas: List<Asignatura>
+
+    @SerializedName("id")var id: Int,
+    @SerializedName("nombre")val nombre: String,
+    @SerializedName("fechaNacimiento")val fechaNacimiento: String,
+    @SerializedName("curso")val curso: Curso,
+    @SerializedName("email")val email: String,
+    @SerializedName("asignaturas")val asignaturas: List<Asignatura>
 )
 
 enum class Curso {

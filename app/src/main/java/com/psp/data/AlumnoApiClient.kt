@@ -10,9 +10,10 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 
 
-class AlumnoApiClient() {
+class AlumnoApiClient{
 
     private val authInterceptor = AuthInterceptor()
+
     private val okHttpClient = OkHttpClient.Builder()
         .addInterceptor(authInterceptor)
         .build()
