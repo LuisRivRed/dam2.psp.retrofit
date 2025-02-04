@@ -11,7 +11,7 @@ object AlumnoRepository {
         val response = apiService.login(LoginRequest(username, password))
         if (response.isSuccessful) {
             val token = response.body()?.token ?: throw Exception("Token no encontrado")
-            ApiClient.setToken(token)
+            ApiClient.setToken(token)  // Establece el token
             Result.success(token)
         } else {
             Result.failure(Exception("Error de autenticación"))

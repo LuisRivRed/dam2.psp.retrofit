@@ -11,7 +11,7 @@ import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Path
 
-private const val BASE_URL_API = "http://172.20.10.4/alumno"
+private const val BASE_URL_API = "http://10.0.2.2:8080/alumno"
 
 interface AlumnoService {
 
