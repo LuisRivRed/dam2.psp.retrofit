@@ -1,6 +1,7 @@
 package com.psp.retrofit
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -12,8 +13,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.psp.retrofit.ui.theme.RetrofitTheme
+import androidx.lifecycle.lifecycleScope
+import com.psp.model.AulaRepository
+import com.psp.remote.ApiClient
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -21,10 +30,68 @@ class MainActivity : ComponentActivity() {
             RetrofitTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
+                        name = "Darnell", modifier = Modifier.padding(innerPadding)
                     )
                 }
+            }
+        }
+        deleteAula(1)
+        getAula("3")
+        loginAndFetchData()
+    }
+
+    private fun loginAndFetchData() {
+        lifecycleScope.launch {
+            val result = AulaRepository.login("admin", "password")
+            result.onSuccess { token ->
+                Log.d("@dev", "Token recibido: $token")
+
+                val alumnosResponse = AulaRepository.getAulas(token)
+                alumnosResponse.onSuccess { alumnos ->
+                    Log.d("@dev", "Alumnos: $alumnos")
+                }.onFailure { e ->
+                    Log.e("@dev", "Error al obtener alumnos: ${e.localizedMessage}", e)
+                }
+            }.onFailure { e ->
+                Log.e("@dev", "Error en el login: ${e.localizedMessage}", e)
+            }
+        }
+    }
+
+    private fun deleteAula(id: Int) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val apiService = ApiClient.apiService
+                val result = apiService.deleteAula(id)
+
+                withContext(Dispatchers.Main) {
+                    if (result.isSuccessful) {
+                        Log.d("@dev", "Aula eliminada")
+                    } else {
+                        Log.d("@dev", "Error al eliminar aula: ${result.errorBody()?.string()}")
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e("@dev", "Error al eliminar aula: ${e.localizedMessage}", e)
+            }
+        }
+    }
+
+    private fun getAula(id: String) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val apiService = ApiClient.apiService
+                val result = apiService.getAulas(id.toString())
+
+                withContext(Dispatchers.Main) {
+                    if (result.isSuccessful) {
+                        Log.d("@dev", "Aula: ${result.body()}")
+                    } else {
+                        Log.d("@dev", "Error al obtener aula: ${result.errorBody()?.string()}")
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e("@dev", "Error al obtener aula: ${e.localizedMessage}", e)
             }
         }
     }
@@ -33,8 +100,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
-        text = "Hello $name!",
-        modifier = modifier
+        text = "PSP $name!", modifier = modifier
     )
 }
 
@@ -42,6 +108,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     RetrofitTheme {
-        Greeting("Android")
+        Greeting("Enrique Arenas")
     }
 }
