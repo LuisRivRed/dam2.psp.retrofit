@@ -1,11 +1,11 @@
 [
     {
-        "merged": "/Users/enrique/.gradle/daemon/8.9/com.psp.retrofit.app-debug-44:/mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "/Users/enrique/.gradle/daemon/8.9/com.psp.retrofit.app-main-46:/mipmap-xxxhdpi/ic_launcher.webp"
-    },
-    {
         "merged": "/Users/enrique/.gradle/daemon/8.9/com.psp.retrofit.app-debug-44:/xml_backup_rules.xml.flat",
         "source": "/Users/enrique/.gradle/daemon/8.9/com.psp.retrofit.app-main-46:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "/Users/enrique/.gradle/daemon/8.9/com.psp.retrofit.app-debug-44:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "/Users/enrique/.gradle/daemon/8.9/com.psp.retrofit.app-main-46:/mipmap-xxxhdpi/ic_launcher.webp"
     },
     {
         "merged": "/Users/enrique/.gradle/daemon/8.9/com.psp.retrofit.app-debug-44:/xml_data_extraction_rules.xml.flat",
