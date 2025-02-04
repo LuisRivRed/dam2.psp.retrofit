@@ -87,6 +87,7 @@ class MainActivity : AppCompatActivity() {
             } else {
                 Log.e("@dev", "Error al agregar alumno: ${response.message()}")
             }
+
         } catch (e: Exception) {
             Log.e("@dev", "Error al agregar alumno: ${e.message}", e)
         }
