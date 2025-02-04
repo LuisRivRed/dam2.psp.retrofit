@@ -14,6 +14,7 @@ interface ApiService {
     @DELETE("alumnos/{id}")
     suspend fun deleteAlumno(@Path("id") id: Int): Response<Unit>
 
+    @POST("alumnos")suspend fun addAlumno(@Body alumno: Alumno): Response<Alumno>
 
     @POST("login")
     suspend fun login(@Body loginRequest: LoginRequest): Response<TokenResponse>

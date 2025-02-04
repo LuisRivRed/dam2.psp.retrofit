@@ -15,6 +15,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.psp.data.model.AlumnoRepository
 import com.psp.retrofit.ui.theme.RetrofitTheme
 import androidx.lifecycle.lifecycleScope
+import com.psp.data.model.Alumno
+import com.psp.data.model.Asignatura
+import com.psp.data.model.Curso
 import com.psp.data.remote.ApiClient
 import com.psp.data.remote.ApiService
 import kotlinx.coroutines.CoroutineScope
@@ -38,24 +41,36 @@ class MainActivity : ComponentActivity() {
         }
         deleteAlumno(1)
         getAlumno("3")
+
+        addAlumno(
+            Alumno(
+                5,
+                "Enrique Arenas",
+                "1999-12-31",
+                Curso.DAM2,
+                "enrique@gmail.com",
+                listOf(Asignatura.PSP, Asignatura.DDI),
+        )
+        )
+
         loginAndFetchData()
     }
 
     private fun loginAndFetchData() {
         lifecycleScope.launch {
-                val result = AlumnoRepository.login("admin", "password")
-                result.onSuccess { token ->
-                    Log.d("@dev", "Token recibido: $token")
+            val result = AlumnoRepository.login("admin", "password")
+            result.onSuccess { token ->
+                Log.d("@dev", "Token recibido: $token")
 
-                    val alumnosResponse = AlumnoRepository.getAlumnos(token)
-                    alumnosResponse.onSuccess { alumnos ->
-                        Log.d("@dev", "Alumnos: $alumnos")
-                    }.onFailure { e ->
-                        Log.e("@dev", "Error al obtener alumnos: ${e.localizedMessage}", e)
-                    }
+                val alumnosResponse = AlumnoRepository.getAlumnos(token)
+                alumnosResponse.onSuccess { alumnos ->
+                    Log.d("@dev", "Alumnos: $alumnos")
                 }.onFailure { e ->
-                    Log.e("@dev", "Error en el login: ${e.localizedMessage}", e)
+                    Log.e("@dev", "Error al obtener alumnos: ${e.localizedMessage}", e)
                 }
+            }.onFailure { e ->
+                Log.e("@dev", "Error en el login: ${e.localizedMessage}", e)
+            }
         }
     }
 
@@ -78,25 +93,50 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    private fun getAlumno(id : String){
+    private fun addAlumno(alumno: Alumno) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val apiService = ApiClient.apiService
-                val result = apiService.getAlumno(id.toInt())
+                val response = apiService.addAlumno(alumno)
 
                 withContext(Dispatchers.Main) {
-                    if (result.isSuccessful) {
-                        Log.d("@dev", "Alumno: ${result.body()}")
+                    if (response.isSuccessful) {
+                        Log.d("@dev", "Alumno añadido: ${response.body()}")
                     } else {
-                        Log.d("@dev", "Error al obtener alumno: ${result.errorBody()?.string()}")
+                        Log.e("@dev", "Error al añadir alumno: ${response.message()}")
                     }
                 }
             } catch (e: Exception) {
-                Log.e("@dev", "Error al obtener alumno: ${e.localizedMessage}", e)
+                withContext(Dispatchers.Main) {
+                    Log.e("@dev", "Error al añadir alumno: ${e.message}", e)
+                }
             }
         }
     }
-}
+
+
+        private fun getAlumno(id: String) {
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    val apiService = ApiClient.apiService
+                    val result = apiService.getAlumno(id.toInt())
+
+                    withContext(Dispatchers.Main) {
+                        if (result.isSuccessful) {
+                            Log.d("@dev", "Alumno: ${result.body()}")
+                        } else {
+                            Log.d(
+                                "@dev",
+                                "Error al obtener alumno: ${result.errorBody()?.string()}"
+                            )
+                        }
+                    }
+                } catch (e: Exception) {
+                    Log.e("@dev", "Error al obtener alumno: ${e.localizedMessage}", e)
+                }
+            }
+        }
+    }
 
     @Composable
     fun Greeting(name: String, modifier: Modifier = Modifier) {
