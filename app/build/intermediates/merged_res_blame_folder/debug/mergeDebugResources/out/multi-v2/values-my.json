@@ -4,7 +4,7 @@
             "outputFile": "com.psp.retrofit.app-mergeDebugResources-42:/values-my/values-my.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\darnliv\\.gradle\\caches\\8.9\\transforms\\146454190724a9841615b50f6476144b\\transformed\\foundation-release\\res\\values-my\\values-my.xml",
+                    "source": "C:\\Users\\Djliv\\.gradle\\caches\\8.9\\transforms\\146454190724a9841615b50f6476144b\\transformed\\foundation-release\\res\\values-my\\values-my.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -21,24 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\darnliv\\.gradle\\caches\\8.9\\transforms\\60e994698f0b9209593a3819afa9efa7\\transformed\\core-1.12.0\\res\\values-my\\values-my.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,158,262,365,467,572,678,797",
-                        "endColumns": "102,103,102,101,104,105,118,100",
-                        "endOffsets": "153,257,360,462,567,673,792,893"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,79",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,208,312,415,517,622,728,8326",
-                        "endColumns": "102,103,102,101,104,105,118,100",
-                        "endOffsets": "203,307,410,512,617,723,842,8422"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\darnliv\\.gradle\\caches\\8.9\\transforms\\080cb32cd97ac69e6ead08c2b5e3062a\\transformed\\ui-release\\res\\values-my\\values-my.xml",
+                    "source": "C:\\Users\\Djliv\\.gradle\\caches\\8.9\\transforms\\080cb32cd97ac69e6ead08c2b5e3062a\\transformed\\ui-release\\res\\values-my\\values-my.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -55,7 +38,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\darnliv\\.gradle\\caches\\8.9\\transforms\\10385f9d53ae519edfe633fa1122767b\\transformed\\material3-release\\res\\values-my\\values-my.xml",
+                    "source": "C:\\Users\\Djliv\\.gradle\\caches\\8.9\\transforms\\10385f9d53ae519edfe633fa1122767b\\transformed\\material3-release\\res\\values-my\\values-my.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -69,6 +52,23 @@
                         "startOffsets": "1503,1640,1774,1885,2019,2134,2234,2351,2500,2624,2787,2873,2972,3065,3167,3287,3414,3518,3644,3775,3919,4087,4209,4326,4445,4572,4666,4763,4894,5031,5133,5245,5350,5476,5605,5708,5811,5892,5990,6086,6173,6259,6378,6458,6542,6642,6744,6840,6938,7025,7132,7231,7332,7453,7533,7656",
                         "endColumns": "136,133,110,133,114,99,116,148,123,162,85,98,92,101,119,126,103,125,130,143,167,121,116,118,126,93,96,130,136,101,111,104,125,128,102,102,80,97,95,86,85,118,79,83,99,101,95,97,86,106,98,100,120,79,122,117",
                         "endOffsets": "1635,1769,1880,2014,2129,2229,2346,2495,2619,2782,2868,2967,3060,3162,3282,3409,3513,3639,3770,3914,4082,4204,4321,4440,4567,4661,4758,4889,5026,5128,5240,5345,5471,5600,5703,5806,5887,5985,6081,6168,6254,6373,6453,6537,6637,6739,6835,6933,7020,7127,7226,7327,7448,7528,7651,7769"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Djliv\\.gradle\\caches\\8.9\\transforms\\60e994698f0b9209593a3819afa9efa7\\transformed\\core-1.12.0\\res\\values-my\\values-my.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,158,262,365,467,572,678,797",
+                        "endColumns": "102,103,102,101,104,105,118,100",
+                        "endOffsets": "153,257,360,462,567,673,792,893"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,79",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,208,312,415,517,622,728,8326",
+                        "endColumns": "102,103,102,101,104,105,118,100",
+                        "endOffsets": "203,307,410,512,617,723,842,8422"
                     }
                 }
             ]

@@ -16,7 +16,7 @@ enum class Curso{
 
 @Serializable
 data class Aula(
-    var id: Int,
+    var id: String,
     val denominacion: Denominacion,
     val piso: Int,
     val pabellon: Pabellon,

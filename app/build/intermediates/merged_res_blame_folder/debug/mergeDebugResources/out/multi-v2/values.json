@@ -4,7 +4,7 @@
             "outputFile": "com.psp.retrofit.app-mergeDebugResources-42:/values/values.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\darnliv\\.gradle\\caches\\8.9\\transforms\\24a00cef6fc1bd50244fbf5b592a532f\\transformed\\startup-runtime-1.1.1\\res\\values\\values.xml",
+                    "source": "C:\\Users\\Djliv\\.gradle\\caches\\8.9\\transforms\\24a00cef6fc1bd50244fbf5b592a532f\\transformed\\startup-runtime-1.1.1\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -21,7 +21,41 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\darnliv\\.gradle\\caches\\8.9\\transforms\\080cb32cd97ac69e6ead08c2b5e3062a\\transformed\\ui-release\\res\\values\\values.xml",
+                    "source": "C:\\Users\\Djliv\\AndroidStudioProjects\\dam2.psp.retrofit\\app\\src\\main\\res\\values\\themes.xml",
+                    "from": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "59",
+                        "endColumns": "85",
+                        "endOffsets": "140"
+                    },
+                    "to": {
+                        "startLines": "215",
+                        "startColumns": "4",
+                        "startOffsets": "13582",
+                        "endColumns": "84",
+                        "endOffsets": "13662"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Djliv\\.gradle\\caches\\8.9\\transforms\\146454190724a9841615b50f6476144b\\transformed\\foundation-release\\res\\values\\values.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,111",
+                        "endColumns": "55,54",
+                        "endOffsets": "106,161"
+                    },
+                    "to": {
+                        "startLines": "192,193",
+                        "startColumns": "4,4",
+                        "startOffsets": "12295,12351",
+                        "endColumns": "55,54",
+                        "endOffsets": "12346,12401"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Djliv\\.gradle\\caches\\8.9\\transforms\\080cb32cd97ac69e6ead08c2b5e3062a\\transformed\\ui-release\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,60,63",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -40,24 +74,75 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\darnliv\\.gradle\\caches\\8.9\\transforms\\8d297ea5ead335f1da40d9a7b541bbf2\\transformed\\customview-poolingcontainer-1.0.0\\res\\values\\values.xml",
+                    "source": "C:\\Users\\Djliv\\.gradle\\caches\\8.9\\transforms\\7ce51efc80517fac8cc0caf73fe5c52f\\transformed\\lifecycle-runtime-2.6.1\\res\\values\\values.xml",
                     "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,109",
-                        "endColumns": "53,66",
-                        "endOffsets": "104,171"
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "42",
+                        "endOffsets": "93"
                     },
                     "to": {
-                        "startLines": "78,81",
-                        "startColumns": "4,4",
-                        "startOffsets": "4830,4954",
-                        "endColumns": "53,66",
-                        "endOffsets": "4879,5016"
+                        "startLines": "99",
+                        "startColumns": "4",
+                        "startOffsets": "5922",
+                        "endColumns": "42",
+                        "endOffsets": "5960"
                     }
                 },
                 {
-                    "source": "C:\\Users\\darnliv\\AndroidStudioProjects\\dam2.psp.retrofit\\app\\src\\main\\res\\values\\colors.xml",
+                    "source": "C:\\Users\\Djliv\\.gradle\\caches\\8.9\\transforms\\d49d9dd5179d927dba825bb892ad0a5e\\transformed\\activity-1.8.0\\res\\values\\values.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,97",
+                        "endColumns": "41,59",
+                        "endOffsets": "92,152"
+                    },
+                    "to": {
+                        "startLines": "82,100",
+                        "startColumns": "4,4",
+                        "startOffsets": "5021,5965",
+                        "endColumns": "41,59",
+                        "endOffsets": "5058,6020"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Djliv\\.gradle\\caches\\8.9\\transforms\\a46ac217a13ffc0ce47dfc9c0a3346f8\\transformed\\savedstate-1.2.1\\res\\values\\values.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "53",
+                        "endOffsets": "104"
+                    },
+                    "to": {
+                        "startLines": "101",
+                        "startColumns": "4",
+                        "startOffsets": "6025",
+                        "endColumns": "53",
+                        "endOffsets": "6074"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Djliv\\.gradle\\caches\\8.9\\transforms\\f0209eb07b6cebe28fe37289eba83984\\transformed\\lifecycle-viewmodel-2.6.1\\res\\values\\values.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "49",
+                        "endOffsets": "100"
+                    },
+                    "to": {
+                        "startLines": "102",
+                        "startColumns": "4",
+                        "startOffsets": "6079",
+                        "endColumns": "49",
+                        "endOffsets": "6124"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Djliv\\AndroidStudioProjects\\dam2.psp.retrofit\\app\\src\\main\\res\\values\\colors.xml",
                     "from": {
                         "startLines": "7,2,3,4,5,6,8",
                         "startColumns": "4,4,4,4,4,4,4",
@@ -74,41 +159,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\darnliv\\AndroidStudioProjects\\dam2.psp.retrofit\\app\\src\\main\\res\\values\\strings.xml",
-                    "from": {
-                        "startLines": "1",
-                        "startColumns": "4",
-                        "startOffsets": "17",
-                        "endColumns": "45",
-                        "endOffsets": "58"
-                    },
-                    "to": {
-                        "startLines": "106",
-                        "startColumns": "4",
-                        "startOffsets": "6335",
-                        "endColumns": "45",
-                        "endOffsets": "6376"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\darnliv\\AndroidStudioProjects\\dam2.psp.retrofit\\app\\src\\main\\res\\values\\themes.xml",
-                    "from": {
-                        "startLines": "3",
-                        "startColumns": "4",
-                        "startOffsets": "59",
-                        "endColumns": "85",
-                        "endOffsets": "140"
-                    },
-                    "to": {
-                        "startLines": "215",
-                        "startColumns": "4",
-                        "startOffsets": "13582",
-                        "endColumns": "84",
-                        "endOffsets": "13662"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\darnliv\\.gradle\\caches\\8.9\\transforms\\60e994698f0b9209593a3819afa9efa7\\transformed\\core-1.12.0\\res\\values\\values.xml",
+                    "source": "C:\\Users\\Djliv\\.gradle\\caches\\8.9\\transforms\\60e994698f0b9209593a3819afa9efa7\\transformed\\core-1.12.0\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,98,99,103,104,105,106,112,122,155,176,209",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -127,7 +178,41 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\darnliv\\.gradle\\caches\\8.9\\transforms\\10385f9d53ae519edfe633fa1122767b\\transformed\\material3-release\\res\\values\\values.xml",
+                    "source": "C:\\Users\\Djliv\\.gradle\\caches\\8.9\\transforms\\8d297ea5ead335f1da40d9a7b541bbf2\\transformed\\customview-poolingcontainer-1.0.0\\res\\values\\values.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,109",
+                        "endColumns": "53,66",
+                        "endOffsets": "104,171"
+                    },
+                    "to": {
+                        "startLines": "78,81",
+                        "startColumns": "4,4",
+                        "startOffsets": "4830,4954",
+                        "endColumns": "53,66",
+                        "endOffsets": "4879,5016"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Djliv\\AndroidStudioProjects\\dam2.psp.retrofit\\app\\src\\main\\res\\values\\strings.xml",
+                    "from": {
+                        "startLines": "1",
+                        "startColumns": "4",
+                        "startOffsets": "17",
+                        "endColumns": "45",
+                        "endOffsets": "58"
+                    },
+                    "to": {
+                        "startLines": "106",
+                        "startColumns": "4",
+                        "startOffsets": "6335",
+                        "endColumns": "45",
+                        "endOffsets": "6376"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Djliv\\.gradle\\caches\\8.9\\transforms\\10385f9d53ae519edfe633fa1122767b\\transformed\\material3-release\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,14,15,16,17,18,19,20,21,22,23,24,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -143,91 +228,6 @@
                         "endLines": "121,122,123,124,125,126,127,128,129,132,133,134,135,136,137,138,139,140,141,142,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180",
                         "endColumns": "87,85,80,83,68,64,82,105,85,13,53,68,60,68,88,94,73,96,92,97,13,90,87,95,97,63,67,86,93,66,71,71,100,108,75,68,47,65,63,56,56,71,49,53,70,70,69,68,57,75,70,73,85,49,69,64",
                         "endOffsets": "7431,7517,7598,7682,7751,7816,7899,8005,8091,8211,8265,8334,8395,8464,8553,8648,8722,8819,8912,9010,9159,9250,9338,9434,9532,9596,9664,9751,9845,9912,9984,10056,10157,10266,10342,10411,10459,10525,10589,10646,10703,10775,10825,10879,10950,11021,11091,11160,11218,11294,11365,11439,11525,11575,11645,11710"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\darnliv\\.gradle\\caches\\8.9\\transforms\\146454190724a9841615b50f6476144b\\transformed\\foundation-release\\res\\values\\values.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,111",
-                        "endColumns": "55,54",
-                        "endOffsets": "106,161"
-                    },
-                    "to": {
-                        "startLines": "192,193",
-                        "startColumns": "4,4",
-                        "startOffsets": "12295,12351",
-                        "endColumns": "55,54",
-                        "endOffsets": "12346,12401"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\darnliv\\.gradle\\caches\\8.9\\transforms\\d49d9dd5179d927dba825bb892ad0a5e\\transformed\\activity-1.8.0\\res\\values\\values.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,97",
-                        "endColumns": "41,59",
-                        "endOffsets": "92,152"
-                    },
-                    "to": {
-                        "startLines": "82,100",
-                        "startColumns": "4,4",
-                        "startOffsets": "5021,5965",
-                        "endColumns": "41,59",
-                        "endOffsets": "5058,6020"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\darnliv\\.gradle\\caches\\8.9\\transforms\\a46ac217a13ffc0ce47dfc9c0a3346f8\\transformed\\savedstate-1.2.1\\res\\values\\values.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "53",
-                        "endOffsets": "104"
-                    },
-                    "to": {
-                        "startLines": "101",
-                        "startColumns": "4",
-                        "startOffsets": "6025",
-                        "endColumns": "53",
-                        "endOffsets": "6074"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\darnliv\\.gradle\\caches\\8.9\\transforms\\7ce51efc80517fac8cc0caf73fe5c52f\\transformed\\lifecycle-runtime-2.6.1\\res\\values\\values.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "42",
-                        "endOffsets": "93"
-                    },
-                    "to": {
-                        "startLines": "99",
-                        "startColumns": "4",
-                        "startOffsets": "5922",
-                        "endColumns": "42",
-                        "endOffsets": "5960"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\darnliv\\.gradle\\caches\\8.9\\transforms\\f0209eb07b6cebe28fe37289eba83984\\transformed\\lifecycle-viewmodel-2.6.1\\res\\values\\values.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "49",
-                        "endOffsets": "100"
-                    },
-                    "to": {
-                        "startLines": "102",
-                        "startColumns": "4",
-                        "startOffsets": "6079",
-                        "endColumns": "49",
-                        "endOffsets": "6124"
                     }
                 }
             ]

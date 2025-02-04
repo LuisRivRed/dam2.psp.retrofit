@@ -1,2 +1,2 @@
-C:\Users\darnliv\AndroidStudioProjects\dam2.psp.retrofit\app\src\test\java\com\psp\retrofit\AulasServiceTest.kt
-C:\Users\darnliv\AndroidStudioProjects\dam2.psp.retrofit\app\src\test\java\com\psp\retrofit\ExampleUnitTest.kt
+C:\Users\Djliv\AndroidStudioProjects\dam2.psp.retrofit\app\src\test\java\com\psp\retrofit\AulasServiceTest.kt
+C:\Users\Djliv\AndroidStudioProjects\dam2.psp.retrofit\app\src\test\java\com\psp\retrofit\ExampleUnitTest.kt

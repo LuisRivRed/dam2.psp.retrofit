@@ -1,76 +1,54 @@
 package com.psp.retrofit
 
-import com.api.model.Aula
-import com.api.model.Asignatura
-import com.api.model.Curso
-import com.api.model.Denominacion
+
 import com.psp.model.LoginRequest
-import com.psp.model.TokenResponse
 import com.psp.remote.ApiService
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.test.runTest
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
-import org.mockito.kotlin.any
-import org.mockito.kotlin.whenever
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.ResponseBody
-import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 @RunWith(MockitoJUnitRunner::class)
 class AulaServiceTest {
 
-    @Mock
     private lateinit var apiService: ApiService
-
     private var tokenPrueba = "test_token"
-
-    private val mockAulas = listOf(
-        Aula(
-            id = "1",
-            curso = Curso.DAM1,
-            nombre = "Aula 101",
-            denominaciones = (Denominacion.D1)
-        ),
-        Aula(
-            id = "2",
-            curso = Curso.DAM2,
-            nombre = "Aula 202",
-            denominaciones = listOf(Denominacion.D1, Denominacion.D2, Denominacion.D3)
-        ),
-        Aula(
-            id = "3",
-            curso = Curso.DAM2,
-            nombre = "Aula 303",
-            denominaciones = listOf(Denominacion.D1, Denominacion.D2, Denominacion.D3)
-        )
-    )
 
     @Before
     fun setup() {
+        val logging = HttpLoggingInterceptor()
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY)
+        val httpClient = OkHttpClient.Builder()
+        httpClient.addInterceptor(logging)
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl("http://localhost:8080/") // URL del servidor de pruebas
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(httpClient.build())
+            .build()
+
+        apiService = retrofit.create(ApiService::class.java)
     }
 
     @Test
     fun getAulas() = runTest {
-        whenever(apiService.getAulas(tokenPrueba)).thenReturn(Response.success(mockAulas))
-
         val response = apiService.getAulas(tokenPrueba)
 
         Assert.assertTrue(response.isSuccessful)
-        assertEquals(mockAulas, response.body())
+        assertTrue(response.body()?.isNotEmpty() == true)
     }
 
     @Test
     fun getAulasNull() = runTest {
-        val errorResponseBody = ResponseBody.create("application/json".toMediaTypeOrNull(), "Not Found")
-        whenever(apiService.getAulas(tokenPrueba)).thenReturn(Response.error(404, errorResponseBody))
-
-        val response = apiService.getAulas(tokenPrueba)
+        val response = apiService.getAulas("invalid_token")
 
         Assert.assertFalse(response.isSuccessful)
         Assert.assertNull(response.body())
@@ -79,19 +57,15 @@ class AulaServiceTest {
     @Test
     fun getAulaById() = runTest {
         val id = "1"
-        whenever(apiService.getAulas(id)).thenReturn(Response.success(mockAulas[1]))
-
         val response = apiService.getAulas(id)
 
         Assert.assertTrue(response.isSuccessful)
-        assertEquals(mockAulas[1], response.body())
+        assertTrue(response.body()?.isNotEmpty() == true)
     }
 
     @Test
     fun deleteAula() = runTest {
         val id = "2"
-        whenever(apiService.deleteAula(id)).thenReturn(Response.success(Unit))
-
         val response = apiService.deleteAula(id)
 
         Assert.assertTrue(response.isSuccessful)
@@ -100,8 +74,6 @@ class AulaServiceTest {
 
     @Test
     fun getAulasEmpty() = runTest {
-        whenever(apiService.getAulas(tokenPrueba)).thenReturn(Response.success(emptyList()))
-
         val response = apiService.getAulas(tokenPrueba)
 
         Assert.assertTrue(response.isSuccessful)
@@ -111,9 +83,6 @@ class AulaServiceTest {
     @Test
     fun getAulaByIdNotFound() = runTest {
         val id = "99"
-        val errorResponseBody = ResponseBody.create("application/json".toMediaTypeOrNull(), "Not Found")
-        whenever(apiService.getAulas(id)).thenReturn(Response.error(404, errorResponseBody))
-
         val response = apiService.getAulas(id)
 
         Assert.assertFalse(response.isSuccessful)
@@ -122,10 +91,7 @@ class AulaServiceTest {
 
     @Test
     fun deleteAulaNotFound() = runTest {
-        val id = "99"
-        val errorResponseBody = ResponseBody.create("application/json".toMediaTypeOrNull(), "Internal Server Error")
-        whenever(apiService.deleteAula(id)).thenReturn(Response.error(500, errorResponseBody))
-
+        val id = 99
         val response = apiService.deleteAula(id)
 
         Assert.assertFalse(response.isSuccessful)
@@ -134,12 +100,9 @@ class AulaServiceTest {
 
     @Test
     fun `login success returns token`() = runTest {
-        val token = "test_token"
-        whenever(apiService.login(any())).thenReturn(Response.success(TokenResponse(token)))
-
         val response = apiService.login(LoginRequest("admin", "password"))
 
         assertTrue(response.isSuccessful)
-        assertEquals(token, response.body()?.token)
+        assertEquals(tokenPrueba, response.body()?.token)
     }
 }
