@@ -1,22 +1,24 @@
 package com.psp.retrofit.data.remote
 
 import okhttp3.Interceptor
+import okhttp3.Response
 
 class AuthInterceptor : Interceptor {
+    @Volatile
     private var token: String? = null
 
     fun setToken(newToken: String) {
         token = newToken
     }
 
-    override fun intercept(chain: Interceptor.Chain): okhttp3.Response {
-        val request = chain.request()
+    override fun intercept(chain: Interceptor.Chain): Response {
+        val request = chain.request().newBuilder()
+
+        // Si el token no es nulo, añadirlo en los headers
         token?.let {
-            val newRequest = request.newBuilder()
-                .addHeader("Authorization", "Bearer $it")
-                .build()
-            return chain.proceed(newRequest)
+            request.addHeader("Authorization", "Bearer $it")
         }
-        return chain.proceed(request)
+
+        return chain.proceed(request.build())
     }
 }

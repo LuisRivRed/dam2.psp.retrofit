@@ -3,10 +3,10 @@ package com.psp.retrofit.data
 import com.psp.retrofit.data.remote.ApiService
 import com.psp.retrofit.data.remote.RetrofitClient
 import com.psp.retrofit.model.Course
+import com.psp.retrofit.model.LoginRequest
 import com.psp.retrofit.model.Student
 import com.psp.retrofit.model.StudentRepository
 import com.psp.retrofit.model.Subject
-import retrofit2.Response
 
 class StudentDataRepository(
     private val apiService: ApiService
@@ -15,15 +15,20 @@ class StudentDataRepository(
     suspend fun login(username: String, password: String): Result<String> = try {
         val response = apiService.login(LoginRequest(username, password))
         if (response.isSuccessful) {
-            val token = response.body()?.token ?: throw Exception("Token no encontrado")
-            RetrofitClient.setToken(token)
-            Result.success(token)
+            val token = response.body()?.token
+            if (token != null) {
+                RetrofitClient.setToken(token) // Establecer el token para futuras solicitudes
+                Result.success(token)
+            } else {
+                Result.failure(Exception("Token no encontrado"))
+            }
         } else {
             Result.failure(Exception("Error de autenticación"))
         }
     } catch (e: Exception) {
         Result.failure(e)
     }
+
 
     override suspend fun getStudents(): Result<List<Student>> = try {
         val response = apiService.requestStudents()
@@ -36,38 +41,80 @@ class StudentDataRepository(
         Result.failure(e)
     }
 
-    override suspend fun getStudentById(id: Int): Response<Student> {
+    override suspend fun getStudentById(id: Int): Result<Student> = try {
         val response = apiService.requestStudentById(id)
-        return Response.success(response.body())
+        if (response.isSuccessful) {
+            Result.success(response.body() ?: throw Exception("Estudiante no encontrado"))
+        } else {
+            Result.failure(Exception("Error: ${response.code()}"))
+        }
+    } catch (e: Exception) {
+        Result.failure(e)
     }
 
-    override suspend fun getStudentByName(name: String): Response<List<Student>> {
+    override suspend fun getStudentByName(name: String): Result<List<Student>> = try {
         val response = apiService.requestStudentByName(name)
-        return Response.success(response.body())
+        if (response.isSuccessful) {
+            Result.success(response.body() ?: emptyList())
+        } else {
+            Result.failure(Exception("Error: ${response.code()}"))
+        }
+    } catch (e: Exception) {
+        Result.failure(e)
     }
 
-    override suspend fun getStudentByEmail(email: String): Response<Student> {
+    override suspend fun getStudentByEmail(email: String): Result<Student> = try {
         val response = apiService.requestStudentByEmail(email)
-        return Response.success(response.body())
+        if (response.isSuccessful) {
+            Result.success(response.body() ?: throw Exception("Estudiante no encontrado"))
+        } else {
+            Result.failure(Exception("Error: ${response.code()}"))
+        }
+    } catch (e: Exception) {
+        Result.failure(e)
     }
 
-    override suspend fun getStudentsByCourse(course: Course): Response<List<Student>> {
+    override suspend fun getStudentsByCourse(course: Course): Result<List<Student>> = try {
         val response = apiService.requestStudentsByCourse(course)
-        return Response.success(response.body())
+        if (response.isSuccessful) {
+            Result.success(response.body() ?: emptyList())
+        } else {
+            Result.failure(Exception("Error: ${response.code()}"))
+        }
+    } catch (e: Exception) {
+        Result.failure(e)
     }
 
-    override suspend fun getStudentsBySubject(subject: Subject): Response<List<Student>> {
+    override suspend fun getStudentsBySubject(subject: Subject): Result<List<Student>> = try {
         val response = apiService.requestStudentsBySubject(subject)
-        return Response.success(response.body())
+        if (response.isSuccessful) {
+            Result.success(response.body() ?: emptyList())
+        } else {
+            Result.failure(Exception("Error: ${response.code()}"))
+        }
+    } catch (e: Exception) {
+        Result.failure(e)
     }
 
-    override suspend fun addStudent(student: Student): Response<Student> {
+    override suspend fun addStudent(student: Student): Result<Student> = try {
         val response = apiService.addStudent(student)
-        return Response.success(response.body())
+        if (response.isSuccessful) {
+            Result.success(response.body() ?: throw Exception("Error al agregar estudiante"))
+        } else {
+            Result.failure(Exception("Error: ${response.code()}"))
+        }
+    } catch (e: Exception) {
+        Result.failure(e)
     }
 
-    override suspend fun deleteStudent(id: Int): Response<Boolean> {
+    override suspend fun deleteStudent(id: Int): Result<Boolean> = try {
         val response = apiService.deleteStudent(id)
-        return Response.success(response.body())
+        if (response.isSuccessful) {
+            Result.success(response.body() ?: throw Exception("Error al eliminar estudiante"))
+        } else {
+            Result.failure(Exception("Error: ${response.code()}"))
+        }
+    } catch (e: Exception) {
+        Result.failure(e)
     }
 }

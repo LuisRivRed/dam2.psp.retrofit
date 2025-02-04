@@ -13,7 +13,7 @@ import com.psp.retrofit.presentation.StudentFragment
 class MainActivity : AppCompatActivity() {
 
     private val repository: StudentDataRepository by lazy {
-        val apiService = RetrofitClient.provideRetrofit().create(ApiService::class.java)
+        val apiService = RetrofitClient.createRetrofit().create(ApiService::class.java)
         StudentDataRepository(apiService)
     }
 
