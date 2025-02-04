@@ -57,7 +57,7 @@ class MainActivity : ComponentActivity() {
     fun loginAndFetchAlumnos() {
         lifecycleScope.launch {
             try {
-                val loginResult = repository.login("henar@henar", "password")
+                val loginResult = repository.login("admin", "password")
 
                 loginResult.fold(
                     onSuccess = { token ->
