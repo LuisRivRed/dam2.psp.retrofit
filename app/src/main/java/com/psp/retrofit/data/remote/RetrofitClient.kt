@@ -30,5 +30,14 @@ object RetrofitClient {
     fun setToken(token: String) {
         authInterceptor.setToken(token)
     }
-}
 
+    val client =
+        OkHttpClient.Builder().sslSocketFactory(getSSLSocketFactory(), getTrustManager())
+            .addInterceptor { chain ->
+                val request = chain.request().newBuilder()
+                    .addHeader(
+                        "Authorization",
+                        { { referencesBody } }
+            }
+
+}
