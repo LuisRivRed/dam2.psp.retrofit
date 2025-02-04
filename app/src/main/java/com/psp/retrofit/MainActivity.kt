@@ -12,10 +12,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.psp.data.remote.ApiClient
-import com.psp.data.model.LoginRequest
+import com.psp.data.model.AlumnoRepository
 import com.psp.retrofit.ui.theme.RetrofitTheme
 import androidx.lifecycle.lifecycleScope
+import com.psp.data.remote.ApiClient
+import com.psp.data.remote.ApiService
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
@@ -27,55 +28,68 @@ class MainActivity : ComponentActivity() {
             RetrofitTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
-                        name = "Android", modifier = Modifier.padding(innerPadding)
+                        name = "Enrique Arenas", modifier = Modifier.padding(innerPadding)
                     )
                 }
             }
         }
-        // Llamamos a la función que realiza el login y luego otras peticiones
+        deleteAlumno(1)
+        getAlumno("3")
         loginAndFetchData()
     }
 
     private fun loginAndFetchData() {
         lifecycleScope.launch {
-            try {
-                val loginResponse = ApiClient.apiService.login(LoginRequest("admin", "password"))
-                if (loginResponse.isSuccessful) {
-                    val token = loginResponse.body()?.token
-                    if (token != null) {
-                        Log.d("@dev", "Token recibido: $token")
-                        ApiClient.setToken(token)
+                val result = AlumnoRepository.login("admin", "password")
+                result.onSuccess { token ->
+                    Log.d("@dev", "Token recibido: $token")
 
-                        val alumnosResponse = ApiClient.apiService.getAlumnos()
-                        if (alumnosResponse.isSuccessful) {
-                            Log.d("@dev", "Alumnos: ${alumnosResponse.body()}")
-                        } else {
-                            Log.d("@dev", "Error al obtener alumnos: ${alumnosResponse.errorBody()?.string()}")
-                        }
-                    } else {
-                        Log.d("@dev", "El token no se encontró en la respuesta.")
+                    val alumnosResponse = AlumnoRepository.getAlumnos(token)
+                    alumnosResponse.onSuccess { alumnos ->
+                        Log.d("@dev", "Alumnos: $alumnos")
+                    }.onFailure { e ->
+                        Log.e("@dev", "Error al obtener alumnos: ${e.localizedMessage}", e)
                     }
-                } else {
-                    Log.d("@dev", "Error en el login: ${loginResponse.errorBody()?.string()}")
+                }.onFailure { e ->
+                    Log.e("@dev", "Error en el login: ${e.localizedMessage}", e)
                 }
-            } catch (e: Exception) {
-                Log.e("@dev", "Excepción en el login: ${e.localizedMessage}", e)
-            }
+        }
+    }
+
+    private fun deleteAlumno(id: Int) {
+        lifecycleScope.launch {
+                val result = ApiClient.apiService.deleteAlumno(id)
+                if (result.isSuccessful) {
+                    Log.d("@dev", "Alumno eliminado correctamente")
+                } else {
+                    Log.d("@dev", "Error al eliminar alumno: ${result.errorBody()?.string()}")
+                }
+        }
+    }
+
+    private fun getAlumno(id : String){
+        lifecycleScope.launch {
+                val result = ApiClient.apiService.getAlumno(id.toInt())
+                if (result.isSuccessful) {
+                    Log.d("@dev", "Alumno con id: $id ${result.body()}")
+                } else {
+                    Log.d("@dev", "Error al obtener alumno: ${result.errorBody()?.string()}")
+                }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!", modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    RetrofitTheme {
-        Greeting("Android")
+    @Composable
+    fun Greeting(name: String, modifier: Modifier = Modifier) {
+        Text(
+            text = "PSP $name!", modifier = modifier
+        )
     }
-}
+
+    @Preview(showBackground = true)
+    @Composable
+    fun GreetingPreview() {
+        RetrofitTheme {
+            Greeting("Enrique Arenas")
+        }
+    }

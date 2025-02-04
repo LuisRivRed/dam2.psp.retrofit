@@ -27,7 +27,8 @@ class AlumnoServiceTest {
     @Mock
     private lateinit var apiService: ApiService
 
-    // Lista de alumnos simulados
+    private var tokenPrueba = "test_token"
+
     private val mockAlumnos = listOf(
         Alumno(
             id = 1,
@@ -57,14 +58,13 @@ class AlumnoServiceTest {
 
     @Before
     fun setup() {
-        // No es necesario instanciar ningún repositorio, trabajamos directamente con apiService
     }
 
     @Test
     fun getAlumnos() = runTest {
-        whenever(apiService.getAlumnos()).thenReturn(Response.success(mockAlumnos))
+        whenever(apiService.getAlumnos(tokenPrueba)).thenReturn(Response.success(mockAlumnos))
 
-        val response = apiService.getAlumnos()
+        val response = apiService.getAlumnos(tokenPrueba)
 
         Assert.assertTrue(response.isSuccessful)
         assertEquals(mockAlumnos, response.body())
@@ -72,11 +72,10 @@ class AlumnoServiceTest {
 
     @Test
     fun getAlumnosNull() = runTest {
-        // Simulamos un error 404 con un cuerpo de error "Not Found"
         val errorResponseBody = ResponseBody.create("application/json".toMediaTypeOrNull(), "Not Found")
-        whenever(apiService.getAlumnos()).thenReturn(Response.error(404, errorResponseBody))
+        whenever(apiService.getAlumnos(tokenPrueba)).thenReturn(Response.error(404, errorResponseBody))
 
-        val response = apiService.getAlumnos()
+        val response = apiService.getAlumnos(tokenPrueba)
 
         Assert.assertFalse(response.isSuccessful)
         Assert.assertNull(response.body())
@@ -85,7 +84,6 @@ class AlumnoServiceTest {
     @Test
     fun getAlumnoById() = runTest {
         val id = 1
-        // Para este test simulamos que cuando se pida el alumno con id 1, se retorna el segundo elemento de la lista
         whenever(apiService.getAlumno(id)).thenReturn(Response.success(mockAlumnos[1]))
 
         val response = apiService.getAlumno(id)
@@ -107,9 +105,9 @@ class AlumnoServiceTest {
 
     @Test
     fun getAlumnosEmpty() = runTest {
-        whenever(apiService.getAlumnos()).thenReturn(Response.success(emptyList()))
+        whenever(apiService.getAlumnos(tokenPrueba)).thenReturn(Response.success(emptyList()))
 
-        val response = apiService.getAlumnos()
+        val response = apiService.getAlumnos(tokenPrueba)
 
         Assert.assertTrue(response.isSuccessful)
         Assert.assertTrue(response.body().isNullOrEmpty())
@@ -136,7 +134,6 @@ class AlumnoServiceTest {
         val response = apiService.deleteAlumno(id)
 
         Assert.assertFalse(response.isSuccessful)
-        // El body en un error es nulo
         Assert.assertNull(response.body())
     }
 
