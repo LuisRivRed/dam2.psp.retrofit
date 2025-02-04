@@ -17,7 +17,10 @@ import com.psp.retrofit.ui.theme.RetrofitTheme
 import androidx.lifecycle.lifecycleScope
 import com.psp.data.remote.ApiClient
 import com.psp.data.remote.ApiService
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainActivity : ComponentActivity() {
 
@@ -57,24 +60,40 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun deleteAlumno(id: Int) {
-        lifecycleScope.launch {
-                val result = ApiClient.apiService.deleteAlumno(id)
-                if (result.isSuccessful) {
-                    Log.d("@dev", "Alumno eliminado correctamente")
-                } else {
-                    Log.d("@dev", "Error al eliminar alumno: ${result.errorBody()?.string()}")
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val apiService = ApiClient.apiService
+                val result = apiService.deleteAlumno(id)
+
+                withContext(Dispatchers.Main) {
+                    if (result.isSuccessful) {
+                        Log.d("@dev", "Alumno eliminado")
+                    } else {
+                        Log.d("@dev", "Error al eliminar alumno: ${result.errorBody()?.string()}")
+                    }
                 }
+            } catch (e: Exception) {
+                Log.e("@dev", "Error al eliminar alumno: ${e.localizedMessage}", e)
+            }
         }
     }
 
     private fun getAlumno(id : String){
-        lifecycleScope.launch {
-                val result = ApiClient.apiService.getAlumno(id.toInt())
-                if (result.isSuccessful) {
-                    Log.d("@dev", "Alumno con id: $id ${result.body()}")
-                } else {
-                    Log.d("@dev", "Error al obtener alumno: ${result.errorBody()?.string()}")
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val apiService = ApiClient.apiService
+                val result = apiService.getAlumno(id.toInt())
+
+                withContext(Dispatchers.Main) {
+                    if (result.isSuccessful) {
+                        Log.d("@dev", "Alumno: ${result.body()}")
+                    } else {
+                        Log.d("@dev", "Error al obtener alumno: ${result.errorBody()?.string()}")
+                    }
                 }
+            } catch (e: Exception) {
+                Log.e("@dev", "Error al obtener alumno: ${e.localizedMessage}", e)
+            }
         }
     }
 }

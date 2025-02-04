@@ -11,7 +11,7 @@ interface ApiService {
     @GET("alumnos/{id}")
     suspend fun getAlumno(@Path("id") id: Int): Response<Alumno>
 
-    @DELETE("alumnos/eliminar/{id}")
+    @DELETE("alumnos/{id}")
     suspend fun deleteAlumno(@Path("id") id: Int): Response<Unit>
 
 

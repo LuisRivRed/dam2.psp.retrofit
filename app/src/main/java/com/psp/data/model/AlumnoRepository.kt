@@ -9,7 +9,7 @@ object AlumnoRepository {
 
     suspend fun login(username: String, password: String): Result<String> = withContext(Dispatchers.IO) {
         try {
-            val response = ApiClient.apiService.login(LoginRequest(username, password))
+            val response = apiService.login(LoginRequest(username, password))
             if (response.isSuccessful) {
                 val token = response.body()?.token ?: throw Exception("Token no encontrado")
                 ApiClient.setToken(token)
