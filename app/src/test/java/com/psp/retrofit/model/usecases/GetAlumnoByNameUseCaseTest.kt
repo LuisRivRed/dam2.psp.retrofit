@@ -4,7 +4,7 @@ import com.psp.model.Alumno
 import com.psp.model.AlumnoRepository
 import com.psp.model.Curso
 import com.psp.model.usecases.GetAlumnoByNameUseCase
-import junit.framework.TestCase.assertNull
+import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
@@ -20,42 +20,28 @@ class GetAlumnoByNameUseCaseTest {
     private lateinit var repository: AlumnoRepository
     private lateinit var useCase: GetAlumnoByNameUseCase
 
-
     @Before
     fun setUp() {
         useCase = GetAlumnoByNameUseCase(repository)
     }
 
     @Test
-    fun `when invoked, the alumno with the name are returned`() = runTest {
-        // Given
-        val expectedAlumnos = listOf(
-            Alumno(1, "Pepe", "Pérez", Curso.DAM2, "educa@email", emptyList()),
-            Alumno(2, "Juan", "Gómez", Curso.DAM2, "educa@email", emptyList())
-        )
-        whenever(repository.getAlumnosByName("Pepe")).thenReturn(
-            expectedAlumnos.find { it.nombre == "Pepe" }
-        )
-        // When
-        val result = useCase.invoke("Pepe")
-        // Then
-        assert(result == expectedAlumnos[0])
-    }
+    fun `should return alumno when API call is successful`() = runTest {
+        val alumno = Result.success(Alumno (
+            id = 1,
+            nombre = "Pepe",
+            curso = Curso.DAM2,
+            fechaNacimiento = "1990-01-01",
+            email = "pepe@email.com",
+            asignaturas = emptyList(),
+        ))
+        whenever(repository.getAlumnosByName("Pepe")).thenReturn(alumno)
 
-    @Test
-    fun `when invoked and name doesn't match any element, it returns an empty list`() = runTest {
-        // Given
-        val expectedAlumnos = listOf(
-            Alumno(1, "Pepe", "Pérez", Curso.DAM2, "educa@email", emptyList()),
-            Alumno(2, "Juan", "Gómez", Curso.DAM2, "educa@email", emptyList())
-        )
-        whenever(repository.getAlumnosByName("María")).thenReturn(
-            expectedAlumnos.find
-            { it.nombre == "María" }
-        )
-        // When
-        val result = useCase.invoke("María")
+        //When
+        val result = useCase.invoke("Pepe")
+
         // Then
-        assertNull(result)
+        assert(result.isSuccess)
+        assertEquals(result, alumno)
     }
 }

@@ -32,11 +32,12 @@ class AlumnoApiDataSourceTest {
         val expectedAlumnos = listOf(
             Alumno (1, "Pepe", "Pérez", Curso.DAM2, "educa@email", emptyList())
         )
-        whenever(apiService.fetchAlumnos()).thenReturn(expectedAlumnos)
+        val expectedResponse = retrofit2.Response.success(expectedAlumnos)
+        whenever(apiService.fetchAlumnos()).thenReturn(expectedResponse)
         //When
         val result = dataSource.getAlumnos()
         //Then
-        assert(result == expectedAlumnos)
+        assert(result?.getOrNull() == expectedAlumnos)
 
 
     }

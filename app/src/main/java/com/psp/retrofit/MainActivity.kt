@@ -4,30 +4,18 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
 import com.psp.model.Alumno
 import com.psp.model.Asignatura
 import com.psp.model.Curso
 import com.psp.model.LoginRequest
 import com.psp.retrofit.ui.theme.RetrofitTheme
-import kotlinx.coroutines.runBlocking
 
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
             RetrofitTheme {
                 MainScreen()
@@ -49,7 +37,7 @@ fun MainScreen() {
 
     // Lógica para el login con LaunchedEffect y manejo de errores
     LaunchedEffect(Unit) {
-        // Ejecutar operaciones en un hilo de fondo sin bloquear el hilo principal
+        // Ejecutar operaciones en un hilo de secundario sin bloquear el hilo principal
         try {
             val result = loginUseCase.login(loginRequest)
 
@@ -59,13 +47,13 @@ fun MainScreen() {
 
                 // Realizar las demás llamadas y loguearlas de manera no bloqueante
                 val alumnosResult = getAlumnosUseCase.invoke()
-                Log.d("@dev", "Alumnos: ${alumnosResult.getOrNull()}")
+                Log.d("@dev", "Alumnos: $alumnosResult")
 
                 val alumnosByCursoResult = getAlumnosByCursoUseCase.invoke(Curso.DAM2)
-                Log.d("@dev", "Alumnos by curso: ${alumnosByCursoResult.getOrNull()}")
+                Log.d("@dev", "Alumnos by curso: $alumnosByCursoResult")
 
                 val alumnoByNameResult = getAlumnosByNameUseCase.invoke("Pepe")
-                Log.d("@dev", "Alumno by name: ${alumnoByNameResult.getOrNull()}")
+                Log.d("@dev", "Alumno by name: $alumnoByNameResult")
 
                 // Guardar un alumno nuevo y loguear el resultado
                 val saveResult = saveAlumnoUseCase.invoke(

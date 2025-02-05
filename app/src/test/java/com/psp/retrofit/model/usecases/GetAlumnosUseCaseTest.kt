@@ -27,8 +27,8 @@ class GetAlumnosUseCaseTest {
     @Test
     fun `when invoked, it returns a list of alumnos`() = runTest {
         // Given
-        val expectedAlumnos = listOf(
-            Alumno(1, "Pepe", "Pérez", Curso.DAM2, "educa@email", emptyList())
+        val expectedAlumnos = Result.success(listOf(
+            Alumno(1, "Pepe", "Pérez", Curso.DAM2, "educa@email", emptyList()))
         )
         whenever(repository.getAlumnos()).thenReturn(expectedAlumnos)
 

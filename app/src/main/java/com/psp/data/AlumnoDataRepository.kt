@@ -33,7 +33,12 @@ class AlumnoDataRepository(
     // Obtener los alumnos
     override suspend fun getAlumnos(): Result<List<Alumno>> {
         return try {
-            remoteDataSource.getAlumnos()
+            val response =  remoteDataSource.getAlumnos()
+            return if (response.isSuccess){
+                response
+            } else {
+                Result.failure(response.exceptionOrNull() ?: Exception("Error desconocido"))
+            }
         } catch (e: Exception) {
             Result.failure(e)
         }
@@ -42,7 +47,12 @@ class AlumnoDataRepository(
     // Obtener los alumnos por curso
     override suspend fun getAlumnosByCurso(curso: Curso): Result<List<Alumno>> {
         return try {
-            remoteDataSource.getAlumnosByCurso(curso)
+            val response = remoteDataSource.getAlumnosByCurso(curso)
+            return if (response.isSuccess) {
+                response
+            } else {
+                Result.failure(response.exceptionOrNull() ?: Exception("Error desconocido"))
+            }
         } catch (e: Exception) {
             Result.failure(e)
         }
@@ -51,7 +61,12 @@ class AlumnoDataRepository(
     // Obtener un alumno por nombre
     override suspend fun getAlumnosByName(name: String): Result<Alumno> {
         return try {
-            remoteDataSource.getAlumnosByName(name)
+            val response = remoteDataSource.getAlumnosByName(name)
+            return if (response.isSuccess) {
+                response
+            } else {
+                Result.failure(response.exceptionOrNull() ?: Exception("Error desconocido"))
+            }
         } catch (e: Exception) {
             Result.failure(e)
         }

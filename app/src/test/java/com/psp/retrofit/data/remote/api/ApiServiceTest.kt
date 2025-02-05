@@ -17,15 +17,10 @@ class ApiServiceTest {
 
     @Mock
     private lateinit var apiService: ApiService
-    private lateinit var repository: AlumnoRepository
-
-    @Before
-    fun setup() {
-    }
 
     @Test
     fun `getAlumnos test`() = runTest {
-        val alumnos = listOf(Alumno(1, "Pepe", "Pérez", Curso.DAM2, "", emptyList()))
+        val alumnos = retrofit2.Response.success(listOf(Alumno(1, "Pepe", "Pérez", Curso.DAM2, "", emptyList())))
         whenever(apiService.fetchAlumnos()).thenReturn(alumnos)
 
         val result = apiService.fetchAlumnos()
