@@ -70,14 +70,14 @@ fun main() {
             asignaturas = listOf(Asignatura.PSP, Asignatura.EIE, Asignatura.PMDM))
         apiService.addAlumno(newAlumno)
 
-        val updatedAlumnosAfterAdd  = apiService.getAlumnos()
+        val updatedAlumnosAfterAdd  = apiService.getAlumnos("Bearer $token")
         println("\nLista de alumnos mas el nuevo alumno: ${updatedAlumnosAfterAdd.body()}")
 
         val idAlumno = 1 //Cambia este parámetro para borrar el alumno que desees
         apiService.deleteAlumno(idAlumno)
 
 
-        val updatedAlumnosAfterDelete  = apiService.getAlumnos()
+        val updatedAlumnosAfterDelete  = apiService.getAlumnos("Bearer $token")
         println("\nLista de alumnos menos el alumno borrado: ${updatedAlumnosAfterDelete.body()}")
     }
 }
