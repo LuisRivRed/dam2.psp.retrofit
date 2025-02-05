@@ -1,28 +1,47 @@
 package com.psp.retrofit
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.lifecycleScope
+import com.psp.data.AlumnoDataRepository
 import com.psp.data.AlumnoService
 import com.psp.data.ApiClient
+import com.psp.data.ApiError
+import com.psp.data.RetrofitClient
 import com.psp.model.Alumno
 import com.psp.model.Curso
 import com.psp.model.Asignatura
-import com.psp.retrofit.ui.theme.RetrofitTheme
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import retrofit2.HttpException
 import java.io.IOException
 
 class MainActivity : AppCompatActivity() {
 
     private val alumnoService: AlumnoService = ApiClient.apiService
+    private val repository = AlumnoDataRepository(RetrofitClient.alumnoService)
+
+    private fun loginUser() {
+        lifecycleScope.launch {
+            val result = repository.login("admin", "password")
+            if (result.isSuccess) {
+                val alumnos = repository.getAlumnos()
+            } else {
+                val exception = result.exceptionOrNull()
+                exception?.printStackTrace()
+            }
+        }
+    }
+
+    private fun handleApiError(result: Result<*>) {
+        result.onFailure { exception ->
+            when(exception) {
+                is IOException -> ApiError.NetworkError
+                is HttpException -> ApiError.ServerError(exception.code(), exception.message())
+                else -> ApiError.UnknownError(exception.localizedMessage ?: "Error desconocido")
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,14 +49,16 @@ class MainActivity : AppCompatActivity() {
         performAlumnoOperations()
     }
 
+
+
     private fun performAlumnoOperations() {
-        val alumnoHandler = AlumnoApiHandler(alumnoService)
+        val alumnoDataRepository = AlumnoDataRepository(alumnoService)
 
         lifecycleScope.launch {
-            alumnoHandler.getAlumnos()
-            alumnoHandler.getAlumnoByNombre("Roberto")
-            alumnoHandler.getAlumnoByCurso("DAM2")
-            alumnoHandler.getAlumnoById(1)
+            //alumnoDataRepository.getAlumnos()
+            alumnoDataRepository.getAlumnoByNombre("Roberto")
+            alumnoDataRepository.getAlumnoByCurso("DAM2")
+            alumnoDataRepository.getAlumnoById(1)
 
             val newAlumno = Alumno(
                 id = 4,
@@ -47,80 +68,9 @@ class MainActivity : AppCompatActivity() {
                 email = "arturo10@gmail.com",
                 asignaturas = listOf(Asignatura.PSP, Asignatura.EIE, Asignatura.PMDM, Asignatura.AAD)
             )
-            alumnoHandler.addAlumno(newAlumno)
+            alumnoDataRepository.addAlumno(newAlumno)
 
-            alumnoHandler.deleteAlumno(1)
+            alumnoDataRepository.deleteAlumno(1)
         }
-    }
-}
-
-class AlumnoApiHandler(private val alumnoService: AlumnoService) {
-
-    suspend fun getAlumnos() {
-        executeApiCall {
-            val alumnos = alumnoService.getAlumnos()
-            Log.d("@dev", "Todos los alumnos: $alumnos")
-        }
-    }
-
-    suspend fun getAlumnoByNombre(nombre: String) {
-        executeApiCall {
-            val alumno = alumnoService.getAlumnoNombre(nombre)
-            Log.d("@dev", "Alumno por nombre ($nombre): $alumno")
-        }
-    }
-
-    suspend fun getAlumnoByCurso(curso: String) {
-        executeApiCall {
-            val alumnos = alumnoService.getAlumnoCurso(curso)
-            Log.d("@dev", "Alumnos por curso ($curso): $alumnos")
-        }
-    }
-
-    suspend fun addAlumno(alumno: Alumno) {
-        executeApiCall {
-            alumnoService.addAlumno(alumno)
-            Log.d("@dev", "Alumno añadido: $alumno")
-        }
-    }
-
-    suspend fun deleteAlumno(id: Int) {
-        executeApiCall {
-            alumnoService.deleteAlumno(id)
-            Log.d("@dev", "Alumno eliminado con id: $id")
-        }
-    }
-
-    suspend fun getAlumnoById(id: Int) {
-        executeApiCall {
-            val alumno = alumnoService.getAlumnoId(id)
-            Log.d("@dev", "Alumno por id ($id): $alumno")
-        }
-    }
-
-    private suspend fun executeApiCall(action: suspend () -> Unit) {
-        try {
-            withContext(Dispatchers.IO) { action() }
-        } catch (e: IOException) {
-            Log.e("@dev", "Error de red: ${e.message}", e)
-        } catch (e: Exception) {
-            Log.e("@dev", "Error: ${e.message}", e)
-        }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    RetrofitTheme {
-        Greeting("Android")
     }
 }
