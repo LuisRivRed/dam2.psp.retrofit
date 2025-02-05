@@ -8,6 +8,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 
 private const val BASE_URL = "http://10.0.2.2:8080"
+private const val BASE_URL_8443 = "https://10.0.2.2:8443"
 
 class ApiClient() {
     private val gson = GsonBuilder().create()
