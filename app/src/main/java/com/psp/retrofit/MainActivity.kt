@@ -27,8 +27,26 @@ class MainActivity : ComponentActivity() {
         setContent {
             RetrofitTheme {
                 LaunchedEffect(Unit) {
-                    fetchStudents()
+                    loginAndFetchStudents()
                 }
+            }
+        }
+    }
+
+    private fun loginAndFetchStudents() {
+        CoroutineScope(Dispatchers.IO).launch {
+            val loginResponse = alumnoRepository.login("pedro@educa.jcyl.es", "password")
+            if (loginResponse.isSuccessful) {
+                val token = loginResponse.body()?.token
+                if (!token.isNullOrEmpty()) {
+                    ApiClient.setToken(token)
+                    Log.d("@dev", "Login exitoso, token: $token")
+                    fetchStudents()
+                } else {
+                    Log.d("@dev", "Error: el token recibido es nulo o vacío")
+                }
+            } else {
+                Log.d("@dev", "Error de login: ${loginResponse.code()}")
             }
         }
     }
@@ -39,10 +57,10 @@ class MainActivity : ComponentActivity() {
             if (response.isSuccessful) {
                 val students = response.body()
                 students?.forEach {
-                    Log.d("@dev","$it")
+                    Log.d("@dev", it.toString())
                 }
             } else {
-                println("Error: ${response.code()}")
+                Log.d("@dev", "Error al obtener estudiantes: ${response.code()}")
             }
         }
     }

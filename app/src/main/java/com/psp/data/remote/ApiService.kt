@@ -1,7 +1,9 @@
 package com.psp.data.remote
 
 import com.psp.model.Course
+import com.psp.model.LoginRequest
 import com.psp.model.Student
+import com.psp.model.TokenResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
