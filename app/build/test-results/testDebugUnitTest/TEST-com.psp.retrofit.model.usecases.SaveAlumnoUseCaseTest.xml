@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.psp.retrofit.model.usecases.SaveAlumnoUseCaseTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-02-05T18:01:46" hostname="IANPC" time="0.561">
+  <properties/>
+  <testcase name="when invoked, the alumno is saved" classname="com.psp.retrofit.model.usecases.SaveAlumnoUseCaseTest" time="0.561"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (C:\Users\ianga\.gradle\caches\modules-2\files-2.1\net.bytebuddy\byte-buddy-agent\1.14.4\3bf5ac1104554908cc623e40e58a00be37c35f36\byte-buddy-agent-1.14.4.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>
